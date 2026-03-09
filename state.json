@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773073856,
-  "generatedAtIso": "2026-03-09T16:30:56Z",
+  "generatedAt": 1773074264,
+  "generatedAtIso": "2026-03-09T16:37:44Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -20,17 +20,27 @@
     "cron": {
       "jobs": [
         {
+          "id": "dashboard-state-push",
+          "humanSchedule": "Every 30 min",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773075685
+          },
+          "consecutiveErrors": 0
+        },
+        {
           "id": "maruhide-uni-monitor",
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773072180,
+            "ts": 1773073980,
             "status": "ok",
-            "durationMs": 33042,
+            "durationMs": 35138,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773073980
+            "ts": 1773075780
           },
           "consecutiveErrors": 0
         },
@@ -166,8 +176,8 @@
         }
       ],
       "stats": {
-        "total": 10,
-        "enabled": 10,
+        "total": 11,
+        "enabled": 11,
         "failedLast24h": 1
       }
     },
@@ -178,7 +188,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773073539,
+            "lastCheckedTs": 1773073984,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -227,6 +237,14 @@
               {
                 "ts": 1773073539,
                 "availability": "in_stock"
+              },
+              {
+                "ts": 1773073958,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773073984,
+                "availability": "in_stock"
               }
             ]
           }
@@ -259,25 +277,100 @@
     "projects": {
       "active": [
         {
-          "name": "Account:",
-          "status": "active",
-          "notesExcerpt": "liuandrewy@gmail.com (patronId 268964). Credit card on file."
+          "name": "Austin Date Digest",
+          "status": "live",
+          "notesExcerpt": "Live. First issue sent Feb 25, 2026. Format approved. Validation rules added."
         },
         {
-          "name": "CVC:",
+          "name": "Toshokan Reservation Grab",
+          "status": "building",
+          "notesExcerpt": "FAILED March 1 drop. Rebuilding for April 1."
+        },
+        {
+          "name": "Product Sense / Problem Backlog",
+          "status": "live",
+          "notesExcerpt": "Live (2026-03-07)"
+        },
+        {
+          "name": "Mental State Tracker",
+          "status": "live",
+          "notesExcerpt": "Live (2026-03-07). Collecting data, first analysis after 4-6 weeks."
+        },
+        {
+          "name": "Haircut Booking",
+          "status": "live",
+          "notesExcerpt": "Live (2026-03-07). Nudge + booking flow operational."
+        },
+        {
+          "name": "Biweekly Project Review",
+          "status": "live",
+          "notesExcerpt": "Live. First real run in ~2 weeks."
+        },
+        {
+          "name": "Drive System (Self-Improvement)",
+          "status": "live",
+          "notesExcerpt": "Live. First Wednesday audit pending, first Sunday report March 1."
+        },
+        {
+          "name": "Voice Calls (Two-Way Conversation)",
           "status": "active",
-          "notesExcerpt": "stored in Keychain (`tock-card-cvc`)"
+          "notesExcerpt": "Not started"
+        },
+        {
+          "name": "Usage Tracking",
+          "status": "active",
+          "notesExcerpt": "Complete"
+        },
+        {
+          "name": "Audio Transcription",
+          "status": "active",
+          "notesExcerpt": "Installed, needs gateway restart"
+        },
+        {
+          "name": "CAPTCHA Solving Skill",
+          "status": "active",
+          "notesExcerpt": "Not started"
+        },
+        {
+          "name": "Security Hardening",
+          "status": "active",
+          "notesExcerpt": "Mostly complete, Keychain migration incomplete"
         }
       ],
       "stats": {
-        "activeCount": 2
+        "activeCount": 12
       }
     },
     "capabilityGaps": {
-      "open": [],
+      "open": [
+        {
+          "title": "comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibi",
+          "severity": "medium"
+        },
+        {
+          "title": "Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd)",
+          "severity": "high"
+        },
+        {
+          "title": "cf_clearance cookie was missing at sniper launch despite offerings working",
+          "severity": "medium"
+        },
+        {
+          "title": "Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha)",
+          "severity": "medium"
+        },
+        {
+          "title": "Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw)",
+          "severity": "low"
+        },
+        {
+          "title": "Browser workarounds accumulate before proper tool integration",
+          "severity": "medium"
+        }
+      ],
       "rejected": [],
       "stats": {
-        "openCount": 0
+        "openCount": 6
       }
     },
     "drive": {

@@ -142,18 +142,30 @@ def get_curiosity():
 def get_projects():
     content = safe_read(os.path.join(WORKSPACE, "PROJECTS.md")) or ""
     projects = []
+    cur_name = None
+    cur_status = None
+    cur_excerpt = ""
     for line in content.splitlines():
-        m = re.match(r'^[-*]\s+\*\*(.+?)\*\*(.*)', line.strip())
-        if m:
-            name, rest = m.group(1), m.group(2).strip(" —-:")
-            status = "active"
-            for s in ["building", "paused", "done", "killed", "active", "idea", "live"]:
-                if s.upper() in rest.upper():
-                    status = s
+        h2 = re.match(r'^## (.+)', line)
+        if h2:
+            if cur_name and cur_name not in ("Key Docs",):
+                projects.append({"name": cur_name, "status": cur_status or "active", "notesExcerpt": cur_excerpt[:120]})
+            cur_name = h2.group(1).strip()
+            cur_status = None
+            cur_excerpt = ""
+            continue
+        sm = re.match(r'^\*\*Status:\*\*\s*(.*)', line)
+        if sm and cur_name:
+            st = sm.group(1).lower()
+            for s in ["live", "building", "paused", "done", "killed", "failed", "active", "idea"]:
+                if s in st:
+                    cur_status = s
                     break
-            projects.append({"name": name, "status": status, "notesExcerpt": rest[:120]})
+            cur_excerpt = sm.group(1).strip()[:120]
+    if cur_name and cur_name not in ("Key Docs",):
+        projects.append({"name": cur_name, "status": cur_status or "active", "notesExcerpt": cur_excerpt[:120]})
     active = [p for p in projects if p["status"] not in ("done", "killed")]
-    return {"active": active[:10], "stats": {"activeCount": len(active)}}
+    return {"active": active[:12], "stats": {"activeCount": len(active)}}
 
 def get_capability_gaps():
     content = safe_read(os.path.join(WORKSPACE, "CAPABILITY-GAPS.md")) or ""
@@ -161,22 +173,32 @@ def get_capability_gaps():
     rejected = []
     section = None
     for line in content.splitlines():
-        if "Open Gaps" in line or "## Open" in line:
+        stripped = line.strip()
+        if "## Open Gaps" in line or "## Open" in line:
             section = "open"
-        elif "Rejected" in line:
+            continue
+        elif "## Rejected" in line:
             section = "rejected"
+            continue
+        elif "## Audit" in line:
+            section = "audit"
+            continue
         elif line.startswith("## "):
             section = None
-        elif section == "open" and line.strip().startswith("- "):
-            t = line.strip()[2:]
-            sev = "high" if any(w in t.lower() for w in ["critical", "blocker", "high"]) else \
-                  "low" if any(w in t.lower() for w in ["low", "minor"]) else "medium"
-            m = re.search(r'\*\*(.*?)\*\*', t)
-            gaps.append({"title": m.group(1) if m else t[:100], "severity": sev})
-        elif section == "rejected" and line.strip().startswith("- "):
-            t = line.strip()[2:]
-            m = re.search(r'\*\*(.*?)\*\*', t)
-            rejected.append({"title": m.group(1) if m else t[:100]})
+            continue
+        if stripped.startswith("<!--") or not stripped:
+            continue
+        if section == "open" and stripped:
+            parts = stripped.split("|")
+            if len(parts) >= 2:
+                title = parts[1].strip()[:100]
+                sev = "high" if any(w in title.lower() for w in ["cloudflare", "blocked", "critical"]) else \
+                      "low" if any(w in title.lower() for w in ["migration", "minor"]) else "medium"
+                gaps.append({"title": title, "severity": sev})
+        elif section == "rejected" and stripped and not stripped.startswith("<!--"):
+            parts = stripped.split("|")
+            if len(parts) >= 2:
+                rejected.append({"title": parts[1].strip()[:100]})
     return {"open": gaps[:10], "rejected": rejected[:5], "stats": {"openCount": len(gaps)}}
 
 def get_drive():
