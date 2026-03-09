@@ -321,6 +321,28 @@ def get_heartbeat():
         parsed[FRIENDLY.get(k, k)] = v
     return {"lastChecks": parsed}
 
+def get_documents():
+    doc_files = [
+        "HEARTBEAT.md", "PROJECTS.md", "CAPABILITY-GAPS.md",
+        "TOOLS.md", "PLAYBOOKS.md", "SOUL.md", "IDENTITY.md",
+    ]
+    docs = []
+    for name in doc_files:
+        path = os.path.join(WORKSPACE, name)
+        if not os.path.exists(path):
+            continue
+        content = safe_read(path)
+        if content is None:
+            continue
+        stat = os.stat(path)
+        docs.append({
+            "name": name,
+            "content": content,
+            "sizeBytes": stat.st_size,
+            "lastModified": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        })
+    return docs
+
 def compute_health(sections):
     signals = []
     cron = sections.get("cron", {})
@@ -344,9 +366,10 @@ def main():
     sections = {"cron": get_cron_jobs(), "stocks": get_stocks(), "curiosity": get_curiosity(),
         "projects": get_projects(), "capabilityGaps": get_capability_gaps(), "drive": get_drive(),
         "memory": get_memory(), "heartbeat": get_heartbeat()}
+    documents = get_documents()
     state = {"schemaVersion": 1, "generatedAt": now_epoch(), "generatedAtIso": now_iso(),
         "host": {"name": "Andrew's MacBook Pro", "timezone": "America/Chicago"},
-        "health": compute_health(sections), "sections": sections,
+        "health": compute_health(sections), "sections": sections, "documents": documents,
         "links": {"repo": "https://github.com/jarvis-aux/jarvis-dashboard"}}
     tmp = OUTPUT + ".tmp"
     with open(tmp, "w") as f:

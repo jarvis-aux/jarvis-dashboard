@@ -483,6 +483,101 @@
     });
   }
 
+  // ── Simple Markdown → HTML ──────────────────────────────
+  function renderMarkdown(md) {
+    let text = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    text = text.replace(/```[\w]*\n([\s\S]*?)```/g, (_, code) =>
+      `<pre class="md-code-block"><code>${code.trim()}</code></pre>`);
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false, listType = '', inBlockquote = false;
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      if (line.includes('<pre class="md-code-block">') || line.includes('</pre>')) {
+        if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+        if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+        html += line + '\n'; continue;
+      }
+      if (/^---+\s*$/.test(line.trim())) {
+        if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+        if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+        html += '<hr class="md-hr">'; continue;
+      }
+      const hm = line.match(/^(#{1,6})\s+(.+)/);
+      if (hm) {
+        if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+        if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+        const lv = hm[1].length;
+        html += `<h${lv} class="md-h${lv}">${inlineFmt(hm[2])}</h${lv}>`; continue;
+      }
+      if (line.match(/^&gt;\s?(.*)/)) {
+        if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+        const c = line.replace(/^&gt;\s?/, '');
+        if (!inBlockquote) { html += '<blockquote class="md-blockquote">'; inBlockquote = true; }
+        html += `<p>${inlineFmt(c)}</p>`; continue;
+      } else if (inBlockquote) { html += '</blockquote>'; inBlockquote = false; }
+      if (/^\s*[-*]\s+/.test(line)) {
+        const c = line.replace(/^\s*[-*]\s+/, '');
+        if (!inList || listType !== 'ul') { if (inList) html += listType === 'ul' ? '</ul>' : '</ol>'; html += '<ul class="md-ul">'; inList = true; listType = 'ul'; }
+        html += `<li>${inlineFmt(c)}</li>`; continue;
+      }
+      if (/^\s*\d+\.\s+/.test(line)) {
+        const c = line.replace(/^\s*\d+\.\s+/, '');
+        if (!inList || listType !== 'ol') { if (inList) html += listType === 'ul' ? '</ul>' : '</ol>'; html += '<ol class="md-ol">'; inList = true; listType = 'ol'; }
+        html += `<li>${inlineFmt(c)}</li>`; continue;
+      }
+      if (inList) { html += listType === 'ul' ? '</ul>' : '</ol>'; inList = false; }
+      if (!line.trim()) { html += '<br>'; continue; }
+      html += `<p class="md-p">${inlineFmt(line)}</p>`;
+    }
+    if (inList) html += listType === 'ul' ? '</ul>' : '</ol>';
+    if (inBlockquote) html += '</blockquote>';
+    return html;
+  }
+
+  function inlineFmt(t) {
+    t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+    t = t.replace(/`([^`]+)`/g, '<code class="md-inline-code">$1</code>');
+    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return t;
+  }
+
+  // ── Document viewer ────────────────────────────────────────
+  function renderDocuments(docs) {
+    if (!docs || !docs.length) return '';
+    const list = docs.map((d, i) =>
+      `<div class="doc-item" data-doc-index="${i}">
+        <div class="doc-name">${h(d.name)}</div>
+        <div class="doc-size">${formatBytes(d.sizeBytes)}</div>
+      </div>`
+    ).join('');
+    return card('Documents', `<div class="doc-list">${list}</div>`, { meta: `${docs.length} files` });
+  }
+
+  function openDocModal(doc) {
+    const old = document.getElementById('doc-modal');
+    if (old) old.remove();
+    const modal = document.createElement('div');
+    modal.id = 'doc-modal';
+    modal.className = 'doc-modal-overlay';
+    modal.innerHTML = `<div class="doc-modal-backdrop"></div>
+      <div class="doc-modal-container">
+        <div class="doc-modal-header">
+          <h3 class="doc-modal-title">${h(doc.name)}</h3>
+          <button class="doc-modal-close">&times;</button>
+        </div>
+        <div class="doc-modal-body">${renderMarkdown(doc.content)}</div>
+      </div>`;
+    document.body.appendChild(modal);
+    const close = () => modal.remove();
+    modal.querySelector('.doc-modal-close').addEventListener('click', close);
+    modal.querySelector('.doc-modal-backdrop').addEventListener('click', close);
+    const onKey = (e) => { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); } };
+    document.addEventListener('keydown', onKey);
+    requestAnimationFrame(() => modal.classList.add('doc-modal-open'));
+  }
+
   // ── Main render ──────────────────────────────────────────
   let dashboardInitialized = false;
   _startDashboard = function() {
@@ -538,6 +633,7 @@
 
     // Sections
     const s = state.sections || {};
+    const docs = state.documents || [];
     const html = [
       s.cron ? renderCron(s.cron) : '',
       s.heartbeat ? renderHeartbeat(s.heartbeat) : '',
@@ -547,9 +643,18 @@
       s.projects ? renderProjects(s.projects) : '',
       s.capabilityGaps ? renderCapabilityGaps(s.capabilityGaps) : '',
       s.memory ? renderMemory(s.memory) : '',
+      renderDocuments(docs),
     ].join('');
 
     $('#dashboard').innerHTML = html;
+
+    // Wire up document click handlers
+    document.querySelectorAll('.doc-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = parseInt(el.dataset.docIndex, 10);
+        if (docs[idx]) openDocModal(docs[idx]);
+      });
+    });
 
     // Draw charts after DOM update
     requestAnimationFrame(() => {
