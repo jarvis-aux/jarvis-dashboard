@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": 1741542396,
+  "generatedAtIso": "2026-03-09T16:06:36Z",
+  "host": {
+    "name": "Andrew's MacBook Pro",
+    "timezone": "America/Chicago"
+  },
+  "health": {
+    "overall": "ok",
+    "signals": []
+  },
+  "sections": {
+    "cron": {
+      "jobs": [
+        {"id": "maruhide-uni-monitor", "humanSchedule": "Every 30 min", "enabled": true, "lastRun": {"ts": 1741540800, "status": "success", "summary": "available=true, no alert (still in stock)"}, "nextRun": {"ts": 1741542600}},
+        {"id": "daily-usage-report", "humanSchedule": "Daily 10 PM CT", "enabled": true, "lastRun": {"ts": 1741489200, "status": "success", "summary": "Sent Telegram usage report"}, "nextRun": {"ts": 1741575600}},
+        {"id": "nightly-curiosity", "humanSchedule": "Daily 3 AM CT", "enabled": true, "lastRun": {"ts": 1741510800, "status": "success", "summary": "Investigated Coinbase speed run pattern"}, "nextRun": {"ts": 1741597200}},
+        {"id": "weekly-self-assessment", "humanSchedule": "Sunday 8 PM CT", "enabled": true, "lastRun": {"ts": 1741485600, "status": "success", "summary": "Week 10 report delivered"}, "nextRun": {"ts": 1742090400}},
+        {"id": "date-digest-sunday", "humanSchedule": "Sunday 5 AM CT", "enabled": true, "lastRun": {"ts": 1741431600, "status": "success", "summary": "Issue delivered to Andrew + Lisa"}, "nextRun": {"ts": 1742036400}},
+        {"id": "date-digest-thursday", "humanSchedule": "Thursday 5 AM CT", "enabled": true, "lastRun": {"ts": 1741172400, "status": "success", "summary": "Issue delivered"}, "nextRun": {"ts": 1741777200}}
+      ],
+      "stats": {"total": 6, "enabled": 6, "failedLast24h": 0}
+    },
+    "stocks": {
+      "monitors": [
+        {
+          "key": "maruhide-uni",
+          "name": "Maruhide Premium Uni (Ensui)",
+          "status": {"availability": "in_stock", "lastCheckedTs": 1741540800, "lastKnownChangeTs": 1741485600},
+          "history": {
+            "windowHours": 72,
+            "points": [
+              {"ts": 1741399200, "availability": "out_of_stock"},
+              {"ts": 1741485600, "availability": "in_stock"},
+              {"ts": 1741500000, "availability": "in_stock"},
+              {"ts": 1741514400, "availability": "in_stock"},
+              {"ts": 1741528800, "availability": "in_stock"},
+              {"ts": 1741540800, "availability": "in_stock"}
+            ]
+          }
+        }
+      ],
+      "stats": {"total": 1, "inStock": 1}
+    },
+    "curiosity": {
+      "runs": {"today": 1, "lastRunTs": 1741510800, "budget": {"dailyRunCap": 6, "cooldownMinutes": 30}},
+      "backlog": {
+        "open": [
+          {"id": "cur-2026-03-08", "title": "Biological computing: ethics + silicon comparison", "status": "open", "priority": "high", "tags": ["philosophy", "self-reflection"]},
+          {"id": "cur-2026-03-07", "title": "Coinbase speed run AI adoption pattern", "status": "resolved", "priority": "medium", "tags": ["ai-adoption"]}
+        ]
+      },
+      "stats": {"openCount": 1, "resolved7d": 1}
+    },
+    "projects": {
+      "active": [
+        {"key": "seattle-trip", "name": "Seattle Weekend (Oh Wonder)", "status": "building", "notesExcerpt": "May 1-3 itinerary, Taneda sushi sniper pending"},
+        {"key": "dashboard", "name": "JARVIS Ops Dashboard", "status": "building", "notesExcerpt": "This dashboard. Meta."},
+        {"key": "date-digest", "name": "Austin Date Digest", "status": "active", "notesExcerpt": "Thu/Sun 5 AM, encoding fix applied"},
+        {"key": "tock-sniper", "name": "Tock Reservation Sniper", "status": "paused", "notesExcerpt": "Toshokan failed Mar 1. Taneda rebuild pending."},
+        {"key": "drive-system", "name": "Drive System", "status": "active", "notesExcerpt": "Wed audits, Sun reports, capability gap tracking"},
+        {"key": "self-healing", "name": "Self-Healing System", "status": "active", "notesExcerpt": "healthcheck.sh + health-responder cron"}
+      ],
+      "stats": {"activeCount": 6}
+    },
+    "capabilityGaps": {
+      "open": [
+        {"id": "gap-tock-e2e", "title": "End-to-end Tock booking under Cloudflare", "severity": "high"},
+        {"id": "gap-cron-visibility", "title": "Cron jobs can't see main session history", "severity": "medium"},
+        {"id": "gap-keychain-migration", "title": "Keychain migration script unverified", "severity": "low"},
+        {"id": "gap-cf-clearance", "title": "cf_clearance cookie extraction", "severity": "high"},
+        {"id": "gap-card-entry", "title": "Stripe/CVC iframe automation", "severity": "medium"}
+      ],
+      "stats": {"openCount": 5}
+    },
+    "drive": {
+      "last": {"auditTs": 1741132800, "reportTs": 1741485600},
+      "next": {"auditDueTs": 1741737600, "reportDueTs": 1742090400},
+      "status": "ok"
+    },
+    "memory": {
+      "today": {"date": "2026-03-09", "lineCount": 45, "byteCount": 3200},
+      "recentDays": [
+        {"date": "2026-03-08", "lineCount": 180, "byteCount": 14500},
+        {"date": "2026-03-07", "lineCount": 150, "byteCount": 12800},
+        {"date": "2026-03-06", "lineCount": 120, "byteCount": 9600},
+        {"date": "2026-03-05", "lineCount": 90, "byteCount": 7200},
+        {"date": "2026-03-04", "lineCount": 60, "byteCount": 4800},
+        {"date": "2026-03-03", "lineCount": 40, "byteCount": 3200},
+        {"date": "2026-03-02", "lineCount": 30, "byteCount": 2400}
+      ],
+      "memoryMd": {"lineCount": 195, "byteCount": 22888}
+    },
+    "heartbeat": {
+      "lastChecks": {
+        "email": 1741530000,
+        "memoryReview": 1741400000,
+        "browserCleanup": 1741540800,
+        "maruhideStock": 1741540800
+      }
+    }
+  },
+  "links": {
+    "repo": "https://github.com/jarvis-aux/jarvis-dashboard"
+  }
+}
