@@ -223,13 +223,13 @@
 
   function renderDrive(drive) {
     const now = Date.now() / 1000;
-    const auditOverdue = drive.next?.auditDueTs && now > drive.next.auditDueTs;
-    const reportOverdue = drive.next?.reportDueTs && now > drive.next.reportDueTs;
+    const auditOverdue = drive.next?.auditTs && now > drive.next.auditTs;
+    const reportOverdue = drive.next?.reportTs && now > drive.next.reportTs;
     const rows = [
       { label: 'Last Audit', value: relativeTime(drive.last?.auditTs) },
-      { label: 'Next Audit', value: relativeTime(drive.next?.auditDueTs), overdue: auditOverdue },
+      { label: 'Next Audit', value: relativeTime(drive.next?.auditTs), overdue: auditOverdue },
       { label: 'Last Report', value: relativeTime(drive.last?.reportTs) },
-      { label: 'Next Report', value: relativeTime(drive.next?.reportDueTs), overdue: reportOverdue }
+      { label: 'Next Report', value: relativeTime(drive.next?.reportTs), overdue: reportOverdue }
     ];
     const html = rows.map(r =>
       `<div class="drive-row"><span class="drive-label">${r.label}</span><span class="${r.overdue ? 'drive-overdue' : 'drive-value'}">${r.value}${r.overdue ? ' OVERDUE' : ''}</span></div>`
