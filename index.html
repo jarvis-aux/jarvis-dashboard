@@ -7,22 +7,39 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <header class="top-bar">
-    <div class="top-bar-left">
-      <span class="logo">JARVIS <span class="logo-dim">Ops</span></span>
+  <!-- Login Gate -->
+  <div id="login-screen" class="login-screen" style="display:none">
+    <div class="login-card">
+      <div class="login-logo">JARVIS</div>
+      <form id="login-form" autocomplete="off">
+        <input type="email" id="login-email" class="login-input" placeholder="Email" required autofocus>
+        <input type="password" id="login-password" class="login-input" placeholder="Password" required>
+        <button type="submit" class="login-btn">Sign In</button>
+        <div id="login-error" class="login-error"></div>
+      </form>
     </div>
-    <div class="top-bar-right">
-      <span id="last-updated" class="meta-text"></span>
-      <span id="health-pill" class="pill"></span>
-      <a id="repo-link" class="meta-link" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </header>
+  </div>
 
-  <div id="health-banner" class="health-banner" style="display:none"></div>
+  <!-- Dashboard (hidden until authenticated) -->
+  <div id="app-shell" style="display:none">
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <span class="logo">JARVIS <span class="logo-dim">Ops</span></span>
+      </div>
+      <div class="top-bar-right">
+        <span id="last-updated" class="meta-text"></span>
+        <span id="health-pill" class="pill"></span>
+        <a id="repo-link" class="meta-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" id="sign-out-link" class="meta-link sign-out-link">Sign out</a>
+      </div>
+    </header>
 
-  <main id="dashboard" class="grid">
-    <div class="loading-state">Loading state&hellip;</div>
-  </main>
+    <div id="health-banner" class="health-banner" style="display:none"></div>
+
+    <main id="dashboard" class="grid">
+      <div class="loading-state">Loading state&hellip;</div>
+    </main>
+  </div>
 
   <script src="app.js"></script>
 </body>

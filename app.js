@@ -1,6 +1,57 @@
 (() => {
   'use strict';
 
+  // ── Auth Gate ──────────────────────────────────────────────
+  const AUTH_KEY = 'jarvis-auth';
+  const VALID_EMAIL = 'liuandrewy@gmail.com';
+  const VALID_HASH = 'e71013ad87ed05853e5d4b56c6a3c8210fe7f99fd2f4b887da31973c767b0487';
+
+  let _startDashboard = null;
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function showLogin() {
+    document.getElementById('login-screen').style.display = '';
+    document.getElementById('app-shell').style.display = 'none';
+  }
+
+  function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-shell').style.display = '';
+    if (_startDashboard) _startDashboard();
+  }
+
+  if (localStorage.getItem(AUTH_KEY) === 'authenticated') {
+    showDashboard();
+  } else {
+    showLogin();
+  }
+
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const errorEl = document.getElementById('login-error');
+    errorEl.textContent = '';
+
+    const hash = await sha256(password);
+    if (email === VALID_EMAIL && hash === VALID_HASH) {
+      localStorage.setItem(AUTH_KEY, 'authenticated');
+      showDashboard();
+    } else {
+      errorEl.textContent = 'Invalid credentials';
+    }
+  });
+
+  document.getElementById('sign-out-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem(AUTH_KEY);
+    showLogin();
+  });
+
   // ── Helpers ──────────────────────────────────────────────
   const $ = (s, el = document) => el.querySelector(s);
   const h = (s) => {
@@ -433,6 +484,16 @@
   }
 
   // ── Main render ──────────────────────────────────────────
+  let dashboardInitialized = false;
+  _startDashboard = function() {
+    if (dashboardInitialized) return;
+    dashboardInitialized = true;
+    init();
+  };
+  // If already authenticated, the early showDashboard() call happened before
+  // _startDashboard was set, so trigger it now.
+  if (localStorage.getItem(AUTH_KEY) === 'authenticated') _startDashboard();
+
   async function init() {
     let state;
     try {
@@ -505,5 +566,5 @@
     });
   }
 
-  init();
+  // init() is now called via initDashboard() after auth
 })();
