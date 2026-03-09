@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+"""Generate state.json for the JARVIS Ops Dashboard.
+Reads workspace state files and cron output, writes state.json to repo root."""
+
+import json
+import os
+import subprocess
+import time
+import re
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+
+WORKSPACE = os.path.expanduser("~/.openclaw/workspace")
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUTPUT = os.path.join(REPO_ROOT, "state.json")
+
+def now_epoch():
+    return int(time.time())
+
+def now_iso():
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+def safe_read(path):
+    try:
+        with open(path, "r") as f:
+            return f.read()
+    except:
+        return None
+
+def safe_json(path):
+    content = safe_read(path)
+    if content:
+        try:
+            return json.loads(content)
+        except:
+            return None
+    return None
+
+def file_stats(path):
+    content = safe_read(path)
+    if content is None:
+        return {"lineCount": 0, "byteCount": 0}
+    return {"lineCount": len(content.splitlines()), "byteCount": len(content.encode("utf-8"))}
+
+def parse_ts(val):
+    if not val:
+        return 0
+    if isinstance(val, (int, float)):
+        return int(val)
+    try:
+        dt = datetime.fromisoformat(val)
+        return int(dt.timestamp())
+    except:
+        return 0
+
+def get_cron_jobs():
+    try:
+        result = subprocess.run(["openclaw", "cron", "list", "--json"],
+            capture_output=True, text=True, timeout=15)
+        data = json.loads(result.stdout)
+        jobs = []
+        failed_24h = 0
+        now_ms = int(time.time() * 1000)
+        day_ms = 86400000
+
+        for job in data.get("jobs", []):
+            state = job.get("state", {})
+            schedule = job.get("schedule", {})
+            human = ""
+            if schedule.get("kind") == "every":
+                mins = schedule.get("everyMs", 0) // 60000
+                human = f"Every {mins} min"
+            elif schedule.get("kind") == "cron":
+                human = schedule.get("expr", "")
+                tz = schedule.get("tz", "")
+                if tz:
+                    human += f" ({tz})"
+
+            last_status = state.get("lastStatus", "unknown")
+            if last_status == "error" and now_ms - state.get("lastRunAtMs", 0) < day_ms:
+                failed_24h += 1
+
+            last_run = None
+            if state.get("lastRunAtMs"):
+                last_run = {"ts": state["lastRunAtMs"] // 1000, "status": last_status,
+                    "durationMs": state.get("lastDurationMs"),
+                    "summary": state.get("lastError") if last_status == "error" else None}
+
+            next_run = {"ts": state["nextRunAtMs"] // 1000} if state.get("nextRunAtMs") else None
+            jobs.append({"id": job.get("name", job.get("id", "?")), "humanSchedule": human,
+                "enabled": job.get("enabled", True), "lastRun": last_run, "nextRun": next_run,
+                "consecutiveErrors": state.get("consecutiveErrors", 0)})
+
+        return {"jobs": jobs, "stats": {"total": len(jobs), "enabled": sum(1 for j in jobs if j["enabled"]), "failedLast24h": failed_24h}}
+    except Exception as e:
+        return {"jobs": [], "stats": {"total": 0, "enabled": 0, "failedLast24h": 0}, "error": str(e)}
+
+def get_stocks():
+    data = safe_json(os.path.join(WORKSPACE, "memory/maruhide-stock-log.json"))
+    if not data:
+        return {"monitors": [], "stats": {"total": 0, "inStock": 0}}
+    entries = data.get("log", [])
+    points = []
+    last_change = None
+    prev = None
+    for e in entries[-48:]:
+        avail = e.get("available", False)
+        ts = parse_ts(e.get("timestamp", ""))
+        status = "in_stock" if avail else "out_of_stock"
+        points.append({"ts": ts, "availability": status})
+        if prev is not None and avail != prev:
+            last_change = ts
+        prev = avail
+    cur = "in_stock" if (entries and entries[-1].get("available")) else "out_of_stock"
+    return {"monitors": [{"key": "maruhide-uni", "name": data.get("product", "Maruhide Premium Uni (Ensui)"),
+        "status": {"availability": cur, "lastCheckedTs": points[-1]["ts"] if points else 0, "lastKnownChangeTs": last_change},
+        "history": {"windowHours": 72, "points": points}}],
+        "stats": {"total": 1, "inStock": 1 if cur == "in_stock" else 0}}
+
+def get_curiosity():
+    content = safe_read(os.path.join(WORKSPACE, "memory/curiosity-backlog.md")) or ""
+    state = safe_json(os.path.join(WORKSPACE, "memory/heartbeat-state.json")) or {}
+    cs = state.get("curiosity", {})
+    open_items = []
+    resolved = 0
+    for line in content.splitlines():
+        l = line.strip()
+        if l.startswith("- ~~") or l.startswith("~~"):
+            resolved += 1
+        elif l.startswith("- ") and "|" in l:
+            parts = l[2:].split("|")
+            if len(parts) >= 3:
+                t = parts[2].strip()
+                m = re.search(r'\*\*(.*?)\*\*', t)
+                title = m.group(1) if m else t[:80]
+                tags = re.findall(r'#(\w+)', l)
+                status = "proposal_pending" if "[PROPOSAL PENDING]" in l else "open"
+                open_items.append({"title": title, "status": status, "tags": tags})
+    return {"runs": {"today": cs.get("runsToday", 0), "totalRuns": cs.get("totalRuns", 0)},
+        "backlog": {"open": open_items[:10]}, "stats": {"openCount": len(open_items), "resolved7d": resolved}}
+
+def get_projects():
+    content = safe_read(os.path.join(WORKSPACE, "PROJECTS.md")) or ""
+    projects = []
+    for line in content.splitlines():
+        m = re.match(r'^[-*]\s+\*\*(.+?)\*\*(.*)', line.strip())
+        if m:
+            name, rest = m.group(1), m.group(2).strip(" —-:")
+            status = "active"
+            for s in ["building", "paused", "done", "killed", "active", "idea", "live"]:
+                if s.upper() in rest.upper():
+                    status = s
+                    break
+            projects.append({"name": name, "status": status, "notesExcerpt": rest[:120]})
+    active = [p for p in projects if p["status"] not in ("done", "killed")]
+    return {"active": active[:10], "stats": {"activeCount": len(active)}}
+
+def get_capability_gaps():
+    content = safe_read(os.path.join(WORKSPACE, "CAPABILITY-GAPS.md")) or ""
+    gaps = []
+    rejected = []
+    section = None
+    for line in content.splitlines():
+        if "Open Gaps" in line or "## Open" in line:
+            section = "open"
+        elif "Rejected" in line:
+            section = "rejected"
+        elif line.startswith("## "):
+            section = None
+        elif section == "open" and line.strip().startswith("- "):
+            t = line.strip()[2:]
+            sev = "high" if any(w in t.lower() for w in ["critical", "blocker", "high"]) else \
+                  "low" if any(w in t.lower() for w in ["low", "minor"]) else "medium"
+            m = re.search(r'\*\*(.*?)\*\*', t)
+            gaps.append({"title": m.group(1) if m else t[:100], "severity": sev})
+        elif section == "rejected" and line.strip().startswith("- "):
+            t = line.strip()[2:]
+            m = re.search(r'\*\*(.*?)\*\*', t)
+            rejected.append({"title": m.group(1) if m else t[:100]})
+    return {"open": gaps[:10], "rejected": rejected[:5], "stats": {"openCount": len(gaps)}}
+
+def get_drive():
+    state = safe_json(os.path.join(WORKSPACE, "memory/heartbeat-state.json")) or {}
+    audit_ts = parse_ts(state.get("lastDriveAudit"))
+    report_ts = parse_ts(state.get("lastWeeklyReport"))
+    now = now_epoch()
+    return {"last": {"auditTs": audit_ts, "reportTs": report_ts},
+        "status": "warn" if (now - audit_ts > 691200 or now - report_ts > 691200) else "ok",
+        "auditOverdue": now - audit_ts > 691200, "reportOverdue": now - report_ts > 691200}
+
+def get_memory():
+    mem_dir = os.path.join(WORKSPACE, "memory")
+    today = datetime.now().strftime("%Y-%m-%d")
+    today_stats = file_stats(os.path.join(mem_dir, f"{today}.md"))
+    today_stats["date"] = today
+    recent = []
+    for i in range(1, 8):
+        d = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+        p = os.path.join(mem_dir, f"{d}.md")
+        if os.path.exists(p):
+            s = file_stats(p)
+            s["date"] = d
+            recent.append(s)
+    return {"today": today_stats, "recentDays": recent, "memoryMd": file_stats(os.path.join(WORKSPACE, "MEMORY.md"))}
+
+def get_heartbeat():
+    state = safe_json(os.path.join(WORKSPACE, "memory/heartbeat-state.json")) or {}
+    parsed = {}
+    for key in ["lastInboxCheck", "lastMemoryReview", "lastDriveAudit", "lastNicotineCheck", "lastWeeklyReport"]:
+        val = state.get(key)
+        if val:
+            parsed[key] = parse_ts(val)
+    checks = state.get("lastChecks", {})
+    for k, v in checks.items():
+        parsed[k] = parse_ts(v)
+    return {"lastChecks": parsed}
+
+def compute_health(sections):
+    signals = []
+    cron = sections.get("cron", {})
+    if cron.get("stats", {}).get("failedLast24h", 0) > 0:
+        signals.append({"key": "cron.failures", "level": "warn",
+            "message": f"{cron['stats']['failedLast24h']} cron job(s) failed in last 24h"})
+    for job in cron.get("jobs", []):
+        if job.get("consecutiveErrors", 0) >= 3:
+            signals.append({"key": f"cron.{job['id']}.stuck", "level": "error",
+                "message": f"'{job['id']}' has {job['consecutiveErrors']} consecutive errors"})
+    drive = sections.get("drive", {})
+    if drive.get("auditOverdue"):
+        signals.append({"key": "drive.audit", "level": "warn", "message": "Drive audit overdue"})
+    if drive.get("reportOverdue"):
+        signals.append({"key": "drive.report", "level": "warn", "message": "Weekly report overdue"})
+    overall = "error" if any(s["level"] == "error" for s in signals) else \
+              "warn" if signals else "ok"
+    return {"overall": overall, "signals": signals}
+
+def main():
+    sections = {"cron": get_cron_jobs(), "stocks": get_stocks(), "curiosity": get_curiosity(),
+        "projects": get_projects(), "capabilityGaps": get_capability_gaps(), "drive": get_drive(),
+        "memory": get_memory(), "heartbeat": get_heartbeat()}
+    state = {"schemaVersion": 1, "generatedAt": now_epoch(), "generatedAtIso": now_iso(),
+        "host": {"name": "Andrew's MacBook Pro", "timezone": "America/Chicago"},
+        "health": compute_health(sections), "sections": sections,
+        "links": {"repo": "https://github.com/jarvis-aux/jarvis-dashboard"}}
+    tmp = OUTPUT + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(state, f, indent=2)
+        f.flush()
+        os.fsync(f.fileno())
+    os.rename(tmp, OUTPUT)
+    print(f"Generated {OUTPUT} ({os.path.getsize(OUTPUT)} bytes)")
+    print(f"Health: {state['health']['overall']} | Cron: {sections['cron']['stats']['total']} jobs | Gaps: {sections['capabilityGaps']['stats']['openCount']}")
+
+if __name__ == "__main__":
+    main()
