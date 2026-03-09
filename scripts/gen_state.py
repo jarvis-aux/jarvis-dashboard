@@ -324,7 +324,7 @@ def get_heartbeat():
 def get_documents():
     doc_files = [
         "HEARTBEAT.md", "PROJECTS.md", "CAPABILITY-GAPS.md",
-        "TOOLS.md", "PLAYBOOKS.md", "SOUL.md", "IDENTITY.md",
+        "TOOLS.md", "PLAYBOOKS.md", "SOUL.md", "IDENTITY.md", "USER.md",
     ]
     docs = []
     for name in doc_files:
