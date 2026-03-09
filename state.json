@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773086489,
-  "generatedAtIso": "2026-03-09T20:01:29Z",
+  "generatedAt": 1773088292,
+  "generatedAtIso": "2026-03-09T20:31:32Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -24,13 +24,13 @@
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773084685,
+            "ts": 1773086485,
             "status": "ok",
-            "durationMs": 11203,
+            "durationMs": 5482,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773086485
+            "ts": 1773088285
           },
           "consecutiveErrors": 0
         },
