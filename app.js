@@ -118,6 +118,20 @@
       <div class="stat-item"><span class="stat-value">${stats.enabled || 0}</span><span class="stat-label">enabled</span></div>
       <div class="stat-item"><span class="stat-value">${stats.failedLast24h || 0}</span><span class="stat-label">failed 24h</span></div>
     </div>`;
+
+    // Summary line for collapsed state
+    const okCount = jobs.filter(j => (j.lastRun?.status) === 'success').length;
+    const errCount = jobs.filter(j => (j.lastRun?.status) === 'failure').length;
+    const now = Date.now() / 1000;
+    const nextRunTs = jobs.reduce((min, j) => {
+      const t = j.nextRun?.ts;
+      return t && t > now && (min === 0 || t < min) ? t : min;
+    }, 0);
+    const nextRunLabel = nextRunTs ? `next run ${relativeTime(nextRunTs).replace(' ago', '')}` : '';
+    const summaryParts = [`${okCount} jobs OK`, errCount ? `${errCount} errors` : '', nextRunLabel].filter(Boolean);
+    const summaryLine = `<div class="cron-summary">${summaryParts.join(' · ')}</div>`;
+
+    const cronToggleId = `cron-toggle-${++toggleId}`;
     const rows = jobs.map(j => {
       const lr = j.lastRun || {};
       return `<tr>
@@ -127,11 +141,19 @@
         <td>${relativeTime(j.nextRun?.ts)}</td>
       </tr>`;
     }).join('');
-    const table = `<div style="overflow-x:auto"><table class="data-table">
+    const table = `<div id="${cronToggleId}" style="display:none;overflow-x:auto"><table class="data-table">
       <thead><tr><th class="col-status"></th><th>Job</th><th>Last Run</th><th>Next</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>`;
-    return card('Cron Jobs', statsRow + table, { wide: true, meta: `${stats.total || 0} total` });
+    const toggleBtn = `<button class="show-more-btn cron-toggle-btn" onclick="
+      const el=document.getElementById('${cronToggleId}');
+      const sum=this.previousElementSibling;
+      const show=el.style.display==='none';
+      el.style.display=show?'':'none';
+      sum.style.display=show?'none':'';
+      this.textContent=show?'Hide jobs ▲':'Show jobs ▼';
+    ">Show jobs ▼</button>`;
+    return card('Cron Jobs', statsRow + summaryLine + table + toggleBtn, { wide: true, meta: `${stats.total || 0} total` });
   }
 
   function renderStocks(stocks) {
@@ -225,17 +247,23 @@
     const now = Date.now() / 1000;
     const auditOverdue = drive.next?.auditTs && now > drive.next.auditTs;
     const reportOverdue = drive.next?.reportTs && now > drive.next.reportTs;
-    const rows = [
-      { label: 'Last Audit', value: relativeTime(drive.last?.auditTs) },
-      { label: 'Next Audit', value: relativeTime(drive.next?.auditTs), overdue: auditOverdue },
-      { label: 'Last Report', value: relativeTime(drive.last?.reportTs) },
-      { label: 'Next Report', value: relativeTime(drive.next?.reportTs), overdue: reportOverdue }
-    ];
-    const html = rows.map(r =>
-      `<div class="drive-row"><span class="drive-label">${r.label}</span><span class="${r.overdue ? 'drive-overdue' : 'drive-value'}">${r.value}${r.overdue ? ' OVERDUE' : ''}</span></div>`
-    ).join('');
-    const pillClass = drive.status === 'ok' ? 'pill-ok' : 'pill-warn';
-    return card('Drive', html, { meta: `<span class="pill ${pillClass}"><span class="pill-dot"></span>${drive.status || 'ok'}</span>` });
+
+    const auditRow = `<div class="drive-row">
+      <span class="drive-label">Audit</span>
+      <span class="drive-value">${relativeTime(drive.last?.auditTs)} → ${relativeTime(drive.next?.auditTs)}</span>
+      ${auditOverdue ? '<span class="overdue-badge">AUDIT OVERDUE</span>' : ''}
+    </div>`;
+    const reportRow = `<div class="drive-row">
+      <span class="drive-label">Report</span>
+      <span class="drive-value">${relativeTime(drive.last?.reportTs)} → ${relativeTime(drive.next?.reportTs)}</span>
+      ${reportOverdue ? '<span class="overdue-badge">REPORT OVERDUE</span>' : ''}
+    </div>`;
+    const html = auditRow + reportRow;
+
+    const hasOverdue = auditOverdue || reportOverdue;
+    const pillClass = hasOverdue ? 'pill-warn' : (drive.status === 'ok' ? 'pill-ok' : 'pill-warn');
+    const pillLabel = hasOverdue ? 'overdue' : (drive.status || 'ok');
+    return card('Drive', html, { meta: `<span class="pill ${pillClass}"><span class="pill-dot"></span>${pillLabel}</span>` });
   }
 
   function renderMemory(mem) {
@@ -259,10 +287,26 @@
 
   function renderHeartbeat(hb) {
     const checks = hb.lastChecks || {};
-    const staleThreshold = 8 * 3600;
+    const staleThresholds = {
+      inbox: 24 * 3600,
+      memory: 4 * 86400,
+      drive: 8 * 86400,
+      nicotine: 8 * 86400,
+      weekly: 8 * 86400,
+      calendar: 3 * 86400,
+      _default: 24 * 3600,
+    };
+    function getStaleThreshold(key) {
+      const k = key.toLowerCase();
+      for (const [name, val] of Object.entries(staleThresholds)) {
+        if (name !== '_default' && k.includes(name)) return val;
+      }
+      return staleThresholds._default;
+    }
     const now = Date.now() / 1000;
     const html = Object.entries(checks).filter(([_, ts]) => ts && ts > 1000000).map(([key, ts]) => {
-      const stale = ts && (now - ts) > staleThreshold;
+      const threshold = getStaleThreshold(key);
+      const stale = ts && (now - ts) > threshold;
       const name = key.replace(/([A-Z])/g, ' $1').trim();
       return `<div class="hb-item">
         <span class="hb-name">${h(name)}</span>
