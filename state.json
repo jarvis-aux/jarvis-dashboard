@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773074264,
-  "generatedAtIso": "2026-03-09T16:37:44Z",
+  "generatedAt": 1773074691,
+  "generatedAtIso": "2026-03-09T16:44:51Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -46,7 +46,7 @@
         },
         {
           "id": "daily-usage-report",
-          "humanSchedule": "0 22 * * * (America/Chicago)",
+          "humanSchedule": "Daily 10 PM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1773025200,
@@ -61,7 +61,7 @@
         },
         {
           "id": "Daily Journal",
-          "humanSchedule": "15 22 * * *",
+          "humanSchedule": "Daily 10:15 PM",
           "enabled": true,
           "lastRun": {
             "ts": 1773026100,
@@ -76,7 +76,7 @@
         },
         {
           "id": "nightly-curiosity",
-          "humanSchedule": "0 3 * * * (America/Chicago)",
+          "humanSchedule": "Daily 3 AM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1773043200,
@@ -91,7 +91,7 @@
         },
         {
           "id": "comms-classifier",
-          "humanSchedule": "0 4 * * * (America/Chicago)",
+          "humanSchedule": "Daily 4 AM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1773046800,
@@ -106,7 +106,7 @@
         },
         {
           "id": "date-digest-thursday",
-          "humanSchedule": "0 5 * * 4 (America/Chicago)",
+          "humanSchedule": "Fridays 5 AM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1772708400,
@@ -121,7 +121,7 @@
         },
         {
           "id": "project-review",
-          "humanSchedule": "0 2 * * 5 (America/Chicago)",
+          "humanSchedule": "Saturdays 2 AM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1772784000,
@@ -136,7 +136,7 @@
         },
         {
           "id": "problem-review-saturday",
-          "humanSchedule": "0 10 * * 6 (America/Chicago)",
+          "humanSchedule": "Sundays 10 AM CT",
           "enabled": true,
           "lastRun": null,
           "nextRun": {
@@ -146,7 +146,7 @@
         },
         {
           "id": "date-digest-sunday",
-          "humanSchedule": "0 5 * * 0 (America/Chicago)",
+          "humanSchedule": "Mondays 5 AM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1772964000,
@@ -161,7 +161,7 @@
         },
         {
           "id": "weekly-self-assessment",
-          "humanSchedule": "0 20 * * 0 (America/Chicago)",
+          "humanSchedule": "Mondays 8 PM CT",
           "enabled": true,
           "lastRun": {
             "ts": 1773018000,
@@ -271,7 +271,8 @@
       },
       "stats": {
         "openCount": 1,
-        "resolved7d": 5
+        "resolved7d": 3,
+        "resolvedAllTime": 5
       }
     },
     "projects": {
@@ -332,13 +333,13 @@
           "notesExcerpt": "Not started"
         },
         {
-          "name": "Security Hardening",
-          "status": "active",
-          "notesExcerpt": "Mostly complete, Keychain migration incomplete"
+          "name": "JARVIS Ops Dashboard",
+          "status": "live",
+          "notesExcerpt": "Live (2026-03-09)"
         }
       ],
       "stats": {
-        "activeCount": 12
+        "activeCount": 14
       }
     },
     "capabilityGaps": {
@@ -377,6 +378,10 @@
       "last": {
         "auditTs": 1772604060,
         "reportTs": 1773021600
+      },
+      "next": {
+        "auditTs": 1773205200,
+        "reportTs": 1773622800
       },
       "status": "ok",
       "auditOverdue": false,
@@ -432,14 +437,13 @@
     },
     "heartbeat": {
       "lastChecks": {
-        "lastInboxCheck": 1773045064,
-        "lastMemoryReview": 1772863560,
-        "lastDriveAudit": 1772604060,
-        "lastNicotineCheck": 1772933520,
-        "lastWeeklyReport": 1773021600,
-        "calendar": 1772824719,
-        "email": 1772824719,
-        "weather": 0
+        "Calendar": 1772824719,
+        "Weather": 0,
+        "Inbox Check": 1773045064,
+        "Memory Review": 1772863560,
+        "Drive Audit": 1772604060,
+        "Nicotine Check": 1772933520,
+        "Weekly Report": 1773021600
       }
     }
   },
