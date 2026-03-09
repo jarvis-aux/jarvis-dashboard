@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773075690,
-  "generatedAtIso": "2026-03-09T17:01:30Z",
+  "generatedAt": 1773076132,
+  "generatedAtIso": "2026-03-09T17:08:52Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -23,9 +23,14 @@
           "id": "dashboard-state-push",
           "humanSchedule": "Every 30 min",
           "enabled": true,
-          "lastRun": null,
+          "lastRun": {
+            "ts": 1773075685,
+            "status": "ok",
+            "durationMs": 12924,
+            "summary": null
+          },
           "nextRun": {
-            "ts": 1773075685
+            "ts": 1773077485
           },
           "consecutiveErrors": 0
         },
@@ -34,13 +39,13 @@
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773073980,
+            "ts": 1773075780,
             "status": "ok",
-            "durationMs": 35138,
+            "durationMs": 39481,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773075780
+            "ts": 1773077580
           },
           "consecutiveErrors": 0
         },
@@ -188,7 +193,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773075357,
+            "lastCheckedTs": 1773075786,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -248,6 +253,10 @@
               },
               {
                 "ts": 1773075357,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773075786,
                 "availability": "in_stock"
               }
             ]
@@ -393,8 +402,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 39,
-        "byteCount": 2616,
+        "lineCount": 111,
+        "byteCount": 6592,
         "date": "2026-03-09"
       },
       "recentDays": [
@@ -435,8 +444,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 191,
-        "byteCount": 22956
+        "lineCount": 199,
+        "byteCount": 23816
       }
     },
     "heartbeat": {
