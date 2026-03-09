@@ -261,7 +261,7 @@
     const checks = hb.lastChecks || {};
     const staleThreshold = 8 * 3600;
     const now = Date.now() / 1000;
-    const html = Object.entries(checks).map(([key, ts]) => {
+    const html = Object.entries(checks).filter(([_, ts]) => ts && ts > 1000000).map(([key, ts]) => {
       const stale = ts && (now - ts) > staleThreshold;
       const name = key.replace(/([A-Z])/g, ' $1').trim();
       return `<div class="hb-item">
