@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773077490,
-  "generatedAtIso": "2026-03-09T17:31:30Z",
+  "generatedAt": 1773079290,
+  "generatedAtIso": "2026-03-09T18:01:30Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -24,13 +24,13 @@
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773075685,
+            "ts": 1773077485,
             "status": "ok",
-            "durationMs": 12924,
+            "durationMs": 8255,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773077485
+            "ts": 1773079285
           },
           "consecutiveErrors": 0
         },
@@ -39,13 +39,33 @@
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773075780,
+            "ts": 1773077580,
             "status": "ok",
-            "durationMs": 39481,
+            "durationMs": 49363,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773077580
+            "ts": 1773079380
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "email-monitor",
+          "humanSchedule": "Every 30 min",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773080662
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "browser-tab-cleanup",
+          "humanSchedule": "Every 120 min",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773085983
           },
           "consecutiveErrors": 0
         },
@@ -178,11 +198,21 @@
             "ts": 1773622800
           },
           "consecutiveErrors": 2
+        },
+        {
+          "id": "nicotine-accountability",
+          "humanSchedule": "Tuesdays 10 AM CT",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773673200
+          },
+          "consecutiveErrors": 0
         }
       ],
       "stats": {
-        "total": 11,
-        "enabled": 11,
+        "total": 14,
+        "enabled": 14,
         "failedLast24h": 1
       }
     },
@@ -193,7 +223,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773076515,
+            "lastCheckedTs": 1773077585,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -261,6 +291,10 @@
               },
               {
                 "ts": 1773076515,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773077585,
                 "availability": "in_stock"
               }
             ]
