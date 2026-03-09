@@ -55,12 +55,39 @@
     return map[a] || a;
   }
 
+  function humanDuration(seconds) {
+    const abs = Math.abs(seconds);
+    if (abs < 3600) return `${Math.max(1, Math.floor(abs / 60))}m`;
+    if (abs < 86400) return `${Math.floor(abs / 3600)}h ${Math.floor((abs % 3600) / 60)}m`;
+    const d = Math.floor(abs / 86400);
+    const hr = Math.floor((abs % 86400) / 3600);
+    return hr ? `${d}d ${hr}h` : `${d}d`;
+  }
+
+  function hasTransition(points) {
+    if (!points || points.length < 2) return false;
+    const first = points[0].availability;
+    return points.some(p => p.availability !== first);
+  }
+
+  const SOURCE_PATHS = {
+    'Cron Jobs': 'openclaw cron list --json',
+    'Stock Monitor': 'memory/maruhide-stock-log.json',
+    'Curiosity': 'memory/curiosity-backlog.md',
+    'Projects': 'PROJECTS.md',
+    'Capability Gaps': 'CAPABILITY-GAPS.md',
+    'Drive': 'memory/heartbeat-state.json',
+    'Memory': 'memory/*.md + MEMORY.md',
+    'Heartbeat': 'HEARTBEAT.md + memory/heartbeat-state.json',
+  };
+
   // ── Card builder ─────────────────────────────────────────
   function card(title, content, { wide = false, meta = '' } = {}) {
+    const tip = SOURCE_PATHS[title] ? `<span class="info-tip" data-tip="${SOURCE_PATHS[title]}">i</span>` : '';
     return `<section class="card${wide ? ' card-wide' : ''}">
       <div class="card-header">
         <h2 class="card-title">${title}</h2>
-        ${meta ? `<span class="card-meta">${meta}</span>` : ''}
+        <span class="card-meta">${meta}${tip}</span>
       </div>
       <div class="card-body">${content}</div>
     </section>`;
@@ -111,16 +138,43 @@
     const monitors = stocks.monitors || [];
     const inner = monitors.map(m => {
       const a = m.status?.availability || 'unknown';
+      const pts = m.history?.points || [];
       const canvasId = `spark-${m.key}`;
+      const showChart = hasTransition(pts);
+
+      // FIX 4: tracking summary
+      let trackingSummary = '';
+      if (pts.length) {
+        const firstDate = new Date(pts[0].ts * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        // duration since last change or since tracking start
+        let sinceTs = pts[0].ts;
+        for (let i = pts.length - 1; i > 0; i--) {
+          if (pts[i].availability !== pts[i - 1].availability) { sinceTs = pts[i].ts; break; }
+        }
+        const dur = humanDuration((pts[pts.length - 1].ts) - sinceTs);
+        trackingSummary = `<div class="stock-tracking-summary">Tracking since ${firstDate}. ${availLabel(a)} for ${dur}.</div>`;
+      }
+
+      // FIX 1: sparkline vs text
+      let sparkHtml;
+      if (!showChart && pts.length >= 2) {
+        const dur = humanDuration(pts[pts.length - 1].ts - pts[0].ts);
+        const label = pts[0].availability === 'in_stock' ? 'In stock' : 'Out of stock';
+        sparkHtml = `<div class="stock-sparkline-text">${label} for ${dur}</div>`;
+      } else if (showChart) {
+        sparkHtml = `<div class="sparkline-wrap"><canvas id="${canvasId}" class="chart-canvas" width="220" height="48"></canvas></div>`;
+      } else {
+        sparkHtml = '';
+      }
+
       return `<div class="stock-monitor">
         <div class="stock-info">
           <div class="stock-name">${h(m.name)}</div>
           <span class="avail-pill avail-${a}">${availLabel(a)}</span>
+          ${trackingSummary}
           <div class="stock-meta">Checked ${relativeTime(m.status?.lastCheckedTs)} · Changed ${relativeTime(m.status?.lastKnownChangeTs)}</div>
         </div>
-        <div class="sparkline-wrap">
-          <canvas id="${canvasId}" class="chart-canvas" width="220" height="48"></canvas>
-        </div>
+        ${sparkHtml}
       </div>`;
     }).join('');
     return card('Stock Monitor', inner, { wide: true, meta: `${stocks.stats?.inStock || 0} in stock` });
@@ -196,7 +250,11 @@
       <div class="chart-label">Daily memory (7 days)</div>
       <canvas id="memory-chart" class="chart-canvas" width="500" height="100"></canvas>
     </div>`;
-    return card('Memory', statsHtml + chartHtml, { wide: true });
+    const mdStats = mem.memoryMd || {};
+    const mdLine = mdStats.lineCount
+      ? `<div class="memory-md-line">${mdStats.lineCount} lines &middot; ${formatBytes(mdStats.byteCount || 0)} &middot; Long-term memory</div>`
+      : '';
+    return card('Memory', statsHtml + chartHtml + mdLine, { wide: true });
   }
 
   function renderHeartbeat(hb) {
@@ -342,7 +400,7 @@
       // Sparklines
       if (s.stocks?.monitors) {
         s.stocks.monitors.forEach(m => {
-          if (m.history?.points?.length) {
+          if (m.history?.points?.length && hasTransition(m.history.points)) {
             drawSparkline(`spark-${m.key}`, m.history.points);
           }
         });
