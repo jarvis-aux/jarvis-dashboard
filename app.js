@@ -33,7 +33,7 @@
   }
 
   function dotClass(status) {
-    const map = { success: 'dot-success', failure: 'dot-failure', running: 'dot-running' };
+    const map = { success: 'dot-success', ok: 'dot-success', failure: 'dot-failure', error: 'dot-failure', running: 'dot-running' };
     return map[status] || 'dot-unknown';
   }
 
@@ -120,8 +120,8 @@
     </div>`;
 
     // Summary line for collapsed state
-    const okCount = jobs.filter(j => (j.lastRun?.status) === 'success').length;
-    const errCount = jobs.filter(j => (j.lastRun?.status) === 'failure').length;
+    const okCount = jobs.filter(j => (j.lastRun?.status) === 'ok' || (j.lastRun?.status) === 'success').length;
+    const errCount = jobs.filter(j => (j.lastRun?.status) === 'error' || (j.lastRun?.status) === 'failure').length;
     const now = Date.now() / 1000;
     const nextRunTs = jobs.reduce((min, j) => {
       const t = j.nextRun?.ts;
