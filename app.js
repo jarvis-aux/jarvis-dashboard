@@ -180,9 +180,10 @@
     }, 0);
     const nextRunLabel = nextRunTs ? `next run ${relativeTime(nextRunTs).replace(' ago', '')}` : '';
     const summaryParts = [`${okCount} jobs OK`, errCount ? `${errCount} errors` : '', nextRunLabel].filter(Boolean);
-    const summaryLine = `<div class="cron-summary">${summaryParts.join(' · ')}</div>`;
-
     const cronToggleId = `cron-toggle-${++toggleId}`;
+    const cronSummaryId = `cron-summary-${cronToggleId}`;
+    const summaryLine = `<div class="cron-summary" id="${cronSummaryId}">${summaryParts.join(' · ')}</div>`;
+
     const rows = jobs.map(j => {
       const lr = j.lastRun || {};
       return `<tr>
@@ -198,10 +199,10 @@
     </table></div>`;
     const toggleBtn = `<button class="show-more-btn cron-toggle-btn" onclick="
       const el=document.getElementById('${cronToggleId}');
-      const sum=this.previousElementSibling;
+      const sum=document.getElementById('${cronSummaryId}');
       const show=el.style.display==='none';
       el.style.display=show?'':'none';
-      sum.style.display=show?'none':'';
+      if(sum) sum.style.display=show?'none':'';
       this.textContent=show?'Hide jobs ▲':'Show jobs ▼';
     ">Show jobs ▼</button>`;
     return card('Cron Jobs', statsRow + summaryLine + table + toggleBtn, { wide: true, meta: `${stats.total || 0} total` });
