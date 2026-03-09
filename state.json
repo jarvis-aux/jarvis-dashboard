@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773074771,
-  "generatedAtIso": "2026-03-09T16:46:11Z",
+  "generatedAt": 1773075690,
+  "generatedAtIso": "2026-03-09T17:01:30Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -188,7 +188,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773073984,
+            "lastCheckedTs": 1773075357,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -244,6 +244,10 @@
               },
               {
                 "ts": 1773073984,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773075357,
                 "availability": "in_stock"
               }
             ]
