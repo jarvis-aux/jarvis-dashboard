@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773082890,
-  "generatedAtIso": "2026-03-09T19:01:30Z",
+  "generatedAt": 1773084690,
+  "generatedAtIso": "2026-03-09T19:31:30Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -24,28 +24,13 @@
           "humanSchedule": "Every 30 min",
           "enabled": true,
           "lastRun": {
-            "ts": 1773081085,
+            "ts": 1773082885,
             "status": "ok",
-            "durationMs": 7274,
+            "durationMs": 7493,
             "summary": null
           },
           "nextRun": {
-            "ts": 1773082885
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "maruhide-uni-monitor",
-          "humanSchedule": "Every 30 min",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773081180,
-            "status": "ok",
-            "durationMs": 36495,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773082980
+            "ts": 1773084685
           },
           "consecutiveErrors": 0
         },
@@ -201,8 +186,8 @@
         }
       ],
       "stats": {
-        "total": 13,
-        "enabled": 13,
+        "total": 12,
+        "enabled": 12,
         "failedLast24h": 1
       }
     },
@@ -213,7 +198,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773081180,
+            "lastCheckedTs": 1773082980,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -293,6 +278,10 @@
               },
               {
                 "ts": 1773081180,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773082980,
                 "availability": "in_stock"
               }
             ]
