@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773091309,
-  "generatedAtIso": "2026-03-09T21:21:49Z",
+  "generatedAt": 1773096254,
+  "generatedAtIso": "2026-03-09T22:44:14Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -80,6 +80,16 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773154800
+          },
+          "consecutiveErrors": 0
+        },
+        {
           "id": "date-digest-thursday",
           "humanSchedule": "Fridays 5 AM CT",
           "enabled": true,
@@ -93,6 +103,16 @@
             "ts": 1773309600
           },
           "consecutiveErrors": 1
+        },
+        {
+          "id": "memory-review",
+          "humanSchedule": "Every 4320 min",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773354077
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "project-review",
@@ -161,8 +181,8 @@
         }
       ],
       "stats": {
-        "total": 10,
-        "enabled": 10,
+        "total": 12,
+        "enabled": 12,
         "failedLast24h": 1
       }
     },
@@ -173,7 +193,7 @@
           "name": "Maruhide Premium Uni (Ensui)",
           "status": {
             "availability": "in_stock",
-            "lastCheckedTs": 1773090106,
+            "lastCheckedTs": 1773092533,
             "lastKnownChangeTs": null
           },
           "history": {
@@ -261,6 +281,10 @@
               },
               {
                 "ts": 1773090106,
+                "availability": "in_stock"
+              },
+              {
+                "ts": 1773092533,
                 "availability": "in_stock"
               }
             ]
@@ -406,8 +430,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 124,
-        "byteCount": 7973,
+        "lineCount": 177,
+        "byteCount": 12938,
         "date": "2026-03-09"
       },
       "recentDays": [
@@ -448,8 +472,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 201,
-        "byteCount": 24282
+        "lineCount": 203,
+        "byteCount": 24703
       }
     },
     "heartbeat": {
@@ -467,9 +491,9 @@
   "documents": [
     {
       "name": "HEARTBEAT.md",
-      "content": "# HEARTBEAT.md\n\nHeartbeat is for lightweight checks that benefit from main session context.\nBatch all ~30m checks here. Crons are for exact schedules (daily, weekly).\n\n## Heartbeat Log (MANDATORY \u2014 do this FIRST, every heartbeat)\n- Append one line to `memory/heartbeat-log.jsonl`:\n  `{\"ts\": \"<ISO8601>\", \"checks\": [\"email\", \"dashboard\", \"tabs\", ...], \"actions\": [\"replied to thread X\", ...], \"result\": \"ok|alert\"}`\n- This is non-negotiable. If the log doesn't grow, heartbeats aren't firing.\n- **NEVER reply with just \"HEARTBEAT_OK\".** Always include a timestamp and summary of what you checked. Example: \"Heartbeat 2026-03-09T15:30. Checked: email (0 unreads), tabs (6 open). All clear.\" This prevents gateway dedup from skipping future runs.\n\n## Email Monitor\n- **Step 1 \u2014 Find threads with replies:** Run: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\n- **Step 2 \u2014 Read into EVERY thread** that shows 2+ messages. The search results show the original sender, NOT the replier. You MUST run `gog gmail read <threadId>` on each multi-message thread to find replies from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com).\n- **Step 3 \u2014 Reply** to any unreplied messages from Andrew/Lisa: compose HTML reply, send via gog gmail send with --reply-to-message-id. Match recipient list exactly (reply-all mirroring).\n- **Step 4 \u2014 Inbox triage:** Run: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'is:unread' --max 15 --account aliudeloitte@gmail.com`\n- Triage: newsletters \u2192 extract + Telegram summary. Actionable \u2192 notify Andrew on Telegram. AI/OpenClaw leads \u2192 curiosity backlog. Noise \u2192 ignore.\n\n## Dashboard State Push\n- Run: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\n- If `/tmp/jarvis-dashboard` doesn't exist, clone it first: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n- Silent if nothing changed.\n\n## Browser Tab Cleanup\n- Run: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\n- Respects pin registry at `memory/browser-tab-pins.json`\n- Skip if Chrome is unreachable on port 18800\n- Skip if active sub-agents are running (check with subagents list)\n\n## Maruhide Uni Stock (disabled \u2014 re-enable by uncommenting)\n<!-- \n- Run: `bash /Users/openclaw/.openclaw/workspace/scripts/maruhide-uni-monitor.sh`\n- Read `memory/maruhide-stock-log.json`, get last entry's `available` value\n- Append new entry: `{\"timestamp\": \"<ISO8601 CT>\", \"available\": <true/false>, \"source\": \"heartbeat\"}`\n- Alert Andrew on Telegram ONLY on sold-out \u2192 in-stock transition\n- If past 2026-03-15, remove this section and summarize findings to Andrew\n-->\n\n## Memory Review (every 3 days)\n- Check `memory/heartbeat-state.json` for `lastMemoryReview` timestamp\n- If 3+ days since last review:\n  1. Read daily logs from the last 3 days\n  2. Identify significant decisions, lessons, insights worth keeping\n  3. Update MEMORY.md with distilled entries (keep it under 200 lines)\n  4. Remove anything outdated from MEMORY.md\n  5. Update `lastMemoryReview` in heartbeat-state.json\n- If <3 days, skip\n\n## Drive Audit (Wednesday)\n- Check `memory/heartbeat-state.json` for `lastDriveAudit` timestamp\n- If today is Wednesday AND no audit this week:\n  1. Read the last 5 daily logs\n  2. Look for: punted tasks, manual processes, poor handling, cross-day patterns\n  3. Documentation check: anything built this week missing from TOOLS.md/docs/PROJECTS.md?\n  4. Workaround audit: any `Workaround:` entries without CAPABILITY-GAPS.md entries?\n  5. Playbook promotion: patterns that appeared 2+ times \u2192 PLAYBOOKS.md\n  6. Write findings to CAPABILITY-GAPS.md \u00a7 Audit Notes\n  7. Update `lastDriveAudit` in heartbeat-state.json\n- If not Wednesday or already done, skip\n\n## Haircut Nudge\n- Read `memory/haircut-tracker.json` for `nextNudge`\n- If today >= nextNudge: message Andrew on Telegram\n- If `nudged` is already true, skip\n\n## Curiosity Spotting\n- Primary investigation runs via cron (`nightly-curiosity` at 3 AM CST)\n- During idle heartbeats, spot NEW curiosity items and add to `memory/curiosity-backlog.md`\n\n## Heartbeat Health Self-Check (do this LAST)\n- Read the last 3 entries of `memory/heartbeat-log.jsonl`\n- If the previous entry is >2 hours old, something was wrong \u2014 note it in today's daily log\n\n## Migrated to Cron (do NOT re-add here)\n- **Nicotine Accountability** \u2192 cron `nicotine-accountability` (Mondays 10 AM CT)\n- **Daily Usage Report** \u2192 cron `daily-usage-report` (10 PM CT)\n- **Daily Journal** \u2192 cron `Daily Journal` (10:15 PM CT)\n- **Nightly Curiosity** \u2192 cron `nightly-curiosity` (3 AM CT)\n- **Date Digest** \u2192 crons Thu/Sun 5 AM CT\n- **Weekly Self-Assessment** \u2192 cron Sunday 8 PM CT\n",
-      "sizeBytes": 4977,
-      "lastModified": "2026-03-09T21:04:45Z"
+      "content": "# HEARTBEAT.md\n\nDo ALL of these, every heartbeat. Log first, checks second, self-check last.\n\n## 1. Log this run\nAppend to `memory/heartbeat-log.jsonl`:\n`{\"ts\":\"<ISO8601>\",\"checks\":[\"email\",\"dashboard\",\"tabs\"],\"actions\":[],\"result\":\"ok\"}`\nUpdate the actions array with what you actually did. Never reply with just \"HEARTBEAT_OK\" \u2014 always include a timestamp and summary.\n\n## 2. Email\nRun: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\nRead into every thread with 2+ messages. Reply to unreplied messages from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com) via `gog gmail send --reply-to-message-id`. Match recipient list exactly.\nThen triage remaining unreads: actionable \u2192 Telegram (chat 8063863266), newsletters \u2192 summarize to Telegram, noise \u2192 ignore.\n\n## 3. Dashboard push\nRun: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\nIf `/tmp/jarvis-dashboard` missing, clone: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n\n## 4. Browser tabs\nRun: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\nSkip if Chrome unreachable on port 18800.\n\n## 5. Self-check\nRead last 3 lines of `memory/heartbeat-log.jsonl`. If previous entry is >2h old, note the gap in today's daily log.\n",
+      "sizeBytes": 1532,
+      "lastModified": "2026-03-09T22:21:02Z"
     },
     {
       "name": "PROJECTS.md",
