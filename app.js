@@ -206,31 +206,63 @@
     const stats = cur.stats || {};
     const runs = cur.runs || {};
     const open = cur.backlog?.open || [];
+
+    // Prominent headline
+    const investigated = stats.resolved7d || 0;
+    const openCount = stats.openCount || 0;
+    const headline = `<div class="curiosity-headline"><span class="hl-num">${investigated}</span> investigated this week · <span class="hl-num">${openCount}</span> open</div>`;
+
     const statsRow = `<div class="stat-row">
-      <div class="stat-item"><span class="stat-value">${stats.openCount || 0}</span><span class="stat-label">open</span></div>
-      <div class="stat-item"><span class="stat-value">${stats.resolved7d || 0}</span><span class="stat-label">resolved 7d</span></div>
+      <div class="stat-item"><span class="stat-value">${stats.resolvedAllTime || 0}</span><span class="stat-label">resolved all time</span></div>
       <div class="stat-item"><span class="stat-value">${runs.today || 0}<span style="color:var(--dim);font-size:13px">/${runs.budget?.dailyRunCap || '?'}</span></span><span class="stat-label">runs today</span></div>
+      <div class="stat-item"><span class="stat-value">${runs.totalRuns || 0}</span><span class="stat-label">total runs</span></div>
     </div>`;
+
     const list = `<ul class="item-list">${withShowMore(open, 5, item => {
       const tags = (item.tags || []).map(t => `<span class="tag">${h(t)}</span>`).join('');
-      return `<li><div><div class="item-title">${h(item.title)}</div>${tags}</div></li>`;
+      const budgetInfo = item.loopBudget ? `<span class="curiosity-item-meta">Budget: ${item.loopBudget}</span>` : '';
+      const ageInfo = item.addedTs ? `<span class="curiosity-item-meta">Open ${relativeTime(item.addedTs).replace(' ago', '')}</span>` : '';
+      const meta = (budgetInfo || ageInfo) ? `<div>${budgetInfo}${budgetInfo && ageInfo ? ' · ' : ''}${ageInfo}</div>` : '';
+      return `<li><div><div class="item-title">${h(item.title)}</div>${tags}${meta}</div></li>`;
     })}</ul>`;
-    return card('Curiosity', statsRow + list, { wide: true });
+
+    // Last resolved line
+    const lastResolved = cur.backlog?.lastResolved;
+    const resolvedLine = lastResolved
+      ? `<div class="curiosity-resolved-line">Last resolved: ${h(lastResolved)}</div>`
+      : (investigated > 0 ? `<div class="curiosity-resolved-line">${investigated} item${investigated !== 1 ? 's' : ''} resolved in the last 7 days</div>` : '');
+
+    return card('Curiosity', headline + statsRow + list + resolvedLine, { wide: true });
   }
 
   function renderProjects(proj) {
     const active = proj.active || [];
+
+    // Summary bar: count by status
+    const counts = {};
+    active.forEach(p => { counts[p.status] = (counts[p.status] || 0) + 1; });
+    const statusOrder = ['live', 'building', 'active', 'paused', 'idea', 'done', 'failed', 'killed'];
+    const summaryParts = statusOrder
+      .filter(s => counts[s])
+      .map(s => `<span class="status-badge ${badgeClass(s)}">${counts[s]} ${s}</span>`);
+    const summaryBar = summaryParts.length
+      ? `<div class="project-summary-bar">${summaryParts.join('')}</div>`
+      : '';
+
     const list = `<ul class="item-list">${withShowMore(active, 5, p =>
       `<li>
         <span class="status-badge ${badgeClass(p.status)}">${h(p.status)}</span>
         <div><div class="item-title">${h(p.name)}</div><div class="item-excerpt">${h(p.notesExcerpt || '')}</div></div>
       </li>`
     )}</ul>`;
-    return card('Projects', list, { meta: `${proj.stats?.activeCount || 0} active` });
+    return card('Projects', summaryBar + list, { meta: `${proj.stats?.activeCount || 0} active` });
   }
 
   function renderCapabilityGaps(gaps) {
-    const open = gaps.open || [];
+    const severityOrder = { high: 0, medium: 1, low: 2 };
+    const open = (gaps.open || []).slice().sort((a, b) =>
+      (severityOrder[a.severity] ?? 3) - (severityOrder[b.severity] ?? 3)
+    );
     const statsRow = `<div class="stat-row">
       <div class="stat-item"><span class="stat-value">${gaps.stats?.openCount || 0}</span><span class="stat-label">open gaps</span></div>
     </div>`;
@@ -411,8 +443,15 @@
       return;
     }
 
-    // Top bar
-    $('#last-updated').textContent = `Updated ${relativeTime(state.generatedAt)}`;
+    // Top bar — "Updated Xm ago · Last cron: Xm ago"
+    const cronJobs = (state.sections?.cron?.jobs || []);
+    const lastCronTs = cronJobs.reduce((max, j) => {
+      const t = j.lastRun?.ts || 0;
+      return t > max ? t : max;
+    }, 0);
+    const cronText = lastCronTs ? ` <span class="meta-sep">·</span> Last cron: ${h(relativeTime(lastCronTs))}` : '';
+    $('#last-updated').innerHTML = `Updated ${h(relativeTime(state.generatedAt))}${cronText}`;
+
     const level = state.health?.overall || 'ok';
     const pill = $('#health-pill');
     pill.className = `pill ${healthPillClass(level)}`;
@@ -422,6 +461,18 @@
       const link = $('#repo-link');
       link.href = state.links.repo;
       link.style.display = '';
+      link.innerHTML = `GitHub<svg class="ext-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 1.5h7v7"/><path d="M10.5 1.5L1.5 10.5"/></svg>`;
+    }
+
+    // Health banner (FIX 1)
+    const banner = $('#health-banner');
+    const signals = state.health?.signals || [];
+    if ((level === 'warn' || level === 'error') && signals.length) {
+      banner.className = `health-banner banner-${level}`;
+      banner.style.display = '';
+      banner.innerHTML = signals.map(s =>
+        `<div class="health-banner-line"><span class="banner-icon">${s.level === 'error' ? '✕' : '⚠'}</span>${h(s.message)}</div>`
+      ).join('') + `<button class="health-banner-dismiss" onclick="this.parentElement.style.display='none'" title="Dismiss">✕</button>`;
     }
 
     // Sections
