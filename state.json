@@ -1,20 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773103747,
-  "generatedAtIso": "2026-03-10T00:49:07Z",
+  "generatedAt": 1773105547,
+  "generatedAtIso": "2026-03-10T01:19:07Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
   },
   "health": {
-    "overall": "warn",
-    "signals": [
-      {
-        "key": "cron.failures",
-        "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      }
-    ]
+    "overall": "ok",
+    "signals": []
   },
   "sections": {
     "cron": {
@@ -183,7 +177,7 @@
       "stats": {
         "total": 12,
         "enabled": 12,
-        "failedLast24h": 1
+        "failedLast24h": 0
       }
     },
     "stocks": {
@@ -430,8 +424,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 177,
-        "byteCount": 12938,
+        "lineCount": 224,
+        "byteCount": 15683,
         "date": "2026-03-09"
       },
       "recentDays": [
@@ -472,8 +466,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 206,
-        "byteCount": 24878
+        "lineCount": 209,
+        "byteCount": 25464
       }
     },
     "heartbeat": {
