@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773113443,
-  "generatedAtIso": "2026-03-10T03:30:43Z",
+  "generatedAt": 1773147649,
+  "generatedAtIso": "2026-03-10T13:00:49Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -13,36 +13,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773043200,
-            "status": "ok",
-            "durationMs": 113164,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773129600
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773046800,
-            "status": "ok",
-            "durationMs": 27025,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773133200
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -80,6 +50,36 @@
           },
           "nextRun": {
             "ts": 1773198900
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773129600,
+            "status": "ok",
+            "durationMs": 173855,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773216000
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773133200,
+            "status": "ok",
+            "durationMs": 20310,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773219600
           },
           "consecutiveErrors": 0
         },
@@ -293,21 +293,15 @@
     "curiosity": {
       "runs": {
         "today": 1,
-        "totalRuns": 6
+        "totalRuns": 7
       },
       "backlog": {
-        "open": [
-          {
-            "title": "Biological computing: ethics + silicon comparison.",
-            "status": "open",
-            "tags": []
-          }
-        ]
+        "open": []
       },
       "stats": {
-        "openCount": 1,
-        "resolved7d": 3,
-        "resolvedAllTime": 5
+        "openCount": 0,
+        "resolved7d": 4,
+        "resolvedAllTime": 6
       }
     },
     "projects": {
@@ -424,11 +418,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 3,
-        "byteCount": 109,
-        "date": "2026-03-09"
+        "lineCount": 103,
+        "byteCount": 9821,
+        "date": "2026-03-10"
       },
       "recentDays": [
+        {
+          "lineCount": 3,
+          "byteCount": 109,
+          "date": "2026-03-09"
+        },
         {
           "lineCount": 91,
           "byteCount": 6541,
@@ -458,16 +457,11 @@
           "lineCount": 7,
           "byteCount": 270,
           "date": "2026-03-03"
-        },
-        {
-          "lineCount": 3,
-          "byteCount": 109,
-          "date": "2026-03-02"
         }
       ],
       "memoryMd": {
-        "lineCount": 209,
-        "byteCount": 25464
+        "lineCount": 210,
+        "byteCount": 25674
       }
     },
     "heartbeat": {
@@ -485,9 +479,9 @@
   "documents": [
     {
       "name": "HEARTBEAT.md",
-      "content": "# HEARTBEAT.md\n\nDo ALL of these, every heartbeat. Log first, checks second, self-check last.\n\n## 1. Log this run\nAppend to `memory/heartbeat-log.jsonl`:\n`{\"ts\":\"<ISO8601>\",\"checks\":[\"email\",\"dashboard\",\"tabs\"],\"actions\":[],\"result\":\"ok\"}`\nUpdate the actions array with what you actually did. Never reply with just \"HEARTBEAT_OK\" \u2014 always include a timestamp and summary.\n\n## 2. Email\nRun: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\nRead into every thread with 2+ messages. Reply to unreplied messages from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com) via `gog gmail send --reply-to-message-id`. Match recipient list exactly.\nThen triage remaining unreads: actionable \u2192 Telegram (chat 8063863266), newsletters \u2192 summarize to Telegram, noise \u2192 ignore.\n\n## 3. Dashboard push\nRun: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\nIf `/tmp/jarvis-dashboard` missing, clone: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n\n## 4. Browser tabs\nRun: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\nSkip if Chrome unreachable on port 18800.\n\n## 5. Self-check\nRead last 3 lines of `memory/heartbeat-log.jsonl`. If previous entry is >2h old, note the gap in today's daily log.\n",
-      "sizeBytes": 1532,
-      "lastModified": "2026-03-09T22:21:02Z"
+      "content": "# HEARTBEAT.md\n\nDo ALL of these, every heartbeat. Log first, checks second, self-check last.\n\n## 1. Log this run\nAppend to `memory/heartbeat-log.jsonl`:\n`{\"ts\":\"<ISO8601>\",\"checks\":[\"email\",\"dashboard\",\"tabs\"],\"actions\":[],\"result\":\"ok\"}`\nUpdate the actions array with what you actually did. Never reply with just \"HEARTBEAT_OK\" \u2014 always include a timestamp and summary.\n\n## 2. Email\nRun: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\nRead into every thread with 2+ messages. Reply to unreplied messages from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com) via `gog gmail send --reply-to-message-id`. Match recipient list exactly.\n\n**Action-before-reply rule:** If a reply acknowledges an action (e.g. \"pulling X from future digests\", \"updating Y\", \"scheduling Z\"), execute the action FIRST, verify it worked, THEN send the reply. Never send a reply that claims an action was taken unless the action is already done. If the action fails, say so in the reply instead of promising it happened.\n\nThen triage remaining unreads: actionable \u2192 Telegram (chat 8063863266), newsletters \u2192 summarize to Telegram, noise \u2192 ignore.\n\n## 3. Dashboard push\nRun: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\nIf `/tmp/jarvis-dashboard` missing, clone: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n\n## 4. Browser tabs\nRun: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\nSkip if Chrome unreachable on port 18800.\n\n## 5. Self-check\nRead last 3 lines of `memory/heartbeat-log.jsonl`. If previous entry is >2h old, note the gap in today's daily log.\n",
+      "sizeBytes": 1894,
+      "lastModified": "2026-03-10T03:31:04Z"
     },
     {
       "name": "PROJECTS.md",
