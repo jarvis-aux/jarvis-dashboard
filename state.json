@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773153047,
-  "generatedAtIso": "2026-03-10T14:30:47Z",
+  "generatedAt": 1773156617,
+  "generatedAtIso": "2026-03-10T15:30:17Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -14,16 +14,6 @@
     "cron": {
       "jobs": [
         {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773154800
-          },
-          "consecutiveErrors": 0
-        },
-        {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
           "enabled": true,
@@ -35,21 +25,6 @@
           },
           "nextRun": {
             "ts": 1773198000
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "Daily Journal",
-          "humanSchedule": "Daily 10:15 PM",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773112500,
-            "status": "ok",
-            "durationMs": 14887,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773198900
           },
           "consecutiveErrors": 0
         },
@@ -80,6 +55,21 @@
           },
           "nextRun": {
             "ts": 1773219600
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773154800,
+            "status": "ok",
+            "durationMs": 6644,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773241200
           },
           "consecutiveErrors": 0
         },
@@ -175,8 +165,8 @@
         }
       ],
       "stats": {
-        "total": 12,
-        "enabled": 12,
+        "total": 11,
+        "enabled": 11,
         "failedLast24h": 0
       }
     },
@@ -424,8 +414,8 @@
       },
       "recentDays": [
         {
-          "lineCount": 3,
-          "byteCount": 109,
+          "lineCount": 73,
+          "byteCount": 4578,
           "date": "2026-03-09"
         },
         {
