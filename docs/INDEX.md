@@ -18,3 +18,4 @@ Architecture and reference docs for systems I've built. Load on demand when work
 | `taneda-sniper-plan.md` | Taneda Sniper | Build plan, architecture, Toshokan lessons integration, risk matrix, timeline |
 | `tock-booker-prd.md` | Tock Universal Booker | Requirements, scope, constraints, testing plan |
 | `tock-booker-architecture.md` | Tock Universal Booker | Living architecture doc: modules, flows, watch refresh policy, known gaps |
+| `reddit-testcases.md` | Tock Universal Booker | Reddit-derived drop schedules + bot/scalper patterns (cross-restaurant test cases) |
