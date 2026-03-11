@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773237180,
-  "generatedAtIso": "2026-03-11T13:53:00Z",
+  "generatedAt": 1773255303,
+  "generatedAtIso": "2026-03-11T18:55:03Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -13,21 +13,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773154800,
-            "status": "ok",
-            "durationMs": 6644,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773241200
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -87,6 +72,21 @@
             "ts": 1773309600
           },
           "consecutiveErrors": 1
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773253447,
+            "status": "ok",
+            "durationMs": 5642,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773327600
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "memory-review",
@@ -408,14 +408,14 @@
     },
     "memory": {
       "today": {
-        "lineCount": 0,
-        "byteCount": 0,
+        "lineCount": 24,
+        "byteCount": 1330,
         "date": "2026-03-11"
       },
       "recentDays": [
         {
-          "lineCount": 154,
-          "byteCount": 12688,
+          "lineCount": 159,
+          "byteCount": 12917,
           "date": "2026-03-10"
         },
         {
