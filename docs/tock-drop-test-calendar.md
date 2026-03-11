@@ -22,7 +22,8 @@
 
 ### Taneda (Seattle) — monthly
 - **Slug (current):** `https://www.exploretock.com/taneda`
-- **Alt slug seen on Reddit:** `https://www.exploretock.com/taneda-sushi-in-kaiseki-seattle-2`
+- **Alt slug seen on Reddit (likely legacy):** `https://www.exploretock.com/taneda-sushi-in-kaiseki-seattle-2`
+  - In browser it currently resolves to the Tock homepage (`https://www.exploretock.com/`), so treat it as obsolete.
 - **Drop time:** 3rd Saturday 11:00 AM PT (confirmed via Redux for March)
 - **Upcoming drops:**
   - 2026-03-21 11:00 AM PT / 2026-03-21 1:00 PM CT (Redux)
