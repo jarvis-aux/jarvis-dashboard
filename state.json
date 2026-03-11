@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773199845,
-  "generatedAtIso": "2026-03-11T03:30:45Z",
+  "generatedAt": 1773235385,
+  "generatedAtIso": "2026-03-11T13:23:05Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -13,36 +13,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773129600,
-            "status": "ok",
-            "durationMs": 173855,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773216000
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773133200,
-            "status": "ok",
-            "durationMs": 20310,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773219600
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -70,6 +40,36 @@
           },
           "nextRun": {
             "ts": 1773284400
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773216000,
+            "status": "ok",
+            "durationMs": 8893,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773302400
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773219600,
+            "status": "ok",
+            "durationMs": 18035,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773306000
           },
           "consecutiveErrors": 0
         },
@@ -408,11 +408,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 154,
-        "byteCount": 12688,
-        "date": "2026-03-10"
+        "lineCount": 0,
+        "byteCount": 0,
+        "date": "2026-03-11"
       },
       "recentDays": [
+        {
+          "lineCount": 154,
+          "byteCount": 12688,
+          "date": "2026-03-10"
+        },
         {
           "lineCount": 73,
           "byteCount": 4578,
@@ -442,11 +447,6 @@
           "lineCount": 40,
           "byteCount": 1866,
           "date": "2026-03-04"
-        },
-        {
-          "lineCount": 7,
-          "byteCount": 270,
-          "date": "2026-03-03"
         }
       ],
       "memoryMd": {
