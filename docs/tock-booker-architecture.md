@@ -54,12 +54,14 @@ Reason: Chrome can expose Stripe inner pages as `type=page` (e.g., `m.stripe.net
 
 ## 4) Modes and Logic Flows
 
-### Checkout hold (supervised tests)
+### Checkout behavior (supervised tests)
 
 CLI option:
-- `--hold-seconds N`
+- `--auto-release` / `--no-auto-release`
 
-If checkout is reached, the script will take its checkout screenshot, then **sleep for N seconds** before cleanup auto-releases the lock. Useful when Andrew is present and wants to inspect the checkout page briefly.
+If checkout is reached:
+- `--auto-release` (default): take screenshot, **wait 60 seconds**, then cleanup auto-releases the lock.
+- `--no-auto-release`: hold at checkout indefinitely until Ctrl+C, then cleanup releases the lock.
 
 
 ### 4.1 Mode: `dry-run`
