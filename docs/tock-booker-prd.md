@@ -331,9 +331,51 @@ scripts/tock-sniper/
 | Mar 22+ | Post-recon fixes, speed optimization |
 | ~Apr 18 | **LIVE: Taneda April drop for May dates** |
 
-## 10. Open Questions
+## 10. Critical Technical Findings (from Verification Pass)
 
-1. What is Taneda's businessId? (Extract during March 21 recon or from Redux when verification agent reports back)
-2. Does Tock show a queue/waiting room during high-traffic drops? (March 21 recon will answer)
-3. How does hCaptcha invisible behave during rapid booking? (March 21 recon)
-4. Can we pre-navigate to the month before the drop to save a click? (Test during recon)
+### Redux Store Access (CORRECTED)
+The Redux store is at `window.store` (NOT `window.__REDUX_STORE__`):
+```javascript
+window.store.getState()           // Live state
+window.$REDUX_STATE               // Initial hydration
+```
+Key paths:
+- Release schedule: `app.config.release`
+- Availability: `calendar.calendar.ticketGroup`
+- Experience state: `calendar.offerings.experience[0].state` ("AVAILABLE" | "SOLD")
+- Business IDs: `app.activeAuth.businessId`, `app.activeAuth.businessGroupId`
+
+### Taneda IDs (RESOLVED)
+- businessId: **27534**
+- businessGroupId: **20337**
+- experienceId: 329211
+- Release: March 21 at 11:00 AM PDT (1:00 PM CDT), epoch 1774116000000
+
+### Taneda Fixed Table Seating (CRITICAL)
+Taneda does NOT use communal seating. Each table has a FIXED party size:
+- Typical config per seating: 4 tables (2+2+2+3 = 9 seats)
+- A party of 2 can ONLY book 2-seat tables (3 available per seating, not 4)
+- `minPurchaseSize === maxPurchaseSize` per ticket group
+- This means fewer bookable slots than the raw "9 seats" suggests
+
+### Reliable DOM Selectors (data-testid)
+All Tock restaurants share these stable selectors:
+```
+[data-testid="consumer-calendar-day"][aria-label="YYYY-MM-DD"]  → date button
+[data-testid="booking-card-button"]                              → Book/Notify button
+[data-testid="supplement-group-confirm-button"]                  → Next (pairings skip)
+[data-testid="purchase-button"]                                  → Complete purchase
+[data-testid="holding-time"]                                     → Lock timer
+[data-testid="close-button"]                                     → Close dialog
+```
+
+### Checkout URL Pattern (CORRECTED)
+- With pairings: `/<slug>/checkout/options` → `/<slug>/checkout/confirm-purchase`
+- Without pairings: direct to `/<slug>/checkout/confirm-purchase`
+- The "Back" button on pairings page is DISABLED (can't go back to search)
+
+## 11. Open Questions (Reduced)
+
+1. Does Tock show a queue/waiting room during high-traffic drops? (March 21 recon)
+2. How does hCaptcha invisible behave during rapid booking? (March 21 recon)
+3. Calendar nav buttons are disabled when no dates exist beyond current range — do they auto-enable when the drop happens, or does the page need a refresh? (March 21 recon)
