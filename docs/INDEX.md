@@ -20,3 +20,4 @@ Architecture and reference docs for systems I've built. Load on demand when work
 | `tock-booker-architecture.md` | Tock Universal Booker | Living architecture doc: modules, flows, watch refresh policy, known gaps |
 | `reddit-testcases.md` | Tock Universal Booker | Reddit-derived drop schedules + bot/scalper patterns (cross-restaurant test cases) |
 | `tock-sniper-todos.md` | Tock Universal Booker | Running TODO list (single source of truth) |
+| `tock-drop-test-calendar.md` | Tock Universal Booker | Upcoming scheduled drop test calendar (poll → detect → book) |
