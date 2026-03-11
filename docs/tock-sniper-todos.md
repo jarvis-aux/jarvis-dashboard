@@ -16,6 +16,11 @@ This is the single source of truth for what’s left to do on the Tock sniper / 
   - `notifier.py` can’t send because Keychain entry `telegram-bot-token` is missing.
   - Add token to Keychain (service: `telegram-bot-token`, account: `openclaw`).
 
+- [ ] **Add manual lock-hold + reliable release for live tests**
+  - Current behavior: after checkout screenshot, cleanup auto-releases the lock.
+  - Desired for supervised drop tests: optionally **hold at checkout** until Andrew says release (or a timeout), then release.
+  - Fix `--release` to use the UI/back-based unlock (current JS DELETE endpoint returns 405).
+
 - [ ] **Watch mode: continue after failed booking attempt**
   - Current behavior: if watch detects availability and booking fails, the run exits.
   - Desired: keep watching until `--watch-duration` expires.
