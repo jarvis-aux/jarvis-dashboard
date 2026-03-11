@@ -369,6 +369,16 @@ All Tock restaurants share these stable selectors:
 [data-testid="close-button"]                                     → Close dialog
 ```
 
+### Poll Test Results (Validated March 11, 2026)
+DOM-based polling via `Runtime.evaluate` is completely invisible to Cloudflare:
+- **1.0s interval, 60s duration:** 54 polls, 0 CF triggers, 0 errors
+- **0.5s interval, 120s duration:** 191 polls, 0 CF triggers, 0 errors
+- Each poll takes ~35ms steady state (1.5ms when tab is focused)
+- Detection latency at 0.5s polling: worst case ~535ms from availability to detection
+- For comparison: the old API-based sniper got CF-challenged after 27s / 54 attempts at 0.5s
+
+This confirms the DOM approach is the correct strategy. No API calls needed for detection.
+
 ### Checkout URL Pattern (CORRECTED)
 - With pairings: `/<slug>/checkout/options` → `/<slug>/checkout/confirm-purchase`
 - Without pairings: direct to `/<slug>/checkout/confirm-purchase`
