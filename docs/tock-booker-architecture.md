@@ -61,7 +61,7 @@ CLI option:
 
 If checkout is reached:
 - `--no-auto-release` (default): hold at checkout indefinitely until Ctrl+C, then cleanup releases the lock.
-- `--auto-release`: take screenshot, **wait 60 seconds**, then cleanup auto-releases the lock.
+- `--auto-release`: take screenshot, **wait 15 seconds**, then cleanup auto-releases the lock.
 
 
 ### 4.1 Mode: `dry-run`
