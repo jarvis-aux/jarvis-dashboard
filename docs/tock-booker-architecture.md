@@ -54,6 +54,14 @@ Reason: Chrome can expose Stripe inner pages as `type=page` (e.g., `m.stripe.net
 
 ## 4) Modes and Logic Flows
 
+### Checkout hold (supervised tests)
+
+CLI option:
+- `--hold-seconds N`
+
+If checkout is reached, the script will take its checkout screenshot, then **sleep for N seconds** before cleanup auto-releases the lock. Useful when Andrew is present and wants to inspect the checkout page briefly.
+
+
 ### 4.1 Mode: `dry-run`
 
 Goal: validate DOM navigation and slot discovery, but **do not click Book**.
