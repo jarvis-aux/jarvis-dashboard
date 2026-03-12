@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773346439,
-  "generatedAtIso": "2026-03-12T20:13:59Z",
+  "generatedAt": 1773350061,
+  "generatedAtIso": "2026-03-12T21:14:21Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -433,8 +433,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 115,
-        "byteCount": 8290,
+        "lineCount": 121,
+        "byteCount": 9112,
         "date": "2026-03-12"
       },
       "recentDays": [
@@ -494,9 +494,9 @@
   "documents": [
     {
       "name": "HEARTBEAT.md",
-      "content": "# HEARTBEAT.md\n\nDo ALL of these, every heartbeat. Log first, checks second, self-check last.\n\n## 1. Log this run\nAppend to `memory/heartbeat-log.jsonl`:\n`{\"ts\":\"<ISO8601>\",\"checks\":[\"email\",\"dashboard\",\"tabs\"],\"actions\":[],\"result\":\"ok\"}`\nUpdate the actions array with what you actually did. Never reply with just \"HEARTBEAT_OK\" \u2014 always include a timestamp and summary.\n\n## 2. Email\nRun: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\nRead into every thread with 2+ messages. Reply to unreplied messages from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com) via `gog gmail send --reply-to-message-id`. Match recipient list exactly.\n\n**Action-before-reply rule:** If a reply acknowledges an action (e.g. \"pulling X from future digests\", \"updating Y\", \"scheduling Z\"), execute the action FIRST, verify it worked, THEN send the reply. Never send a reply that claims an action was taken unless the action is already done. If the action fails, say so in the reply instead of promising it happened.\n\nThen triage remaining unreads: actionable \u2192 Telegram (chat 8063863266), newsletters \u2192 summarize to Telegram, noise \u2192 ignore.\n\n## 3. Dashboard push\nRun: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\nIf `/tmp/jarvis-dashboard` missing, clone: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n\n## 4. Browser tabs\nRun: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\nSkip if Chrome unreachable on port 18800.\n\n## 5. Self-check\nRead last 3 lines of `memory/heartbeat-log.jsonl`. If previous entry is >2h old, note the gap in today's daily log.\n",
-      "sizeBytes": 1894,
-      "lastModified": "2026-03-10T03:31:04Z"
+      "content": "# HEARTBEAT.md\n\nDo ALL of these, every heartbeat. Log first, checks second, self-check last.\n\n## 1. Log this run\nAppend to `memory/heartbeat-log.jsonl`:\n`{\"ts\":\"<ISO8601>\",\"checks\":[\"email\",\"dashboard\",\"tabs\"],\"actions\":[],\"result\":\"ok\"}`\nUpdate the actions array with what you actually did. Never reply with just \"HEARTBEAT_OK\" \u2014 always include a timestamp and summary.\n\n## 2. Email\nRun: `GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" ~/bin/gog gmail search 'to:aliudeloitte@gmail.com is:unread' --max 10 --account aliudeloitte@gmail.com`\nRead into every thread with 2+ messages. Reply to unreplied messages from Andrew (liuandrewy@gmail.com) or Lisa (lisashantisiva@gmail.com) via `gog gmail send --reply-to-message-id`. Match recipient list exactly.\n\n**Action-before-reply rule:** If a reply acknowledges an action (e.g. \"pulling X from future digests\", \"updating Y\", \"scheduling Z\"), execute the action FIRST, verify it worked, THEN send the reply. Never send a reply that claims an action was taken unless the action is already done. If the action fails, say so in the reply instead of promising it happened.\n\nThen triage remaining unreads using this cleanup policy:\n- **Andrew/Lisa threads:** never auto-clean until handled.\n- **Actionable system mail** (security alerts, verification emails, billing/account notices): alert Andrew on Telegram (chat 8063863266). Leave unread unless the action is completed in the same run.\n- **Newsletters/promos/noise** (e.g. Tech Buzz, Bonobos, Tock Marketing): summarize only if something is genuinely useful; otherwise immediately clean them up by removing `UNREAD` and `INBOX` via `gog gmail labels modify <threadId> --remove UNREAD,INBOX --account aliudeloitte@gmail.com`.\n- **After alerting about repeated actionables:** don't keep re-reporting the same item every heartbeat unless state changed.\n\nThe goal is inbox cleanup, not archaeological preservation.\n\n## 3. Dashboard push\nRun: `cd /tmp/jarvis-dashboard && python3 scripts/gen_state.py && git add -A && git diff --cached --quiet || (git commit -m \"state: auto-update\" && git push) 2>&1`\nIf `/tmp/jarvis-dashboard` missing, clone: `git clone https://jarvis-aux:$(security find-generic-password -s github-pat -w)@github.com/jarvis-aux/jarvis-dashboard.git /tmp/jarvis-dashboard`\n\n## 4. Browser tabs\nRun: `bash /Users/openclaw/.openclaw/workspace/scripts/browser-tab-cleanup.sh`\nSkip if Chrome unreachable on port 18800.\n\n## 5. Self-check\nRead last 3 lines of `memory/heartbeat-log.jsonl`. If previous entry is >2h old, note the gap in today's daily log.\n",
+      "sizeBytes": 2553,
+      "lastModified": "2026-03-12T20:17:35Z"
     },
     {
       "name": "PROJECTS.md",
