@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773327178,
-  "generatedAtIso": "2026-03-12T14:52:58Z",
+  "generatedAt": 1773328965,
+  "generatedAtIso": "2026-03-12T15:22:45Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -24,21 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773253447,
-            "status": "ok",
-            "durationMs": 5642,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773327600
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "memory-review",
           "humanSchedule": "Every 4320 min",
@@ -120,6 +105,21 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773327600,
+            "status": "error",
+            "durationMs": 15199,
+            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1773414000
+          },
+          "consecutiveErrors": 1
+        },
+        {
           "id": "problem-review-saturday",
           "humanSchedule": "Sundays 10 AM CT",
           "enabled": true,
@@ -188,7 +188,7 @@
       "stats": {
         "total": 12,
         "enabled": 12,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
