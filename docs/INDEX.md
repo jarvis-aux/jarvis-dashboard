@@ -16,6 +16,7 @@ Architecture and reference docs for systems I've built. Load on demand when work
 | `tock-sniper-spec.md` | Toshokan Sniper | Tock API reverse engineering, protobuf formats, booking flow, test plan |
 | `taneda-sniper-spec.md` | Taneda Sniper | Restaurant profile, reservation mechanics, drop schedule, Tock page structure |
 | `taneda-sniper-plan.md` | Taneda Sniper | Build plan, architecture, Toshokan lessons integration, risk matrix, timeline |
+| `taneda-testcases.md` | Taneda Sniper | Taneda-relevant test cases (engine + watcher + drop rehearsals) |
 | `tock-booker-prd.md` | Tock Universal Booker | Requirements, scope, constraints, testing plan |
 | `tock-booker-architecture.md` | Tock Universal Booker | Living architecture doc: modules, flows, watch refresh policy, known gaps |
 | `reddit-testcases.md` | Tock Universal Booker | Reddit-derived drop schedules + bot/scalper patterns (cross-restaurant test cases) |
