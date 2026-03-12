@@ -2,7 +2,7 @@
 
 **Author:** JARVIS + Andrew
 **Date:** 2026-03-11
-**Status:** Draft
+**Status:** Living (keep in sync with `docs/tock-booker-architecture.md`)
 
 ## 1. Problem Statement
 
@@ -86,7 +86,8 @@ python3 tock_booker.py --list-restaurants
 | `--time` | No | First available | Preferred time (e.g., `"7:45 PM"`) |
 | `--party-size` | No | 2 | Number of guests |
 | `--mode` | No | `live` | `live`, `watch`, or `dry-run` |
-| `--release` | No | — | Release any active lock and exit |
+| `--auto-release` / `--no-auto-release` | No | `--no-auto-release` | Checkout behavior: hold at checkout by default; or auto-release after screenshot + short wait |
+| `--release` | No | — | Best-effort release any active lock and exit |
 | `--list-restaurants` | No | — | Print supported restaurants and exit |
 | `--fallback-dates` | No | — | Comma-separated fallback dates (e.g., `2026-05-02,2026-05-03`) |
 
@@ -115,17 +116,27 @@ The tool must handle this universal flow:
 ### 5.4 Fallback Logic
 
 When the preferred time slot is unavailable:
-1. **Same date, any time:** Try all available time slots on the target date, earliest first
-2. **Next date:** If target date has zero availability, try the next calendar date
-3. **Fallback dates:** If `--fallback-dates` specified, try those in order
-4. **Fail:** If all options exhausted, send failure notification and exit
+
+**Time fallback (within a chosen date):**
+1. Try preferred time first
+2. If preferred is missing/unbookable: try **nearest available Book times** (by absolute minute delta)
+3. If clicks race (slot_not_found), do one fast re-scrape + retry
+
+**Date fallback:**
+1. Try the target date
+2. If the target date is **disabled/not released** (`date_disabled`) and `--fallback-dates` was NOT provided: auto-discover nearby **enabled** dates in the calendar (next ~3 months) and append them (`auto_fallback_dates_added`)
+3. If `--fallback-dates` is provided: try them in order
+4. Fail if all candidates exhausted
+
+Note: enabled calendar dates do NOT guarantee inventory. We still require visible enabled **Book** slots to proceed.
 
 ### 5.5 Watch Mode (Pre-Drop Polling)
 
 - Start polling 2-3 minutes before expected drop time
 - Poll interval: 2 seconds (DOM-based, not API — invisible to Cloudflare)
-- Detection method: evaluate JS in browser context to check for enabled date buttons and "Book" buttons
-- Also check Redux store (`window.__REDUX_STORE__.getState().calendar.calendar.ticketGroup`) for available counts
+- Detection method: evaluate JS in browser context to check for visible enabled **"Book"** buttons
+- Also check Redux store (`window.store.getState()`) for available counts (`calendar.calendar.ticketGroup`) and experience state (`calendar.offerings.experience[0].state`)
+- Do NOT treat enabled calendar dates as inventory; Tsuke/Toshokan expose enabled dates even when fully sold out
 - On detection: immediately execute booking flow (no human confirmation needed)
 - Resilience: if the page becomes unresponsive, refresh and resume polling
 

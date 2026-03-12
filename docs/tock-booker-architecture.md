@@ -35,6 +35,7 @@ Source directory: `scripts/tock-sniper/`
 - Restaurant key: `--restaurant/-r` (maps to `restaurant_configs.py`)
 - Target date/time/party size
 - Mode: `live | dry-run | watch`
+- Checkout behavior: `--auto-release` / `--no-auto-release`
 
 ### 2.2 Outputs
 
@@ -127,12 +128,18 @@ Current strategy:
 Observed timing:
 - Otoko add-ons step adds ~1.0s (`addons_handled`).
 
-## 6) Sold-out Behavior
+## 6) Fallback Behavior (Date + Time)
+
+- **Date disabled (`date_disabled`)**: if no explicit `--fallback-dates` are provided, the engine auto-discovers enabled future dates in the calendar (next ~3 months) and appends them as fallback candidates (`auto_fallback_dates_added`).
+- **Preferred time missing**: always try preferred time first, then try **nearest available Book times** next (by minute delta). Attempt order is logged as `time_attempt_order`.
+- **Click races**: if a click fails (`slot_not_found`) we do one fast re-scrape + retry.
+
+## 7) Sold-out Behavior
 
 - `booking_engine.wait_for_time_slots()` now has a SOLD-out detector (`JS.CHECK_SOLD_OUT`) to fail fast in one-shot modes.
 - In `watch` mode, SOLD is normal; the watcher continues polling.
 
-## 7) Refresh / Repull Policy (Watch Mode)
+## 8) Refresh / Repull Policy (Watch Mode)
 
 Motivation: in production, React state can go stale; we may need periodic refresh, but in tests we want stability.
 
@@ -148,7 +155,7 @@ Rules:
 
 See: `scripts/tock-sniper/WATCH-REFRESH-POLICY.md`
 
-## 8) Lock Release
+## 9) Lock Release
 
 On cleanup, if `_lock_acquired`:
 - attempts `DELETE /api/ticket/unlock` (currently returns 405 in testing)
@@ -156,7 +163,7 @@ On cleanup, if `_lock_acquired`:
 
 This is **best-effort** today; “guaranteed immediate unlock” is a later improvement.
 
-## 9) Logging & Timing
+## 10) Logging & Timing
 
 Every step logs JSONL with:
 - `event`
@@ -167,7 +174,7 @@ This gives us real timing variance across restaurants:
 - Sushi Bar live checkout ~5.2s
 - Otoko live checkout ~5.2s (includes add-on step)
 
-## 10) Known Gaps / Next Up
+## 11) Known Gaps / Next Up
 
 - Telegram bot token missing in Keychain (`telegram-bot-token`) → notifier can’t send.
 - GitHub repo publish blocked (current token can’t create private repos).

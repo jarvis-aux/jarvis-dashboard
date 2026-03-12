@@ -16,10 +16,9 @@ This is the single source of truth for what’s left to do on the Tock sniper / 
   - `notifier.py` can’t send because Keychain entry `telegram-bot-token` is missing.
   - Add token to Keychain (service: `telegram-bot-token`, account: `openclaw`).
 
-- [ ] **Add manual lock-hold + reliable release for live tests**
-  - Current behavior: after checkout screenshot, cleanup auto-releases the lock.
-  - Desired for supervised drop tests: optionally **hold at checkout** until Andrew says release (or a timeout), then release.
-  - Fix `--release` to use the UI/back-based unlock (current JS DELETE endpoint returns 405).
+- [ ] **Reliable release path**
+  - Hold-at-checkout is implemented (default `--no-auto-release`) and auto-release exists (`--auto-release`, 15s).
+  - Remaining issue: make `--release` reliably unlock even if the checkout tab is gone (Chrome quit) and the DELETE endpoint returns 405.
 
 - [ ] **Watch mode: continue after failed booking attempt**
   - Current behavior: if watch detects availability and booking fails, the run exits.
@@ -79,3 +78,5 @@ This is the single source of truth for what’s left to do on the Tock sniper / 
 - 2026-03-11: Watch refresh policy implemented (never/periodic/drop-window/adaptive).
 - 2026-03-11: Fixed watch false positives (enabled dates without Book slots).
 - 2026-03-11: Added sold-out fast detection (Craft/Tsuke/Toshokan).
+- 2026-03-12: Checkout behavior flag implemented: default hold at checkout; `--auto-release` waits 15s then releases.
+- 2026-03-12: Intelligent fallback improved: auto-discover enabled date fallbacks + nearest-time ordering (logs `time_attempt_order`).
