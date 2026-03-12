@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773336056,
-  "generatedAtIso": "2026-03-12T17:20:56Z",
+  "generatedAt": 1773341861,
+  "generatedAtIso": "2026-03-12T18:57:41Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -94,9 +94,9 @@
           "humanSchedule": "Daily 4 AM CT",
           "enabled": true,
           "lastRun": {
-            "ts": 1773219600,
+            "ts": 1773337652,
             "status": "ok",
-            "durationMs": 18035,
+            "durationMs": 96175,
             "summary": null
           },
           "nextRun": {
@@ -429,8 +429,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 32,
-        "byteCount": 1733,
+        "lineCount": 63,
+        "byteCount": 4101,
         "date": "2026-03-12"
       },
       "recentDays": [
