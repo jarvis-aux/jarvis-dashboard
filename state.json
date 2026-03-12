@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773341861,
-  "generatedAtIso": "2026-03-12T18:57:41Z",
+  "generatedAt": 1773346115,
+  "generatedAtIso": "2026-03-12T20:08:35Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -385,6 +385,10 @@
     "capabilityGaps": {
       "open": [
         {
+          "title": "`openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaun",
+          "severity": "medium"
+        },
+        {
           "title": "comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibi",
           "severity": "medium"
         },
@@ -411,7 +415,7 @@
       ],
       "rejected": [],
       "stats": {
-        "openCount": 6
+        "openCount": 7
       }
     },
     "drive": {
@@ -429,8 +433,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 63,
-        "byteCount": 4101,
+        "lineCount": 115,
+        "byteCount": 8290,
         "date": "2026-03-12"
       },
       "recentDays": [
@@ -471,8 +475,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 219,
-        "byteCount": 27326
+        "lineCount": 223,
+        "byteCount": 28326
       }
     },
     "heartbeat": {
@@ -502,9 +506,9 @@
     },
     {
       "name": "CAPABILITY-GAPS.md",
-      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n",
-      "sizeBytes": 1661,
-      "lastModified": "2026-03-09T01:00:29Z"
+      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n",
+      "sizeBytes": 2057,
+      "lastModified": "2026-03-12T19:17:44Z"
     },
     {
       "name": "TOOLS.md",
