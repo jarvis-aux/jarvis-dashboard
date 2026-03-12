@@ -1,78 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773273129,
-  "generatedAtIso": "2026-03-11T23:52:09Z",
+  "generatedAt": 1773320679,
+  "generatedAtIso": "2026-03-12T13:04:39Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
   },
   "health": {
-    "overall": "ok",
-    "signals": []
+    "overall": "warn",
+    "signals": [
+      {
+        "key": "cron.failures",
+        "level": "warn",
+        "message": "1 cron job(s) failed in last 24h"
+      },
+      {
+        "key": "drive.audit",
+        "level": "warn",
+        "message": "Drive audit overdue"
+      }
+    ]
   },
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "daily-usage-report",
-          "humanSchedule": "Daily 10 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773198000,
-            "status": "ok",
-            "durationMs": 72985,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773284400
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773216000,
-            "status": "ok",
-            "durationMs": 8893,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773302400
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773219600,
-            "status": "ok",
-            "durationMs": 18035,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773306000
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "date-digest-thursday",
-          "humanSchedule": "Fridays 5 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1772708400,
-            "status": "error",
-            "durationMs": 289810,
-            "summary": "No delivery target resolved for channel \"telegram\". Set delivery.to."
-          },
-          "nextRun": {
-            "ts": 1773309600
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -99,6 +50,31 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "otoko-wake-test-2026-03-12-1920",
+          "humanSchedule": "",
+          "enabled": true,
+          "lastRun": null,
+          "nextRun": {
+            "ts": 1773361200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "daily-usage-report",
+          "humanSchedule": "Daily 10 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773284400,
+            "status": "error",
+            "durationMs": 49476,
+            "summary": "\u26a0\ufe0f API rate limit reached. Please try again later."
+          },
+          "nextRun": {
+            "ts": 1773370800
+          },
+          "consecutiveErrors": 1
+        },
+        {
           "id": "project-review",
           "humanSchedule": "Saturdays 2 AM CT",
           "enabled": true,
@@ -110,6 +86,36 @@
           },
           "nextRun": {
             "ts": 1773385200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773302400,
+            "status": "ok",
+            "durationMs": 12517,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773388800
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773219600,
+            "status": "ok",
+            "durationMs": 18035,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773392400
           },
           "consecutiveErrors": 0
         },
@@ -162,12 +168,27 @@
             "ts": 1773673200
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "date-digest-thursday",
+          "humanSchedule": "Fridays 5 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773309600,
+            "status": "ok",
+            "durationMs": 321821,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773914400
+          },
+          "consecutiveErrors": 0
         }
       ],
       "stats": {
-        "total": 11,
-        "enabled": 11,
-        "failedLast24h": 0
+        "total": 12,
+        "enabled": 12,
+        "failedLast24h": 1
       }
     },
     "stocks": {
@@ -402,17 +423,22 @@
         "auditTs": 1773205200,
         "reportTs": 1773622800
       },
-      "status": "ok",
-      "auditOverdue": false,
+      "status": "warn",
+      "auditOverdue": true,
       "reportOverdue": false
     },
     "memory": {
       "today": {
-        "lineCount": 429,
-        "byteCount": 22951,
-        "date": "2026-03-11"
+        "lineCount": 4,
+        "byteCount": 261,
+        "date": "2026-03-12"
       },
       "recentDays": [
+        {
+          "lineCount": 458,
+          "byteCount": 24563,
+          "date": "2026-03-11"
+        },
         {
           "lineCount": 159,
           "byteCount": 12917,
@@ -442,16 +468,11 @@
           "lineCount": 60,
           "byteCount": 4521,
           "date": "2026-03-05"
-        },
-        {
-          "lineCount": 40,
-          "byteCount": 1866,
-          "date": "2026-03-04"
         }
       ],
       "memoryMd": {
-        "lineCount": 218,
-        "byteCount": 27166
+        "lineCount": 219,
+        "byteCount": 27326
       }
     },
     "heartbeat": {
