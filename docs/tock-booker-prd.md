@@ -1,5 +1,18 @@
 # Tock Universal Booker — Product Requirements Document
 
+## Implementation sync checklist (must-follow)
+
+If any of these change: CLI flags, fallback behavior, watch detection logic, checkout behavior, logging schema.
+
+Then update ALL of the following in the same change:
+1. `docs/tock-booker-prd.md` (this doc)
+2. `docs/tock-booker-architecture.md`
+3. `docs/tock-sniper-todos.md` (move items between TODO/Done)
+4. `scripts/tock-sniper/Claude.md` (entrypoint for future agents)
+5. Dashboard copies (jarvis-dashboard `/docs/`)
+
+This prevents the classic drift where the code is correct but the docs lie.
+
 **Author:** JARVIS + Andrew
 **Date:** 2026-03-11
 **Status:** Living (keep in sync with `docs/tock-booker-architecture.md`)
