@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773373272,
-  "generatedAtIso": "2026-03-13T03:41:12Z",
+  "generatedAt": 1773407503,
+  "generatedAtIso": "2026-03-13T13:11:43Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "3 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -24,51 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "project-review",
-          "humanSchedule": "Saturdays 2 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1772784000,
-            "status": "ok",
-            "durationMs": 142383,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773385200
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773302400,
-            "status": "ok",
-            "durationMs": 12517,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773388800
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773337652,
-            "status": "ok",
-            "durationMs": 96175,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773392400
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -96,6 +51,36 @@
           },
           "nextRun": {
             "ts": 1773457200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773388800,
+            "status": "ok",
+            "durationMs": 12426,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773475200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773392400,
+            "status": "ok",
+            "durationMs": 103821,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773478800
           },
           "consecutiveErrors": 0
         },
@@ -178,12 +163,27 @@
             "ts": 1773914400
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "project-review",
+          "humanSchedule": "Saturdays 2 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773385200,
+            "status": "error",
+            "durationMs": 84777,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1773990000
+          },
+          "consecutiveErrors": 1
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 2
+        "failedLast24h": 3
       }
     },
     "stocks": {
@@ -428,11 +428,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 130,
-        "byteCount": 10026,
-        "date": "2026-03-12"
+        "lineCount": 0,
+        "byteCount": 0,
+        "date": "2026-03-13"
       },
       "recentDays": [
+        {
+          "lineCount": 130,
+          "byteCount": 10026,
+          "date": "2026-03-12"
+        },
         {
           "lineCount": 458,
           "byteCount": 24563,
@@ -462,11 +467,6 @@
           "lineCount": 148,
           "byteCount": 11881,
           "date": "2026-03-06"
-        },
-        {
-          "lineCount": 60,
-          "byteCount": 4521,
-          "date": "2026-03-05"
         }
       ],
       "memoryMd": {
@@ -501,9 +501,9 @@
     },
     {
       "name": "CAPABILITY-GAPS.md",
-      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n",
-      "sizeBytes": 2057,
-      "lastModified": "2026-03-12T19:17:44Z"
+      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) so haircut calendar sync can't run | tool | Re-auth gog OAuth for aliudeloitte@gmail.com (refresh token) and verify `gog calendar list` works non-interactively in cron\n",
+      "sizeBytes": 2309,
+      "lastModified": "2026-03-13T09:00:45Z"
     },
     {
       "name": "TOOLS.md",
