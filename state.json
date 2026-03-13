@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773439495,
-  "generatedAtIso": "2026-03-13T22:04:55Z",
+  "generatedAt": 1773441296,
+  "generatedAtIso": "2026-03-13T22:34:56Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -203,7 +203,7 @@
       "stats": {
         "total": 13,
         "enabled": 13,
-        "failedLast24h": 3
+        "failedLast24h": 2
       }
     },
     "stocks": {
