@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773353488,
-  "generatedAtIso": "2026-03-12T22:11:28Z",
+  "generatedAt": 1773364294,
+  "generatedAtIso": "2026-03-13T01:11:34Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "3 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -24,26 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "memory-review",
-          "humanSchedule": "Every 4320 min",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773354077
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "otoko-wake-test-2026-03-12-1920",
-          "humanSchedule": "",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773361200
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -145,6 +125,21 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "memory-review",
+          "humanSchedule": "Every 4320 min",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773354077,
+            "status": "error",
+            "durationMs": 9303,
+            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1773613277
+          },
+          "consecutiveErrors": 1
+        },
+        {
           "id": "weekly-self-assessment",
           "humanSchedule": "Mondays 8 PM CT",
           "enabled": true,
@@ -186,9 +181,9 @@
         }
       ],
       "stats": {
-        "total": 12,
-        "enabled": 12,
-        "failedLast24h": 2
+        "total": 11,
+        "enabled": 11,
+        "failedLast24h": 3
       }
     },
     "stocks": {
@@ -311,7 +306,7 @@
       },
       "stats": {
         "openCount": 0,
-        "resolved7d": 4,
+        "resolved7d": 3,
         "resolvedAllTime": 6
       }
     },
