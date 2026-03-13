@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773412849,
-  "generatedAtIso": "2026-03-13T14:40:49Z",
+  "generatedAt": 1773414648,
+  "generatedAtIso": "2026-03-13T15:10:48Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -24,21 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773327600,
-            "status": "error",
-            "durationMs": 15199,
-            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
-          },
-          "nextRun": {
-            "ts": 1773414000
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -93,6 +78,21 @@
             "ts": 1773500400
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773414000,
+            "status": "error",
+            "durationMs": 12064,
+            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1773500400
+          },
+          "consecutiveErrors": 2
         },
         {
           "id": "date-digest-sunday",
