@@ -1,18 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773498719,
-  "generatedAtIso": "2026-03-14T14:31:59Z",
+  "generatedAt": 1773500516,
+  "generatedAtIso": "2026-03-14T15:01:56Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
   },
   "health": {
-    "overall": "warn",
+    "overall": "error",
     "signals": [
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
+      },
+      {
+        "key": "cron.haircut-nudge.stuck",
+        "level": "error",
+        "message": "'haircut-nudge' has 3 consecutive errors"
       },
       {
         "key": "drive.audit",
@@ -24,31 +29,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "problem-review-saturday",
-          "humanSchedule": "Sundays 10 AM CT",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773500400
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773414000,
-            "status": "error",
-            "durationMs": 12064,
-            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
-          },
-          "nextRun": {
-            "ts": 1773500400
-          },
-          "consecutiveErrors": 2
-        },
         {
           "id": "nnaka-recon-prep",
           "humanSchedule": "",
@@ -118,6 +98,21 @@
             "ts": 1773568800
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773500503,
+            "status": "error",
+            "durationMs": 9110,
+            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1773586800
+          },
+          "consecutiveErrors": 3
         },
         {
           "id": "nnaka-recon-launch",
@@ -198,12 +193,27 @@
             "ts": 1773990000
           },
           "consecutiveErrors": 1
+        },
+        {
+          "id": "problem-review-saturday",
+          "humanSchedule": "Sundays 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773500400,
+            "status": "error",
+            "durationMs": 103934,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1774105200
+          },
+          "consecutiveErrors": 1
         }
       ],
       "stats": {
         "total": 13,
         "enabled": 13,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
