@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773459123,
-  "generatedAtIso": "2026-03-14T03:32:03Z",
+  "generatedAt": 1773493339,
+  "generatedAtIso": "2026-03-14T13:02:19Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -24,36 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773388800,
-            "status": "ok",
-            "durationMs": 12426,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773475200
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773392400,
-            "status": "ok",
-            "durationMs": 103821,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773478800
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "problem-review-saturday",
           "humanSchedule": "Sundays 10 AM CT",
@@ -101,6 +71,36 @@
           },
           "nextRun": {
             "ts": 1773543600
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773475200,
+            "status": "ok",
+            "durationMs": 6855,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773561600
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773478800,
+            "status": "ok",
+            "durationMs": 146405,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773565200
           },
           "consecutiveErrors": 0
         },
@@ -203,7 +203,7 @@
       "stats": {
         "total": 13,
         "enabled": 13,
-        "failedLast24h": 2
+        "failedLast24h": 1
       }
     },
     "stocks": {
@@ -448,11 +448,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 55,
-        "byteCount": 4748,
-        "date": "2026-03-13"
+        "lineCount": 0,
+        "byteCount": 0,
+        "date": "2026-03-14"
       },
       "recentDays": [
+        {
+          "lineCount": 55,
+          "byteCount": 4748,
+          "date": "2026-03-13"
+        },
         {
           "lineCount": 130,
           "byteCount": 10026,
@@ -482,11 +487,6 @@
           "lineCount": 20,
           "byteCount": 1177,
           "date": "2026-03-07"
-        },
-        {
-          "lineCount": 148,
-          "byteCount": 11881,
-          "date": "2026-03-06"
         }
       ],
       "memoryMd": {
