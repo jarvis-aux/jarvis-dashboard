@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773500516,
-  "generatedAtIso": "2026-03-14T15:01:56Z",
+  "generatedAt": 1773502317,
+  "generatedAtIso": "2026-03-14T15:31:57Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -332,10 +332,36 @@
         "totalRuns": 7
       },
       "backlog": {
-        "open": []
+        "open": [
+          {
+            "title": "Can personality traits be trained through accumulated behavioral examples rather than declarative SOUL.md instructions?",
+            "status": "open",
+            "tags": []
+          },
+          {
+            "title": "What broke in `~/scripts/get-claude-usage.sh`?",
+            "status": "open",
+            "tags": []
+          },
+          {
+            "title": "Tock URL slug vs listing path discrepancy pattern",
+            "status": "open",
+            "tags": []
+          },
+          {
+            "title": "What's the difference between `telegram-bot-token` and `openclaw-telegram-bot-token` Keychain entries?",
+            "status": "open",
+            "tags": []
+          },
+          {
+            "title": "Adaptive refresh didn't fire periodic refreshes during the 20-min n/naka dry run",
+            "status": "open",
+            "tags": []
+          }
+        ]
       },
       "stats": {
-        "openCount": 0,
+        "openCount": 5,
         "resolved7d": 3,
         "resolvedAllTime": 6
       }
@@ -438,7 +464,23 @@
           "severity": "medium"
         }
       ],
-      "rejected": [],
+      "rejected": [
+        {
+          "title": "`~/scripts/get-claude-usage.sh` times out \u2014 expect script may be broken with newer claude CLI versio"
+        },
+        {
+          "title": "Daily Journal cron (`c187d26a`) was overwriting real daily logs with \"Quiet day\" because it ran in i"
+        },
+        {
+          "title": "`gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo"
+        },
+        {
+          "title": "Atomix Tock config used wrong slug (`/atomix/` vs `/atomixnyc/`) \u2014 dialog_timeout on first run"
+        },
+        {
+          "title": "`openclaw cron add --tz` doesn't correctly interpret `--at` times as local timezone"
+        }
+      ],
       "stats": {
         "openCount": 7
       }
@@ -531,9 +573,9 @@
     },
     {
       "name": "CAPABILITY-GAPS.md",
-      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) so haircut calendar sync can't run | tool | Re-auth gog OAuth for aliudeloitte@gmail.com (refresh token) and verify `gog calendar list` works non-interactively in cron\n",
-      "sizeBytes": 2309,
-      "lastModified": "2026-03-13T09:00:45Z"
+      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-08 | comms-classifier cron cannot read sessions_history for agent:main:telegram:direct:8063863266 (visibility restricted to current session tree) | tool | Adjust tool visibility policy for cron sessions or run classifier inside main session tree; alternatively write a dedicated transcript-export cron that runs in-tree and writes to a file\n2026-03-01 | Tock API lock blocked by Cloudflare (0.5s polling, 129 attempts all 429'd) | assumption | Rebuild sniper as browser-based: detect via offerings API, book via UI clicks with human-like timing\n2026-03-01 | cf_clearance cookie was missing at sniper launch despite offerings working | edge_case | Verify cf_clearance explicitly before any mutation attempt, regenerate via page navigation if missing\n2026-02-25 | Tock checkout requires human card entry (no saved payment, Stripe iframe + hCaptcha) | tool | Explore Tock API or ask Andrew to pre-auth a payment method; fallback: have card on file for agent use\n2026-02-25 | Keychain migration script used wrong user path (/Users/admin vs /Users/openclaw) | edge_case | Fix script paths and complete migration; live keys still in auth-profiles.json\n2026-02-25 | Browser workarounds accumulate before proper tool integration | assumption | When creating a browser-based workaround, immediately log a gap to find CLI/API replacement\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n2026-03-10 | `~/scripts/get-claude-usage.sh` times out \u2014 expect script may be broken with newer claude CLI version | tool | Debug the expect script or find alternative approach (maybe `claude /usage` in --print mode or parse the API response directly)\n2026-03-10 | Daily Journal cron (`c187d26a`) was overwriting real daily logs with \"Quiet day\" because it ran in isolated session with no context | assumption | KILLED. Lesson: isolated cron sessions can't see main session history. Never give a cron write access to files the main session also writes.\n2026-03-11 | `gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo | tool | Re-generate PAT with `repo` scope or use `gh auth refresh --scopes repo`\n2026-03-11 | Atomix Tock config used wrong slug (`/atomix/` vs `/atomixnyc/`) \u2014 dialog_timeout on first run | knowledge | Root cause found and fixed. Lesson: Tock URL slugs don't always match the restaurant listing path. Always verify searchUrl from the live page.\n2026-03-12 | `openclaw cron add --tz` doesn't correctly interpret `--at` times as local timezone | tool | Always use explicit UTC ISO timestamps with `--at`. The `--tz` flag is unreliable.\n2026-03-13 | Telegram notifications broken \u2014 `telegram-bot-token` Keychain entry missing (notifier looks for `security find-generic-password -a openclaw -s telegram-bot-token -w`) | tool | Create the Keychain entry or fix the service name to match `openclaw-telegram-bot-token` which does exist\n2026-03-13 | Reddit JSON API and old.reddit.com both block comment rendering for non-authenticated scraping | tool | Need to use browser automation or a Reddit API OAuth token to read full thread comments. SearXNG gets snippets from search but not thread bodies.\n2026-03-13 | n/naka config had wrong priceType (PREPAID\u2192DEPOSIT), wrong partyMin (1\u21922), wrong partyMax (6\u21925), missing experienceId | knowledge | Fixed. Lesson: always populate restaurant configs from live Redux data, not assumptions.\n2026-03-13 | Health check didn't verify auth state \u2014 would silently fail at checkout if not logged in | tool | Fixed: added auth state check (WARN, not blocking, to allow recon without login)\n2026-03-13 | Auto-discovery only triggered on `date_disabled`, not on `no_bookable_slots` \u2014 missed the most common drop failure mode | tool | Fixed: broadened discovery trigger to fire whenever date list is about to exhaust for any reason\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) so haircut calendar sync can't run | tool | Re-auth gog OAuth for aliudeloitte@gmail.com (refresh token) and verify `gog calendar list` works non-interactively in cron\n2026-03-13 | All 11 cron jobs were set to `openai-codex/gpt-5.2` which was erroring \u2014 updated to `default` | tool | Cron model should always be `default` so it follows the gateway setting. Don't hardcode model IDs in crons.\n",
+      "sizeBytes": 4972,
+      "lastModified": "2026-03-14T15:29:53Z"
     },
     {
       "name": "TOOLS.md",
