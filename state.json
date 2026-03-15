@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773611963,
-  "generatedAtIso": "2026-03-15T21:59:23Z",
+  "generatedAt": 1773613747,
+  "generatedAtIso": "2026-03-15T22:29:07Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -24,21 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "memory-review",
-          "humanSchedule": "Every 4320 min",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773354077,
-            "status": "error",
-            "durationMs": 9303,
-            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
-          },
-          "nextRun": {
-            "ts": 1773613277
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "weekly-self-assessment",
           "humanSchedule": "Mondays 8 PM CT",
@@ -125,6 +110,21 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "memory-review",
+          "humanSchedule": "Every 4320 min",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773613277,
+            "status": "error",
+            "durationMs": 151830,
+            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1773872477
+          },
+          "consecutiveErrors": 2
+        },
+        {
           "id": "date-digest-thursday",
           "humanSchedule": "Fridays 5 AM CT",
           "enabled": true,
@@ -188,7 +188,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -471,8 +471,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 235,
-        "byteCount": 31226
+        "lineCount": 138,
+        "byteCount": 11711
       }
     },
     "heartbeat": {
