@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773534973,
-  "generatedAtIso": "2026-03-15T00:36:13Z",
+  "generatedAt": 1773538572,
+  "generatedAtIso": "2026-03-15T01:36:12Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -29,16 +29,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nnaka-recon-prep",
-          "humanSchedule": "",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773536400
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -211,8 +201,8 @@
         }
       ],
       "stats": {
-        "total": 13,
-        "enabled": 13,
+        "total": 12,
+        "enabled": 12,
         "failedLast24h": 2
       }
     },
@@ -465,8 +455,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 122,
-        "byteCount": 7447,
+        "lineCount": 132,
+        "byteCount": 7950,
         "date": "2026-03-14"
       },
       "recentDays": [
