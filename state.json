@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773545469,
-  "generatedAtIso": "2026-03-15T03:31:09Z",
+  "generatedAt": 1773579675,
+  "generatedAtIso": "2026-03-15T13:01:15Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "3 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.haircut-nudge.stuck",
@@ -30,51 +30,6 @@
     "cron": {
       "jobs": [
         {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773475200,
-            "status": "ok",
-            "durationMs": 6855,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773561600
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773478800,
-            "status": "ok",
-            "durationMs": 146405,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773565200
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "date-digest-sunday",
-          "humanSchedule": "Mondays 5 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1772964000,
-            "status": "ok",
-            "durationMs": 482241,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773568800
-          },
-          "consecutiveErrors": 0
-        },
-        {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
           "enabled": true,
@@ -90,12 +45,12 @@
           "consecutiveErrors": 3
         },
         {
-          "id": "nnaka-recon-launch",
+          "id": "nnaka-recon-wakeup",
           "humanSchedule": "",
           "enabled": true,
           "lastRun": null,
           "nextRun": {
-            "ts": 1773590400
+            "ts": 1773593100
           },
           "consecutiveErrors": 0
         },
@@ -141,6 +96,36 @@
           },
           "nextRun": {
             "ts": 1773630000
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773561600,
+            "status": "error",
+            "durationMs": 114888,
+            "summary": "\u26a0\ufe0f \ud83d\udcdd Edit: `in ~/.openclaw/workspace/TOOLS.md (220 chars)` failed"
+          },
+          "nextRun": {
+            "ts": 1773648000
+          },
+          "consecutiveErrors": 1
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773565200,
+            "status": "ok",
+            "durationMs": 108000,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773651600
           },
           "consecutiveErrors": 0
         },
@@ -198,12 +183,27 @@
             "ts": 1774105200
           },
           "consecutiveErrors": 1
+        },
+        {
+          "id": "date-digest-sunday",
+          "humanSchedule": "Mondays 5 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773568800,
+            "status": "ok",
+            "durationMs": 262362,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774173600
+          },
+          "consecutiveErrors": 0
         }
       ],
       "stats": {
         "total": 12,
         "enabled": 12,
-        "failedLast24h": 2
+        "failedLast24h": 3
       }
     },
     "stocks": {
@@ -319,26 +319,15 @@
     "curiosity": {
       "runs": {
         "today": 1,
-        "totalRuns": 7
+        "totalRuns": 8
       },
       "backlog": {
-        "open": [
-          {
-            "title": "Adaptive refresh didn't fire periodic refreshes during the 20-min n/naka dry run",
-            "status": "open",
-            "tags": []
-          },
-          {
-            "title": "Telegram token naming mismatch",
-            "status": "open",
-            "tags": []
-          }
-        ]
+        "open": []
       },
       "stats": {
-        "openCount": 2,
-        "resolved7d": 2,
-        "resolvedAllTime": 6
+        "openCount": 0,
+        "resolved7d": 4,
+        "resolvedAllTime": 8
       }
     },
     "projects": {
@@ -455,11 +444,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 132,
-        "byteCount": 7950,
-        "date": "2026-03-14"
+        "lineCount": 21,
+        "byteCount": 2103,
+        "date": "2026-03-15"
       },
       "recentDays": [
+        {
+          "lineCount": 132,
+          "byteCount": 7950,
+          "date": "2026-03-14"
+        },
         {
           "lineCount": 55,
           "byteCount": 4748,
@@ -489,11 +483,6 @@
           "lineCount": 91,
           "byteCount": 6541,
           "date": "2026-03-08"
-        },
-        {
-          "lineCount": 20,
-          "byteCount": 1177,
-          "date": "2026-03-07"
         }
       ],
       "memoryMd": {
@@ -534,9 +523,9 @@
     },
     {
       "name": "TOOLS.md",
-      "content": "# TOOLS.md - Local Notes\n\nSkills define _how_ tools work. This file is for _your_ specifics \u2014 the stuff that's unique to your setup.\n\n## What Goes Here\n\nThings like:\n\n- Camera names and locations\n- SSH hosts and aliases\n- Preferred voices for TTS\n- Speaker/room names\n- Device nicknames\n- Anything environment-specific\n\n## Twilio (Voice Calls)\n\n- Account: JARVIS Voice (trial, $15.50 credit)\n- From number: retrieve via `security find-generic-password -a openclaw -s twilio-from-number -w`\n- Andrew's number: +19729715169\n- Credentials: stored in macOS Keychain (account: openclaw, services: twilio-*)\n- API: curl-based, no SDK needed\n- Trial limitation: plays \"trial account\" prefix on all calls\n- Studio Flow SID: stored in Keychain as twilio-studio-flow-sid\n\n## Environment Bootstrap\n\nIf symlinks or home dir config are missing after a reboot/rebuild, run:\n`bash ~/scripts/bootstrap-env.sh` (or `bash ~/.openclaw/workspace/scripts/bootstrap-env.sh` if ~/scripts is broken)\n\n## OpenAI Model Routing (API Key vs Subscription)\n\nTwo separate providers exist in OpenClaw:\n- **`openai/`** \u2014 uses API key (`sk-proj-...`), billed per-token. Models: gpt-4o, gpt-5, gpt-5-mini, gpt-5.4-2026-03-05, etc.\n- **`openai-codex/`** \u2014 uses OAuth (ChatGPT subscription), fixed monthly cost. Models: gpt-5.1, gpt-5.2, gpt-5.3-codex, gpt-5.1-codex-mini, etc.\n\nThe prefix determines billing: `openai/gpt-5` \u2192 API key. `openai-codex/gpt-5.3-codex` \u2192 subscription.\n\n- Auth profiles: `~/.openclaw/agents/main/agent/auth-profiles.json`\n- Check status: `openclaw models status` (shows OAuth expiry + usage)\n- List valid models: `openclaw models list --all | grep \"^openai-codex/\"`\n- Re-auth: `openclaw models auth login --provider openai-codex`\n- **GPT-5.4 is API-key only.** No `openai-codex/gpt-5.4` exists.\n- **Codex provider maxes at gpt-5.3-codex** (266k ctx) as of 2026-03-06.\n\n## Claude Code (coding agent)\n\n- Binary: `~/.local/bin/claude` (v2.1.63)\n- Auth: Claude Max subscription (built-in, no API key needed)\n- **MUST unset ANTHROPIC_API_KEY before running** \u2014 the env var contains an OAuth token (sk-ant-oat01-*) that doesn't work with the Messages API. Claude Code picks it up and rejects it.\n- Usage: `ANTHROPIC_API_KEY=\"\" claude -p \"prompt\"` for one-shot, or use `env:{\"ANTHROPIC_API_KEY\": \"\"}` in exec tool\n- For background tasks: `exec pty:true background:true env:{\"ANTHROPIC_API_KEY\": \"\"} command:\"claude -p 'prompt'\"`\n- Workspace: always run in a git repo (use /tmp + git init for scratch work)\n- See coding-agent skill for full patterns\n- **Session context:** Before spawning Codex, copy `docs/codex-session-context.md` into the workdir. It contains sandbox rules and lessons from prior runs.\n- **Judgment call:** See PLAYBOOKS.md \u00a7 Codex Delegation for when to use Codex vs. doing it yourself\n\n## Claude Max Usage Tracking\n\n- Script: ~/scripts/get-claude-usage.sh\n- Runs claude CLI interactively via expect, captures /usage output\n- Returns: session %, weekly all-models %, weekly sonnet %, extra usage spend + reset times\n- Cron job `daily-usage-report` sends summary at 10pm CST via Telegram\n- On-demand: When Andrew asks about \"usage\", \"rate limits\", \"how much have I used\", etc:\n  1. Run `bash ~/scripts/get-claude-usage.sh`\n  2. Run `session_status`\n  3. Combine into a clean summary\n\n## Search (SearXNG)\n\n- Local instance: http://127.0.0.1:8888\n- Script: /Users/openclaw/.openclaw/skills/searxng/search.sh \"query\" [limit] [category]\n- Categories: general (default), news, it, science\n- No API key, no rate limits, free\n- Use this instead of web_search (which requires a Brave API key we don't have)\n- Full docs: /Users/openclaw/.openclaw/skills/searxng/SKILL.md\n\n## Browser (Chrome CDP)\n\n- The \"openclaw\" Chrome profile MUST be launched with `--remote-debugging-port=18800` AND `'--remote-allow-origins=*'`\n- The `--remote-allow-origins=*` flag is REQUIRED for WebSocket connections from scripts (cdp_client.py, etc). Without it, CDP returns 403 Forbidden on handshake.\n- Quote the `*` in zsh (`'--remote-allow-origins=*'`) or glob expansion eats it.\n- Use `nohup ... &` to prevent Chrome from being reaped when the launching shell exits.\n- If browser tool times out, check: `curl -s http://127.0.0.1:18800/json/version`\n- If empty/refused: kill existing openclaw Chrome, relaunch:\n  ```\n  nohup /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome \\\n    --remote-debugging-port=18800 \\\n    '--remote-allow-origins=*' \\\n    --user-data-dir=\"$HOME/.openclaw/browser/openclaw\" \\\n    --no-first-run --no-default-browser-check \\\n    --disable-background-timer-throttling \\\n    --disable-backgrounding-occluded-windows \\\n    --disable-renderer-backgrounding &>/dev/null &\n  ```\n- Gmail is logged in as aliudeloitte@gmail.com on the openclaw profile\n- admin user also has Chrome running (PID varies) - don't kill it\n- **HTML emails:** `python3 ~/scripts/send-html-email.py --to X --subject \"Y\" --html-file /path/to/email.html`\n  - Bypasses Gmail's Trusted Types via CDP WebSocket + trustedTypes.createPolicy()\n  - Requires Chrome on port 18800 with Gmail logged in\n  - Supports `--html \"<h1>inline</h1>\"` or `--html-file path`\n\n## Gmail (gogcli)\n\n- Binary: `~/bin/gog` (v0.11.0)\n- Account: aliudeloitte@gmail.com\n- Token storage: file-based (not keychain), password in GOG_KEYRING_PASSWORD env\n- **Always export GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" before running gog commands**\n- OAuth client: GCP project \"My Project 61744\" (white-gate-488414-m4), client credentials in ~/.openclaw/secrets/gcp-client-secret.json\n- Scopes: gmail, calendar, contacts, drive, docs, sheets, slides, tasks, chat, classroom, forms, appscript\n- **Shared calendars:** Pass calendar ID as first positional arg: `gog calendar list liuandrewy@gmail.com --account aliudeloitte@gmail.com`. Without it, only queries aliudeloitte's own calendar.\n- Usage: `gog gmail search 'is:unread' --max 5 --account aliudeloitte@gmail.com`\n- Send: `gog gmail send --to someone@example.com --subject \"Subject\" --body \"Body\" --account aliudeloitte@gmail.com`\n- HTML send: `gog gmail send --to X --subject \"Y\" --html-file /path/to/file.html --account aliudeloitte@gmail.com`\n- This replaces the Chrome CDP email hack. No browser session needed.\n\n## Paper Trading Bot\n\n- Project: `~/Projects/paper-trader/`\n- 74 tests passing, Python 3.9, yfinance for market data\n- $100k simulated portfolio, 20 large-cap stocks\n- Strategies: momentum (20-day, 5% threshold) + mean reversion (8% drop trigger)\n- CLI:\n  - `python3 run.py scan` -- show signals\n  - `python3 run.py execute` -- auto-trade\n  - `python3 run.py portfolio` -- current positions\n  - `python3 run.py report --format telegram` -- performance report\n  - `python3 run.py reset` -- reset portfolio\n- Config: `~/Projects/paper-trader/config.json`\n- Data: `~/Projects/paper-trader/data/` (portfolio.json, trades.json, daily_summary/)\n- Architecture: `docs/paper-trader.md`\n\n## Drive System\n\n- Behavioral principles: SOUL.md \u00a7 Drive\n- Full operational spec: `docs/drive-system.md`\n- Gap tracking: CAPABILITY-GAPS.md (read at startup, write immediately on failure)\n- Wednesday audit: heartbeat task (reviews last 5 daily logs)\n- Sunday 8 PM report: cron `weekly-self-assessment` (sends to Telegram)\n- TOTP for Alpaca (if needed): `python3 -c \"import pyotp; print(pyotp.TOTP(open('$HOME/.openclaw/secrets/alpaca-totp-secret').read().strip()).now())\"`\n\n## Tock Reservation Sniper\n\n- **Sniper script**: `scripts/tock-sniper/sniper.py` \u2014 modes: test, dry-run, live\n- **cdp-fetch skill**: `~/.openclaw/skills/cdp-fetch/` \u2014 reusable CDP + protobuf library\n- **Keychain entries**:\n  - `tock-jwt-liuandrewy` \u2014 patronId 268964 (primary, for Toshokan)\n  - `tock-jwt-aliudeloitte` \u2014 patronId 233120906 (testing)\n  - `tock-cvv` \u2014 credit card CVV for payment\n- **Restaurant configs**:\n  - Oasthouse: businessId=36888, groupId=\"27451\", ticketTypeId=507547, free (DO NOT test here again)\n  - Toshokan: businessId=25489, groupId=\"18753\", ticketTypeId=483774, $170/person\n  - Roya: businessId=38494, groupId=\"28525\", ticketTypeId=567091, free ($15 cancel <24h), BRAINTREE\n  - Watertrade x Otoko: TBD (next paid test target)\n- **Drop**: March 1, 10:00 AM CST \u2014 April dates release for Toshokan\n- **Preferred slots**: Fri 8:30 > Fri 6:00 > Sat 8:30 > Sat 6:00 > Sun > Weekday\n- **Key APIs**: `POST /api/consumer/offerings` (poll), `PUT /api/ticket/group/lock` (lock)\n- **Auth restore**: `CDPClient.restore_jwt_from_keychain(\"tock-jwt-liuandrewy\")` + page reload\n\n## Peekaboo (macOS Desktop Automation)\n\n- Binary: `~/bin/peekaboo` (v3.0.0-beta3)\n- App: `~/Applications/Peekaboo.app` (bridge mode, auto-launch recommended)\n- Bridge socket: `~/Library/Application Support/Peekaboo/bridge.sock`\n- Permissions: Screen Recording + Accessibility (both granted via app)\n- Key commands:\n  - `peekaboo see --annotate --path /tmp/screenshot.png` (screenshot with element labels)\n  - `peekaboo list apps --json` (running applications)\n  - `peekaboo list windows --app <name> --json` (windows for an app)\n  - `peekaboo click --on <element_id> --app <name>` (click UI element)\n  - `peekaboo type --text \"hello\" --app <name>` (type text)\n  - `peekaboo permissions` (check permission status)\n- GitHub: https://github.com/steipete/Peekaboo\n\n## Vision Model (`image` tool)\n\n- **Always use the `image` tool for visual identification tasks.** Don't try to reason about image content from accessibility trees or inline screenshot interpretation \u2014 it's unreliable.\n- Works for: CAPTCHA solving, UI element identification, reading text from images, verifying visual state\n- For reCAPTCHA grids: screenshot \u2192 `image` tool with structured prompt: \"describe each grid position (row/col) and tell me which ones contain [target]\" \u2192 click identified tiles \u2192 verify\n\n## Manus AI (External Agent)\n\n- Script: `~/scripts/manus.sh` (create, status, result, upload)\n- API key: Keychain (`manus-api-key`)\n- Profiles: `manus-1.6-max` (complex), `manus-1.6` (default), `manus-1.6-lite` (quick)\n- Share links let Andrew watch tasks live\n- Skill docs: `~/.openclaw/skills/manus/SKILL.md`\n- Use for: design work, PPT, HTML polish, web research, bake-offs vs sub-agents\n- Cannot access local files \u2014 must upload everything it needs\n\n## Examples\n\n```markdown\n### Cameras\n\n- living-room \u2192 Main area, 180\u00b0 wide angle\n- front-door \u2192 Entrance, motion-triggered\n\n### SSH\n\n- home-server \u2192 192.168.1.100, user: admin\n\n### TTS\n\n- Preferred voice: \"Nova\" (warm, slightly British)\n- Default speaker: Kitchen HomePod\n```\n\n## Why Separate?\n\nSkills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.\n\n---\n\nAdd whatever helps you do your job. This is your cheat sheet.\n",
-      "sizeBytes": 10761,
-      "lastModified": "2026-03-09T23:45:59Z"
+      "content": "# TOOLS.md - Local Notes\n\nSkills define _how_ tools work. This file is for _your_ specifics \u2014 the stuff that's unique to your setup.\n\n## What Goes Here\n\nThings like:\n\n- Camera names and locations\n- SSH hosts and aliases\n- Preferred voices for TTS\n- Speaker/room names\n- Device nicknames\n- Anything environment-specific\n\n## Twilio (Voice Calls)\n\n- Account: JARVIS Voice (trial, $15.50 credit)\n- From number: retrieve via `security find-generic-password -a openclaw -s twilio-from-number -w`\n- Andrew's number: +19729715169\n- Credentials: stored in macOS Keychain (account: openclaw, services: twilio-*)\n- API: curl-based, no SDK needed\n- Trial limitation: plays \"trial account\" prefix on all calls\n- Studio Flow SID: stored in Keychain as twilio-studio-flow-sid\n\n## Environment Bootstrap\n\nIf symlinks or home dir config are missing after a reboot/rebuild, run:\n`bash ~/scripts/bootstrap-env.sh` (or `bash ~/.openclaw/workspace/scripts/bootstrap-env.sh` if ~/scripts is broken)\n\n## OpenAI Model Routing (API Key vs Subscription)\n\nTwo separate providers exist in OpenClaw:\n- **`openai/`** \u2014 uses API key (`sk-proj-...`), billed per-token. Models: gpt-4o, gpt-5, gpt-5-mini, gpt-5.4-2026-03-05, etc.\n- **`openai-codex/`** \u2014 uses OAuth (ChatGPT subscription), fixed monthly cost. Models: gpt-5.1, gpt-5.2, gpt-5.3-codex, gpt-5.1-codex-mini, etc.\n\nThe prefix determines billing: `openai/gpt-5` \u2192 API key. `openai-codex/gpt-5.3-codex` \u2192 subscription.\n\n- Auth profiles: `~/.openclaw/agents/main/agent/auth-profiles.json`\n- Check status: `openclaw models status` (shows OAuth expiry + usage)\n- List valid models: `openclaw models list --all | grep \"^openai-codex/\"`\n- Re-auth: `openclaw models auth login --provider openai-codex`\n- **GPT-5.4 is API-key only.** No `openai-codex/gpt-5.4` exists.\n- **Codex provider maxes at gpt-5.3-codex** (266k ctx) as of 2026-03-06.\n\n## Claude Code (coding agent)\n\n- Binary: `~/.local/bin/claude` (v2.1.63)\n- Auth: Claude Max subscription (built-in, no API key needed)\n- **MUST unset ANTHROPIC_API_KEY before running** \u2014 the env var contains an OAuth token (sk-ant-oat01-*) that doesn't work with the Messages API. Claude Code picks it up and rejects it.\n- Usage: `ANTHROPIC_API_KEY=\"\" claude -p \"prompt\"` for one-shot, or use `env:{\"ANTHROPIC_API_KEY\": \"\"}` in exec tool\n- For background tasks: `exec pty:true background:true env:{\"ANTHROPIC_API_KEY\": \"\"} command:\"claude -p 'prompt'\"`\n- Workspace: always run in a git repo (use /tmp + git init for scratch work)\n- See coding-agent skill for full patterns\n- **Session context:** Before spawning Codex, copy `docs/codex-session-context.md` into the workdir. It contains sandbox rules and lessons from prior runs.\n- **Judgment call:** See PLAYBOOKS.md \u00a7 Codex Delegation for when to use Codex vs. doing it yourself\n\n## Claude Max Usage Tracking\n\n- Script: ~/scripts/get-claude-usage.sh\n- Runs claude CLI interactively via expect, captures /usage output\n- Returns: session %, weekly all-models %, weekly sonnet %, extra usage spend + reset times\n- Cron job `daily-usage-report` sends summary at 10pm CST via Telegram\n- On-demand: When Andrew asks about \"usage\", \"rate limits\", \"how much have I used\", etc:\n  1. Run `bash ~/scripts/get-claude-usage.sh`\n  2. Run `session_status`\n  3. Combine into a clean summary\n\n## Search (SearXNG)\n\n- Local instance: http://127.0.0.1:8888\n- Script: /Users/openclaw/.openclaw/skills/searxng/search.sh \"query\" [limit] [category]\n- Categories: general (default), news, it, science\n- No API key, no rate limits, free\n- Use this instead of web_search (which requires a Brave API key we don't have)\n- Full docs: /Users/openclaw/.openclaw/skills/searxng/SKILL.md\n\n## Browser (Chrome CDP)\n\n- The \"openclaw\" Chrome profile MUST be launched with `--remote-debugging-port=18800` AND `'--remote-allow-origins=*'`\n- The `--remote-allow-origins=*` flag is REQUIRED for WebSocket connections from scripts (cdp_client.py, etc). Without it, CDP returns 403 Forbidden on handshake.\n- Quote the `*` in zsh (`'--remote-allow-origins=*'`) or glob expansion eats it.\n- Use `nohup ... &` to prevent Chrome from being reaped when the launching shell exits.\n- If browser tool times out, check: `curl -s http://127.0.0.1:18800/json/version`\n- If empty/refused: kill existing openclaw Chrome, relaunch:\n  ```\n  nohup /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome \\\n    --remote-debugging-port=18800 \\\n    '--remote-allow-origins=*' \\\n    --user-data-dir=\"$HOME/.openclaw/browser/openclaw\" \\\n    --no-first-run --no-default-browser-check \\\n    --disable-background-timer-throttling \\\n    --disable-backgrounding-occluded-windows \\\n    --disable-renderer-backgrounding &>/dev/null &\n  ```\n- Gmail is logged in as aliudeloitte@gmail.com on the openclaw profile\n- admin user also has Chrome running (PID varies) - don't kill it\n- **HTML emails:** `python3 ~/scripts/send-html-email.py --to X --subject \"Y\" --html-file /path/to/email.html`\n  - Bypasses Gmail's Trusted Types via CDP WebSocket + trustedTypes.createPolicy()\n  - Requires Chrome on port 18800 with Gmail logged in\n  - Supports `--html \"<h1>inline</h1>\"` or `--html-file path`\n\n## Gmail (gogcli)\n\n- Binary: `~/bin/gog` (v0.11.0)\n- Account: aliudeloitte@gmail.com\n- Token storage: file-based (not keychain), password in GOG_KEYRING_PASSWORD env\n- **Always export GOG_KEYRING_PASSWORD=\"jarvis-agent-2026\" before running gog commands**\n- OAuth client: GCP project \"My Project 61744\" (white-gate-488414-m4), client credentials in ~/.openclaw/secrets/gcp-client-secret.json\n- Scopes: gmail, calendar, contacts, drive, docs, sheets, slides, tasks, chat, classroom, forms, appscript\n- **Shared calendars:** Pass calendar ID as first positional arg: `gog calendar list liuandrewy@gmail.com --account aliudeloitte@gmail.com`. Without it, only queries aliudeloitte's own calendar.\n- Usage: `gog gmail search 'is:unread' --max 5 --account aliudeloitte@gmail.com`\n- Send: `gog gmail send --to someone@example.com --subject \"Subject\" --body \"Body\" --account aliudeloitte@gmail.com`\n- HTML send: `gog gmail send --to X --subject \"Y\" --html-file /path/to/file.html --account aliudeloitte@gmail.com`\n- This replaces the Chrome CDP email hack. No browser session needed.\n\n## Paper Trading Bot\n\n- Project: `~/Projects/paper-trader/`\n- 74 tests passing, Python 3.9, yfinance for market data\n- $100k simulated portfolio, 20 large-cap stocks\n- Strategies: momentum (20-day, 5% threshold) + mean reversion (8% drop trigger)\n- CLI:\n  - `python3 run.py scan` -- show signals\n  - `python3 run.py execute` -- auto-trade\n  - `python3 run.py portfolio` -- current positions\n  - `python3 run.py report --format telegram` -- performance report\n  - `python3 run.py reset` -- reset portfolio\n- Config: `~/Projects/paper-trader/config.json`\n- Data: `~/Projects/paper-trader/data/` (portfolio.json, trades.json, daily_summary/)\n- Architecture: `docs/paper-trader.md`\n\n## Drive System\n\n- Behavioral principles: SOUL.md \u00a7 Drive\n- Full operational spec: `docs/drive-system.md`\n- Gap tracking: CAPABILITY-GAPS.md (read at startup, write immediately on failure)\n- Wednesday audit: heartbeat task (reviews last 5 daily logs)\n- Sunday 8 PM report: cron `weekly-self-assessment` (sends to Telegram)\n- TOTP for Alpaca (if needed): `python3 -c \"import pyotp; print(pyotp.TOTP(open('$HOME/.openclaw/secrets/alpaca-totp-secret').read().strip()).now())\"`\n\n## Tock Reservation Sniper\n\n- **Sniper script**: `scripts/tock-sniper/sniper.py` \u2014 modes: test, dry-run, live\n- **cdp-fetch skill**: `~/.openclaw/skills/cdp-fetch/` \u2014 reusable CDP + protobuf library\n- **Keychain entries**:\n  - `tock-jwt-liuandrewy` \u2014 patronId 268964 (primary, for Toshokan)\n  - `tock-jwt-aliudeloitte` \u2014 patronId 233120906 (testing)\n  - `tock-cvv` \u2014 credit card CVV for payment\n- **Restaurant configs**:\n  - Oasthouse: businessId=36888, groupId=\"27451\", ticketTypeId=507547, free (DO NOT test here again)\n  - Toshokan: businessId=25489, groupId=\"18753\", ticketTypeId=483774, $170/person\n  - Roya: businessId=38494, groupId=\"28525\", ticketTypeId=567091, free ($15 cancel <24h), BRAINTREE\n  - Watertrade x Otoko: TBD (next paid test target)\n- **Drop**: March 1, 10:00 AM CST \u2014 April dates release for Toshokan\n- **Preferred slots**: Fri 8:30 > Fri 6:00 > Sat 8:30 > Sat 6:00 > Sun > Weekday\n- **Telegram notifier bug**: `notifier.py` line 27 uses Keychain service `telegram-bot-token`, but the actual entry is `openclaw-telegram-bot-token`. Fix: update notifier.py or add duplicate Keychain entry.\n- **Key APIs**: `POST /api/consumer/offerings` (poll), `PUT /api/ticket/group/lock` (lock)\n- **Auth restore**: `CDPClient.restore_jwt_from_keychain(\"tock-jwt-liuandrewy\")` + page reload\n\n## Peekaboo (macOS Desktop Automation)\n\n- Binary: `~/bin/peekaboo` (v3.0.0-beta3)\n- App: `~/Applications/Peekaboo.app` (bridge mode, auto-launch recommended)\n- Bridge socket: `~/Library/Application Support/Peekaboo/bridge.sock`\n- Permissions: Screen Recording + Accessibility (both granted via app)\n- Key commands:\n  - `peekaboo see --annotate --path /tmp/screenshot.png` (screenshot with element labels)\n  - `peekaboo list apps --json` (running applications)\n  - `peekaboo list windows --app <name> --json` (windows for an app)\n  - `peekaboo click --on <element_id> --app <name>` (click UI element)\n  - `peekaboo type --text \"hello\" --app <name>` (type text)\n  - `peekaboo permissions` (check permission status)\n- GitHub: https://github.com/steipete/Peekaboo\n\n## Vision Model (`image` tool)\n\n- **Always use the `image` tool for visual identification tasks.** Don't try to reason about image content from accessibility trees or inline screenshot interpretation \u2014 it's unreliable.\n- Works for: CAPTCHA solving, UI element identification, reading text from images, verifying visual state\n- For reCAPTCHA grids: screenshot \u2192 `image` tool with structured prompt: \"describe each grid position (row/col) and tell me which ones contain [target]\" \u2192 click identified tiles \u2192 verify\n\n## Manus AI (External Agent)\n\n- Script: `~/scripts/manus.sh` (create, status, result, upload)\n- API key: Keychain (`manus-api-key`)\n- Profiles: `manus-1.6-max` (complex), `manus-1.6` (default), `manus-1.6-lite` (quick)\n- Share links let Andrew watch tasks live\n- Skill docs: `~/.openclaw/skills/manus/SKILL.md`\n- Use for: design work, PPT, HTML polish, web research, bake-offs vs sub-agents\n- Cannot access local files \u2014 must upload everything it needs\n\n## Examples\n\n```markdown\n### Cameras\n\n- living-room \u2192 Main area, 180\u00b0 wide angle\n- front-door \u2192 Entrance, motion-triggered\n\n### SSH\n\n- home-server \u2192 192.168.1.100, user: admin\n\n### TTS\n\n- Preferred voice: \"Nova\" (warm, slightly British)\n- Default speaker: Kitchen HomePod\n```\n\n## Why Separate?\n\nSkills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.\n\n---\n\nAdd whatever helps you do your job. This is your cheat sheet.\n",
+      "sizeBytes": 10968,
+      "lastModified": "2026-03-15T08:01:44Z"
     },
     {
       "name": "PLAYBOOKS.md",
