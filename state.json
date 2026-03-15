@@ -1,23 +1,18 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773585065,
-  "generatedAtIso": "2026-03-15T14:31:05Z",
+  "generatedAt": 1773600966,
+  "generatedAtIso": "2026-03-15T18:56:06Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
   },
   "health": {
-    "overall": "error",
+    "overall": "warn",
     "signals": [
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
-      },
-      {
-        "key": "cron.haircut-nudge.stuck",
-        "level": "error",
-        "message": "'haircut-nudge' has 3 consecutive errors"
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "drive.audit",
@@ -29,31 +24,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773500503,
-            "status": "error",
-            "durationMs": 9110,
-            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
-          },
-          "nextRun": {
-            "ts": 1773586800
-          },
-          "consecutiveErrors": 3
-        },
-        {
-          "id": "nnaka-recon-wakeup",
-          "humanSchedule": "",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1773593100
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "memory-review",
           "humanSchedule": "Every 4320 min",
@@ -140,6 +110,21 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773586800,
+            "status": "ok",
+            "durationMs": 7894,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773673200
+          },
+          "consecutiveErrors": 0
+        },
+        {
           "id": "date-digest-thursday",
           "humanSchedule": "Fridays 5 AM CT",
           "enabled": true,
@@ -201,9 +186,9 @@
         }
       ],
       "stats": {
-        "total": 12,
-        "enabled": 12,
-        "failedLast24h": 3
+        "total": 11,
+        "enabled": 11,
+        "failedLast24h": 1
       }
     },
     "stocks": {
@@ -444,14 +429,14 @@
     },
     "memory": {
       "today": {
-        "lineCount": 21,
-        "byteCount": 2103,
+        "lineCount": 127,
+        "byteCount": 8636,
         "date": "2026-03-15"
       },
       "recentDays": [
         {
-          "lineCount": 132,
-          "byteCount": 7950,
+          "lineCount": 158,
+          "byteCount": 9491,
           "date": "2026-03-14"
         },
         {
@@ -486,8 +471,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 230,
-        "byteCount": 29974
+        "lineCount": 235,
+        "byteCount": 31226
       }
     },
     "heartbeat": {
