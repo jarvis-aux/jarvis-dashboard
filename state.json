@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773619146,
-  "generatedAtIso": "2026-03-15T23:59:06Z",
+  "generatedAt": 1773620946,
+  "generatedAtIso": "2026-03-16T00:29:06Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -311,7 +311,7 @@
       },
       "stats": {
         "openCount": 0,
-        "resolved7d": 4,
+        "resolved7d": 3,
         "resolvedAllTime": 8
       }
     },
