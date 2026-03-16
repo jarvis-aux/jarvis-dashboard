@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773646514,
-  "generatedAtIso": "2026-03-16T07:35:14Z",
+  "generatedAt": 1773648315,
+  "generatedAtIso": "2026-03-16T08:05:15Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
@@ -29,21 +29,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773561600,
-            "status": "error",
-            "durationMs": 114888,
-            "summary": "\u26a0\ufe0f \ud83d\udcdd Edit: `in ~/.openclaw/workspace/TOOLS.md (220 chars)` failed"
-          },
-          "nextRun": {
-            "ts": 1773648000
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "comms-classifier",
           "humanSchedule": "Daily 4 AM CT",
@@ -96,6 +81,21 @@
           },
           "nextRun": {
             "ts": 1773716400
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773648000,
+            "status": "ok",
+            "durationMs": 27252,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773734400
           },
           "consecutiveErrors": 0
         },
@@ -193,7 +193,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 3
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -309,7 +309,7 @@
     "curiosity": {
       "runs": {
         "today": 1,
-        "totalRuns": 8
+        "totalRuns": 9
       },
       "backlog": {
         "open": []
