@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773804653,
-  "generatedAtIso": "2026-03-18T03:30:53Z",
+  "generatedAt": 1773805639,
+  "generatedAtIso": "2026-03-18T03:47:19Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -67,7 +67,7 @@
             "ts": 1773759600,
             "status": "error",
             "durationMs": 49239,
-            "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+            "summary": null
           },
           "nextRun": {
             "ts": 1773846000
