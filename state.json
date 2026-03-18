@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773805639,
-  "generatedAtIso": "2026-03-18T03:47:19Z",
+  "generatedAt": 1773807441,
+  "generatedAtIso": "2026-03-18T04:17:21Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -64,15 +64,15 @@
           "humanSchedule": "Daily 10 AM CT",
           "enabled": true,
           "lastRun": {
-            "ts": 1773759600,
+            "ts": 1773805405,
             "status": "error",
-            "durationMs": 49239,
-            "summary": null
+            "durationMs": 1199983,
+            "summary": "Error: cron: job execution timed out"
           },
           "nextRun": {
             "ts": 1773846000
           },
-          "consecutiveErrors": 1
+          "consecutiveErrors": 2
         },
         {
           "id": "memory-review",
