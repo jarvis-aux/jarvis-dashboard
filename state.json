@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773845234,
-  "generatedAtIso": "2026-03-18T14:47:14Z",
+  "generatedAt": 1773847037,
+  "generatedAtIso": "2026-03-18T15:17:17Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -13,6 +13,11 @@
         "key": "cron.failures",
         "level": "warn",
         "message": "2 cron job(s) failed in last 24h"
+      },
+      {
+        "key": "cron.haircut-nudge.stuck",
+        "level": "error",
+        "message": "'haircut-nudge' has 3 consecutive errors"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
@@ -29,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773805405,
-            "status": "error",
-            "durationMs": 1199983,
-            "summary": "Error: cron: job execution timed out"
-          },
-          "nextRun": {
-            "ts": 1773846000
-          },
-          "consecutiveErrors": 2
-        },
         {
           "id": "memory-review",
           "humanSchedule": "Every 4320 min",
@@ -118,6 +108,21 @@
             "ts": 1773914400
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773846000,
+            "status": "error",
+            "durationMs": 16380,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1773932400
+          },
+          "consecutiveErrors": 3
         },
         {
           "id": "project-review",
@@ -449,8 +454,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 0,
-        "byteCount": 0,
+        "lineCount": 4,
+        "byteCount": 138,
         "date": "2026-03-18"
       },
       "recentDays": [
