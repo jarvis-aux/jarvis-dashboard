@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773906640,
-  "generatedAtIso": "2026-03-19T07:50:40Z",
+  "generatedAt": 1773908439,
+  "generatedAtIso": "2026-03-19T08:20:39Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773820800,
-            "status": "ok",
-            "durationMs": 18204,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773907200
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "comms-classifier",
           "humanSchedule": "Daily 4 AM CT",
@@ -128,6 +113,21 @@
             "ts": 1773990000
           },
           "consecutiveErrors": 1
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773907200,
+            "status": "ok",
+            "durationMs": 282284,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773993600
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "problem-review-saturday",
@@ -324,21 +324,15 @@
     "curiosity": {
       "runs": {
         "today": 1,
-        "totalRuns": 11
+        "totalRuns": 12
       },
       "backlog": {
-        "open": [
-          {
-            "title": "`openclaw cron runs` has significant lag",
-            "status": "open",
-            "tags": []
-          }
-        ]
+        "open": []
       },
       "stats": {
-        "openCount": 1,
-        "resolved7d": 2,
-        "resolvedAllTime": 8
+        "openCount": 0,
+        "resolved7d": 3,
+        "resolvedAllTime": 9
       }
     },
     "projects": {
@@ -465,8 +459,8 @@
       },
       "recentDays": [
         {
-          "lineCount": 4,
-          "byteCount": 198,
+          "lineCount": 26,
+          "byteCount": 1578,
           "date": "2026-03-18"
         },
         {
