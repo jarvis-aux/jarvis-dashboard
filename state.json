@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773931850,
-  "generatedAtIso": "2026-03-19T14:50:50Z",
+  "generatedAt": 1773933645,
+  "generatedAtIso": "2026-03-19T15:20:45Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -17,7 +17,7 @@
       {
         "key": "cron.haircut-nudge.stuck",
         "level": "error",
-        "message": "'haircut-nudge' has 3 consecutive errors"
+        "message": "'haircut-nudge' has 4 consecutive errors"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773846000,
-            "status": "error",
-            "durationMs": 16380,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1773932400
-          },
-          "consecutiveErrors": 3
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -113,6 +98,21 @@
             "ts": 1773997200
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773932400,
+            "status": "error",
+            "durationMs": 13197,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1774018800
+          },
+          "consecutiveErrors": 4
         },
         {
           "id": "problem-review-saturday",
