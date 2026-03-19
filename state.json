@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773910242,
-  "generatedAtIso": "2026-03-19T08:50:42Z",
+  "generatedAt": 1773912046,
+  "generatedAtIso": "2026-03-19T09:20:46Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.haircut-nudge.stuck",
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773824400,
-            "status": "error",
-            "durationMs": 30521,
-            "summary": "The AI service is temporarily overloaded. Please try again in a moment."
-          },
-          "nextRun": {
-            "ts": 1773910800
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "date-digest-thursday",
           "humanSchedule": "Fridays 5 AM CT",
@@ -126,6 +111,21 @@
           },
           "nextRun": {
             "ts": 1773993600
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773910800,
+            "status": "ok",
+            "durationMs": 117999,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1773997200
           },
           "consecutiveErrors": 0
         },
@@ -208,7 +208,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 3
+        "failedLast24h": 2
       }
     },
     "stocks": {
