@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773997269,
-  "generatedAtIso": "2026-03-20T09:01:09Z",
+  "generatedAt": 1773999047,
+  "generatedAtIso": "2026-03-20T09:30:47Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773910800,
-            "status": "ok",
-            "durationMs": 117999,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773997200
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -96,6 +81,21 @@
           },
           "nextRun": {
             "ts": 1774080000
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773997200,
+            "status": "ok",
+            "durationMs": 71936,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774083600
           },
           "consecutiveErrors": 0
         },
