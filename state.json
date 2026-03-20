@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1773975043,
-  "generatedAtIso": "2026-03-20T02:50:43Z",
+  "generatedAt": 1773977448,
+  "generatedAtIso": "2026-03-20T03:30:48Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "daily-usage-report",
-          "humanSchedule": "Daily 10 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773889200,
-            "status": "ok",
-            "durationMs": 13489,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1773975600
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "project-review",
           "humanSchedule": "Saturdays 2 AM CT",
@@ -113,6 +98,21 @@
             "ts": 1774018800
           },
           "consecutiveErrors": 4
+        },
+        {
+          "id": "daily-usage-report",
+          "humanSchedule": "Daily 10 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1773975600,
+            "status": "ok",
+            "durationMs": 80842,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774062000
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "problem-review-saturday",
