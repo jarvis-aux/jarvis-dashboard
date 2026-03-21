@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774103442,
-  "generatedAtIso": "2026-03-21T14:30:42Z",
+  "generatedAt": 1774105233,
+  "generatedAtIso": "2026-03-21T15:00:33Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -37,7 +37,7 @@
             "ts": 1773500400,
             "status": "error",
             "durationMs": 103934,
-            "summary": "Delivering to Telegram requires target <chatId>"
+            "summary": null
           },
           "nextRun": {
             "ts": 1774105200
