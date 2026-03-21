@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774130936,
-  "generatedAtIso": "2026-03-21T22:08:56Z",
+  "generatedAt": 1774132735,
+  "generatedAtIso": "2026-03-21T22:38:55Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,17 +12,17 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      },
-      {
-        "key": "cron.memory-review.stuck",
-        "level": "error",
-        "message": "'memory-review' has 3 consecutive errors"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
         "level": "error",
         "message": "'weekly-self-assessment' has 3 consecutive errors"
+      },
+      {
+        "key": "cron.memory-review.stuck",
+        "level": "error",
+        "message": "'memory-review' has 4 consecutive errors"
       },
       {
         "key": "drive.audit",
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "memory-review",
-          "humanSchedule": "Every 4320 min",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773872477,
-            "status": "error",
-            "durationMs": 104689,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1774131677
-          },
-          "consecutiveErrors": 3
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -155,6 +140,21 @@
           "consecutiveErrors": 1
         },
         {
+          "id": "memory-review",
+          "humanSchedule": "Every 4320 min",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774131677,
+            "status": "error",
+            "durationMs": 88020,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1774390877
+          },
+          "consecutiveErrors": 4
+        },
+        {
           "id": "date-digest-thursday",
           "humanSchedule": "Fridays 5 AM CT",
           "enabled": true,
@@ -203,7 +203,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -475,8 +475,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 148,
-        "byteCount": 13268
+        "lineCount": 151,
+        "byteCount": 13943
       }
     },
     "heartbeat": {
