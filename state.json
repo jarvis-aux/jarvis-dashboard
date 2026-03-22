@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774197377,
-  "generatedAtIso": "2026-03-22T16:36:17Z",
+  "generatedAt": 1774199171,
+  "generatedAtIso": "2026-03-22T17:06:11Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -34,16 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "taneda-screenshot-1201",
-          "humanSchedule": "",
-          "enabled": true,
-          "lastRun": null,
-          "nextRun": {
-            "ts": 1774198860
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "weekly-self-assessment",
           "humanSchedule": "Mondays 8 PM CT",
@@ -211,8 +201,8 @@
         }
       ],
       "stats": {
-        "total": 12,
-        "enabled": 12,
+        "total": 11,
+        "enabled": 11,
         "failedLast24h": 2
       }
     },
