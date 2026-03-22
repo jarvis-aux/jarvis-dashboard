@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774147134,
-  "generatedAtIso": "2026-03-22T02:38:54Z",
+  "generatedAt": 1774150250,
+  "generatedAtIso": "2026-03-22T03:30:50Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "daily-usage-report",
-          "humanSchedule": "Daily 10 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774062000,
-            "status": "ok",
-            "durationMs": 29816,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774148400
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "nightly-curiosity",
           "humanSchedule": "Daily 3 AM CT",
@@ -123,6 +108,21 @@
             "ts": 1774227600
           },
           "consecutiveErrors": 3
+        },
+        {
+          "id": "daily-usage-report",
+          "humanSchedule": "Daily 10 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774148400,
+            "status": "ok",
+            "durationMs": 70160,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774234800
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "nicotine-accountability",
