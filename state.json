@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774170059,
-  "generatedAtIso": "2026-03-22T09:00:59Z",
+  "generatedAt": 1774171846,
+  "generatedAtIso": "2026-03-22T09:30:46Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774083600,
-            "status": "ok",
-            "durationMs": 138416,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774170000
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "date-digest-sunday",
           "humanSchedule": "Mondays 5 AM CT",
@@ -121,6 +106,21 @@
           },
           "nextRun": {
             "ts": 1774252800
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774170000,
+            "status": "ok",
+            "durationMs": 76983,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774256400
           },
           "consecutiveErrors": 0
         },
