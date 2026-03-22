@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774213570,
-  "generatedAtIso": "2026-03-22T21:06:10Z",
+  "generatedAt": 1774215376,
+  "generatedAtIso": "2026-03-22T21:36:16Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -448,8 +448,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 12,
-        "byteCount": 465,
+        "lineCount": 4,
+        "byteCount": 150,
         "date": "2026-03-22"
       },
       "recentDays": [
