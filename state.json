@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774189848,
-  "generatedAtIso": "2026-03-22T14:30:48Z",
+  "generatedAt": 1774191647,
+  "generatedAtIso": "2026-03-22T15:00:47Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -35,17 +35,12 @@
     "cron": {
       "jobs": [
         {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
+          "id": "taneda-screenshot-1201",
+          "humanSchedule": "",
           "enabled": true,
-          "lastRun": {
-            "ts": 1774105290,
-            "status": "ok",
-            "durationMs": 8051,
-            "summary": null
-          },
+          "lastRun": null,
           "nextRun": {
-            "ts": 1774191600
+            "ts": 1774198860
           },
           "consecutiveErrors": 0
         },
@@ -118,6 +113,21 @@
             "status": "error",
             "durationMs": 255940,
             "summary": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel."
+          },
+          "nextRun": {
+            "ts": 1774278000
+          },
+          "consecutiveErrors": 1
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774191600,
+            "status": "error",
+            "durationMs": 6252,
+            "summary": "Delivering to Telegram requires target <chatId>"
           },
           "nextRun": {
             "ts": 1774278000
@@ -201,8 +211,8 @@
         }
       ],
       "stats": {
-        "total": 11,
-        "enabled": 11,
+        "total": 12,
+        "enabled": 12,
         "failedLast24h": 2
       }
     },
