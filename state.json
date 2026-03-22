@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774217174,
-  "generatedAtIso": "2026-03-22T22:06:14Z",
+  "generatedAt": 1774218970,
+  "generatedAtIso": "2026-03-22T22:36:10Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
@@ -203,7 +203,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 2
+        "failedLast24h": 1
       }
     },
     "stocks": {
