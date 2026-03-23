@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774254703,
-  "generatedAtIso": "2026-03-23T08:31:43Z",
+  "generatedAt": 1774256519,
+  "generatedAtIso": "2026-03-23T09:01:59Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774170000,
-            "status": "ok",
-            "durationMs": 76983,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774256400
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "nicotine-accountability",
           "humanSchedule": "Tuesdays 10 AM CT",
@@ -106,6 +91,21 @@
           },
           "nextRun": {
             "ts": 1774339200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774256400,
+            "status": "ok",
+            "durationMs": 114520,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774342800
           },
           "consecutiveErrors": 0
         },
@@ -449,7 +449,7 @@
     "memory": {
       "today": {
         "lineCount": 4,
-        "byteCount": 196,
+        "byteCount": 214,
         "date": "2026-03-23"
       },
       "recentDays": [
