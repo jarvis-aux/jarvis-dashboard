@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774278103,
-  "generatedAtIso": "2026-03-23T15:01:43Z",
+  "generatedAt": 1774278637,
+  "generatedAtIso": "2026-03-23T15:10:37Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -34,36 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nicotine-accountability",
-          "humanSchedule": "Tuesdays 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773673200,
-            "status": "error",
-            "durationMs": 255940,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774278000
-          },
-          "consecutiveErrors": 1
-        },
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774191600,
-            "status": "error",
-            "durationMs": 6252,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774278000
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -106,6 +76,21 @@
           },
           "nextRun": {
             "ts": 1774342800
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774278606,
+            "status": "ok",
+            "durationMs": 10653,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774364400
           },
           "consecutiveErrors": 0
         },
@@ -198,12 +183,27 @@
             "ts": 1774832400
           },
           "consecutiveErrors": 4
+        },
+        {
+          "id": "nicotine-accountability",
+          "humanSchedule": "Tuesdays 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774278002,
+            "status": "error",
+            "durationMs": 604000,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1774882800
+          },
+          "consecutiveErrors": 2
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -486,7 +486,7 @@
         "Inbox Check": 1773045064,
         "Memory Review": 1772863560,
         "Drive Audit": 1772604060,
-        "Nicotine Check": 1773673200,
+        "Nicotine Check": 1774278000,
         "Weekly Report": 1774227600
       }
     }
