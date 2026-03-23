@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774226170,
-  "generatedAtIso": "2026-03-23T00:36:10Z",
+  "generatedAt": 1774227971,
+  "generatedAtIso": "2026-03-23T01:06:11Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,17 +12,17 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      },
-      {
-        "key": "cron.weekly-self-assessment.stuck",
-        "level": "error",
-        "message": "'weekly-self-assessment' has 3 consecutive errors"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
         "level": "error",
         "message": "'memory-review' has 4 consecutive errors"
+      },
+      {
+        "key": "cron.weekly-self-assessment.stuck",
+        "level": "error",
+        "message": "'weekly-self-assessment' has 4 consecutive errors"
       },
       {
         "key": "drive.audit",
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "weekly-self-assessment",
-          "humanSchedule": "Mondays 8 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1773622800,
-            "status": "error",
-            "durationMs": 112306,
-            "summary": "\u26a0\ufe0f \u2709\ufe0f Message failed"
-          },
-          "nextRun": {
-            "ts": 1774227600
-          },
-          "consecutiveErrors": 3
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -198,12 +183,27 @@
             "ts": 1774778400
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "weekly-self-assessment",
+          "humanSchedule": "Mondays 8 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774227600,
+            "status": "error",
+            "durationMs": 206618,
+            "summary": "\u26a0\ufe0f \u2709\ufe0f Message failed"
+          },
+          "nextRun": {
+            "ts": 1774832400
+          },
+          "consecutiveErrors": 4
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -436,11 +436,11 @@
     "drive": {
       "last": {
         "auditTs": 1772604060,
-        "reportTs": 1773626400
+        "reportTs": 1774227600
       },
       "next": {
         "auditTs": 1773205200,
-        "reportTs": 1774227600
+        "reportTs": 1774832400
       },
       "status": "warn",
       "auditOverdue": true,
@@ -448,8 +448,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 4,
-        "byteCount": 193,
+        "lineCount": 15,
+        "byteCount": 763,
         "date": "2026-03-22"
       },
       "recentDays": [
@@ -487,7 +487,7 @@
         "Memory Review": 1772863560,
         "Drive Audit": 1772604060,
         "Nicotine Check": 1773673200,
-        "Weekly Report": 1773626400
+        "Weekly Report": 1774227600
       }
     }
   },
@@ -506,9 +506,9 @@
     },
     {
       "name": "CAPABILITY-GAPS.md",
-      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-11 | `gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo | tool | Re-generate PAT with `repo` scope or use `gh auth refresh --scopes repo`\n2026-03-13 | Telegram notifications broken \u2014 notifier looks for `telegram-bot-token` but only `openclaw-telegram-bot-token` exists in Keychain | tool | Check if they're the same token; if so, add alias entry or fix the service name in notifier.py\n2026-03-10 | `~/scripts/get-claude-usage.sh` times out \u2014 expect script broken with newer claude CLI version | tool | Debug the expect script or find alternative approach\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) | tool | Re-auth gog OAuth for aliudeloitte@gmail.com\n2026-02-25 | Keychain migration incomplete \u2014 live keys still in auth-profiles.json | edge_case | Complete migration; wrapper depends on env refs\n2026-03-17 | Isolated crons with `channel: last` silently fail when multiple channels configured (telegram + discord) \u2014 error only visible in run history, no alert | edge_case | Audit all crons for explicit --channel; add failure-alert to critical crons so errors surface proactively\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n<!-- Cleared 2026-03-15 after weekly report #3. -->\n",
+      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-11 | `gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo | tool | Re-generate PAT with `repo` scope or use `gh auth refresh --scopes repo`\n2026-03-13 | Telegram notifications broken \u2014 notifier looks for `telegram-bot-token` but only `openclaw-telegram-bot-token` exists in Keychain | tool | Check if they're the same token; if so, add alias entry or fix the service name in notifier.py\n2026-03-10 | `~/scripts/get-claude-usage.sh` times out \u2014 expect script broken with newer claude CLI version | tool | Debug the expect script or find alternative approach\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) | tool | Re-auth gog OAuth for aliudeloitte@gmail.com\n2026-02-25 | Keychain migration incomplete \u2014 live keys still in auth-profiles.json | edge_case | Complete migration; wrapper depends on env refs\n2026-03-17 | Isolated crons with `channel: last` silently fail when multiple channels configured (telegram + discord) \u2014 error only visible in run history, no alert | edge_case | Audit all crons for explicit --channel; add failure-alert to critical crons so errors surface proactively\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n<!-- Cleared 2026-03-22 after weekly report #4. -->\n",
       "sizeBytes": 1955,
-      "lastModified": "2026-03-18T13:40:48Z"
+      "lastModified": "2026-03-23T01:02:18Z"
     },
     {
       "name": "TOOLS.md",
