@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774449057,
-  "generatedAtIso": "2026-03-25T14:30:57Z",
+  "generatedAt": 1774452626,
+  "generatedAtIso": "2026-03-25T15:30:26Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "2 cron job(s) failed in last 24h"
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -34,21 +34,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774364400,
-            "status": "error",
-            "durationMs": 11507,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1774450800
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -106,6 +91,21 @@
           },
           "nextRun": {
             "ts": 1774519200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774450800,
+            "status": "ok",
+            "durationMs": 13477,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774537200
           },
           "consecutiveErrors": 0
         },
@@ -203,7 +203,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 2
+        "failedLast24h": 1
       }
     },
     "stocks": {
