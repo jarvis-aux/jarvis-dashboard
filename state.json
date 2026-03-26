@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774510298,
-  "generatedAtIso": "2026-03-26T07:31:38Z",
+  "generatedAt": 1774512100,
+  "generatedAtIso": "2026-03-26T08:01:40Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -29,21 +29,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "nightly-curiosity",
-          "humanSchedule": "Daily 3 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774425600,
-            "status": "ok",
-            "durationMs": 42516,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774512000
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "comms-classifier",
           "humanSchedule": "Daily 4 AM CT",
@@ -118,6 +103,21 @@
             "ts": 1774594800
           },
           "consecutiveErrors": 2
+        },
+        {
+          "id": "nightly-curiosity",
+          "humanSchedule": "Daily 3 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774512000,
+            "status": "ok",
+            "durationMs": 20337,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774598400
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "memory-review",
@@ -314,7 +314,7 @@
     "curiosity": {
       "runs": {
         "today": 1,
-        "totalRuns": 17
+        "totalRuns": 18
       },
       "backlog": {
         "open": []
