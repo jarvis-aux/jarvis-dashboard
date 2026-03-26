@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774499498,
-  "generatedAtIso": "2026-03-26T04:31:38Z",
+  "generatedAt": 1774501297,
+  "generatedAtIso": "2026-03-26T05:01:37Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -447,11 +447,16 @@
     },
     "memory": {
       "today": {
-        "lineCount": 13,
-        "byteCount": 611,
-        "date": "2026-03-25"
+        "lineCount": 0,
+        "byteCount": 0,
+        "date": "2026-03-26"
       },
       "recentDays": [
+        {
+          "lineCount": 13,
+          "byteCount": 611,
+          "date": "2026-03-25"
+        },
         {
           "lineCount": 75,
           "byteCount": 6061,
@@ -471,11 +476,6 @@
           "lineCount": 98,
           "byteCount": 6809,
           "date": "2026-03-21"
-        },
-        {
-          "lineCount": 26,
-          "byteCount": 1578,
-          "date": "2026-03-18"
         }
       ],
       "memoryMd": {
