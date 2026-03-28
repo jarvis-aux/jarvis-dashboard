@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774709404,
-  "generatedAtIso": "2026-03-28T14:50:04Z",
+  "generatedAt": 1774711884,
+  "generatedAtIso": "2026-03-28T15:31:24Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -30,6 +30,11 @@
         "message": "'project-review' has 3 consecutive errors"
       },
       {
+        "key": "cron.problem-review-saturday.stuck",
+        "level": "error",
+        "message": "'problem-review-saturday' has 3 consecutive errors"
+      },
+      {
         "key": "drive.audit",
         "level": "warn",
         "message": "Drive audit overdue"
@@ -39,36 +44,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774623600,
-            "status": "error",
-            "durationMs": 23900,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1774710000
-          },
-          "consecutiveErrors": 1
-        },
-        {
-          "id": "problem-review-saturday",
-          "humanSchedule": "Sundays 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774105200,
-            "status": "error",
-            "durationMs": 90499,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1774710000
-          },
-          "consecutiveErrors": 2
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -126,6 +101,21 @@
           },
           "nextRun": {
             "ts": 1774778400
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774710066,
+            "status": "ok",
+            "durationMs": 7053,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774796400
           },
           "consecutiveErrors": 0
         },
@@ -201,6 +191,21 @@
           },
           "nextRun": {
             "ts": 1775199600
+          },
+          "consecutiveErrors": 3
+        },
+        {
+          "id": "problem-review-saturday",
+          "humanSchedule": "Sundays 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774710000,
+            "status": "error",
+            "durationMs": 66032,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1775314800
           },
           "consecutiveErrors": 3
         }
@@ -457,8 +462,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 20,
-        "byteCount": 1788,
+        "lineCount": 21,
+        "byteCount": 1936,
         "date": "2026-03-28"
       },
       "recentDays": [
