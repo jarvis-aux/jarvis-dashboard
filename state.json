@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774687812,
-  "generatedAtIso": "2026-03-28T08:50:12Z",
+  "generatedAt": 1774689626,
+  "generatedAtIso": "2026-03-28T09:20:26Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "comms-classifier",
-          "humanSchedule": "Daily 4 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774602000,
-            "status": "error",
-            "durationMs": 23774,
-            "summary": "The AI service is temporarily overloaded. Please try again in a moment."
-          },
-          "nextRun": {
-            "ts": 1774688400
-          },
-          "consecutiveErrors": 1
-        },
         {
           "id": "haircut-nudge",
           "humanSchedule": "Daily 10 AM CT",
@@ -111,6 +96,21 @@
           },
           "nextRun": {
             "ts": 1774771200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "comms-classifier",
+          "humanSchedule": "Daily 4 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774688400,
+            "status": "ok",
+            "durationMs": 123222,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774774800
           },
           "consecutiveErrors": 0
         },
@@ -208,7 +208,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 3
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -457,8 +457,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 8,
-        "byteCount": 522,
+        "lineCount": 9,
+        "byteCount": 616,
         "date": "2026-03-28"
       },
       "recentDays": [
