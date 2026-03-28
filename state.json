@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774666210,
-  "generatedAtIso": "2026-03-28T02:50:10Z",
+  "generatedAt": 1774668016,
+  "generatedAtIso": "2026-03-28T03:20:16Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -39,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "daily-usage-report",
-          "humanSchedule": "Daily 10 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774580400,
-            "status": "ok",
-            "durationMs": 129730,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774666800
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "nightly-curiosity",
           "humanSchedule": "Daily 3 AM CT",
@@ -113,6 +98,21 @@
             "ts": 1774710000
           },
           "consecutiveErrors": 2
+        },
+        {
+          "id": "daily-usage-report",
+          "humanSchedule": "Daily 10 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774666800,
+            "status": "ok",
+            "durationMs": 13610,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774753200
+          },
+          "consecutiveErrors": 0
         },
         {
           "id": "date-digest-sunday",
