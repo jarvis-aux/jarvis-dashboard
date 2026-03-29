@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774794688,
-  "generatedAtIso": "2026-03-29T14:31:28Z",
+  "generatedAt": 1774796420,
+  "generatedAtIso": "2026-03-29T15:00:20Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -9,11 +9,6 @@
   "health": {
     "overall": "error",
     "signals": [
-      {
-        "key": "cron.failures",
-        "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      },
       {
         "key": "cron.weekly-self-assessment.stuck",
         "level": "error",
@@ -44,21 +39,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774710066,
-            "status": "ok",
-            "durationMs": 7053,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774796400
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "weekly-self-assessment",
           "humanSchedule": "Mondays 8 PM CT",
@@ -116,6 +96,21 @@
           },
           "nextRun": {
             "ts": 1774861200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774796400,
+            "status": "ok",
+            "durationMs": 8291,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774882800
           },
           "consecutiveErrors": 0
         },
@@ -213,7 +208,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 0
       }
     },
     "stocks": {
@@ -462,8 +457,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 39,
-        "byteCount": 3031,
+        "lineCount": 8,
+        "byteCount": 461,
         "date": "2026-03-29"
       },
       "recentDays": [
