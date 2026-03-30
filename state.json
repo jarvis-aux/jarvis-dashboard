@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774882825,
-  "generatedAtIso": "2026-03-30T15:00:25Z",
+  "generatedAt": 1774884826,
+  "generatedAtIso": "2026-03-30T15:33:46Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -35,6 +35,11 @@
         "message": "'weekly-self-assessment' has 5 consecutive errors"
       },
       {
+        "key": "cron.nicotine-accountability.stuck",
+        "level": "error",
+        "message": "'nicotine-accountability' has 3 consecutive errors"
+      },
+      {
         "key": "drive.audit",
         "level": "warn",
         "message": "Drive audit overdue"
@@ -44,36 +49,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774796400,
-            "status": "ok",
-            "durationMs": 8291,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774882800
-          },
-          "consecutiveErrors": 0
-        },
-        {
-          "id": "nicotine-accountability",
-          "humanSchedule": "Tuesdays 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774278002,
-            "status": "error",
-            "durationMs": 604000,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774882800
-          },
-          "consecutiveErrors": 2
-        },
         {
           "id": "memory-review",
           "humanSchedule": "Every 4320 min",
@@ -131,6 +106,21 @@
           },
           "nextRun": {
             "ts": 1774947600
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774883005,
+            "status": "ok",
+            "durationMs": 5778,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1774969200
           },
           "consecutiveErrors": 0
         },
@@ -208,12 +198,27 @@
             "ts": 1775437200
           },
           "consecutiveErrors": 5
+        },
+        {
+          "id": "nicotine-accountability",
+          "humanSchedule": "Tuesdays 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774882800,
+            "status": "error",
+            "durationMs": 205393,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1775487600
+          },
+          "consecutiveErrors": 3
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -458,8 +463,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 22,
-        "byteCount": 1826,
+        "lineCount": 23,
+        "byteCount": 1948,
         "date": "2026-03-30"
       },
       "recentDays": [
@@ -511,7 +516,7 @@
         "Inbox Check": 1773045064,
         "Memory Review": 1772863560,
         "Drive Audit": 1772604060,
-        "Nicotine Check": 1774278000,
+        "Nicotine Check": 1774882800,
         "Weekly Report": 1774832400
       }
     }
