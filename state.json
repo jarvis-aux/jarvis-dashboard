@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774832419,
-  "generatedAtIso": "2026-03-30T01:00:19Z",
+  "generatedAt": 1774834221,
+  "generatedAtIso": "2026-03-30T01:30:21Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -10,9 +10,9 @@
     "overall": "error",
     "signals": [
       {
-        "key": "cron.weekly-self-assessment.stuck",
-        "level": "error",
-        "message": "'weekly-self-assessment' has 4 consecutive errors"
+        "key": "cron.failures",
+        "level": "warn",
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -30,6 +30,11 @@
         "message": "'problem-review-saturday' has 3 consecutive errors"
       },
       {
+        "key": "cron.weekly-self-assessment.stuck",
+        "level": "error",
+        "message": "'weekly-self-assessment' has 5 consecutive errors"
+      },
+      {
         "key": "drive.audit",
         "level": "warn",
         "message": "Drive audit overdue"
@@ -39,21 +44,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "weekly-self-assessment",
-          "humanSchedule": "Mondays 8 PM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774227600,
-            "status": "error",
-            "durationMs": 206618,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1774832400
-          },
-          "consecutiveErrors": 4
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -203,12 +193,27 @@
             "ts": 1775383200
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "weekly-self-assessment",
+          "humanSchedule": "Mondays 8 PM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1774832400,
+            "status": "error",
+            "durationMs": 127285,
+            "summary": "\u26a0\ufe0f \u2709\ufe0f Message failed"
+          },
+          "nextRun": {
+            "ts": 1775437200
+          },
+          "consecutiveErrors": 5
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 0
+        "failedLast24h": 1
       }
     },
     "stocks": {
@@ -429,27 +434,23 @@
           "severity": "low"
         },
         {
-          "title": "Isolated crons with `channel: last` silently fail when multiple channels configured (telegram + disc",
-          "severity": "medium"
-        },
-        {
           "title": "Recurring multi-hour heartbeat gaps (4-11h) \u2014 sessions drop overnight and sometimes mid-day, no hear",
           "severity": "medium"
         }
       ],
       "rejected": [],
       "stats": {
-        "openCount": 8
+        "openCount": 7
       }
     },
     "drive": {
       "last": {
         "auditTs": 1772604060,
-        "reportTs": 1774227600
+        "reportTs": 1774832400
       },
       "next": {
         "auditTs": 1773205200,
-        "reportTs": 1774832400
+        "reportTs": 1775437200
       },
       "status": "warn",
       "auditOverdue": true,
@@ -457,8 +458,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 28,
-        "byteCount": 2332,
+        "lineCount": 38,
+        "byteCount": 2995,
         "date": "2026-03-29"
       },
       "recentDays": [
@@ -511,7 +512,7 @@
         "Memory Review": 1772863560,
         "Drive Audit": 1772604060,
         "Nicotine Check": 1774278000,
-        "Weekly Report": 1774227600
+        "Weekly Report": 1774832400
       }
     }
   },
@@ -530,9 +531,9 @@
     },
     {
       "name": "CAPABILITY-GAPS.md",
-      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-11 | `gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo | tool | Re-generate PAT with `repo` scope or use `gh auth refresh --scopes repo`\n2026-03-13 | Telegram notifications broken \u2014 notifier looks for `telegram-bot-token` but only `openclaw-telegram-bot-token` exists in Keychain | tool | Check if they're the same token; if so, add alias entry or fix the service name in notifier.py\n2026-03-10 | `~/scripts/get-claude-usage.sh` times out \u2014 expect script broken with newer claude CLI version | tool | Debug the expect script or find alternative approach\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) | tool | Re-auth gog OAuth for aliudeloitte@gmail.com\n2026-02-25 | Keychain migration incomplete \u2014 live keys still in auth-profiles.json | edge_case | Complete migration; wrapper depends on env refs\n2026-03-17 | Isolated crons with `channel: last` silently fail when multiple channels configured (telegram + discord) \u2014 error only visible in run history, no alert | edge_case | Audit all crons for explicit --channel; add failure-alert to critical crons so errors surface proactively\n2026-03-24 | Recurring multi-hour heartbeat gaps (4-11h) \u2014 sessions drop overnight and sometimes mid-day, no heartbeats fire in the interval | edge_case | Investigate session keepalive or watchdog; check if gateway session expiry or compaction is causing drops\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n<!-- Cleared 2026-03-22 after weekly report #4. -->\n",
-      "sizeBytes": 2218,
-      "lastModified": "2026-03-24T22:22:02Z"
+      "content": "# CAPABILITY-GAPS.md\n\n## Open Gaps\n<!-- Format: YYYY-MM-DD | What failed | Category: knowledge|tool|assumption|edge_case | Proposed fix -->\n2026-03-12 | `openclaw gateway restart` can SIGTERM the gateway and then hang without launchd autonomously relaunching it; recovery may require external `launchctl kickstart` | tool | Capture launchctl state before/after restart, compare CLI restart vs direct launchctl kickstart behavior, then replace the non-standard wrapper with a canonical LaunchAgent only after preserving secret injection\n2026-03-11 | `gh` token lacks `createRepository` scope \u2014 can't push tock-sniper to GitHub as private repo | tool | Re-generate PAT with `repo` scope or use `gh auth refresh --scopes repo`\n2026-03-13 | Telegram notifications broken \u2014 notifier looks for `telegram-bot-token` but only `openclaw-telegram-bot-token` exists in Keychain | tool | Check if they're the same token; if so, add alias entry or fix the service name in notifier.py\n2026-03-10 | `~/scripts/get-claude-usage.sh` times out \u2014 expect script broken with newer claude CLI version | tool | Debug the expect script or find alternative approach\n2026-03-13 | gog calendar list failed: oauth2 invalid_grant (token expired/revoked) | tool | Re-auth gog OAuth for aliudeloitte@gmail.com\n2026-02-25 | Keychain migration incomplete \u2014 live keys still in auth-profiles.json | edge_case | Complete migration; wrapper depends on env refs\n<!-- 2026-03-17 | cron channel:last bug \u2014 RESOLVED 2026-03-24: patched 4 crons to explicit --channel telegram -->\n2026-03-24 | Recurring multi-hour heartbeat gaps (4-11h) \u2014 sessions drop overnight and sometimes mid-day, no heartbeats fire in the interval | edge_case | Investigate session keepalive or watchdog; check if gateway session expiry or compaction is causing drops\n\n## Rejected Proposals\n<!-- Format: YYYY-MM-DD | What was proposed | Why Andrew said no -->\n\n## Audit Notes\n<!-- Scratch space for mid-week audit. Cleared after each weekly report. -->\n<!-- Cleared 2026-03-29 after weekly report #5. -->\n",
+      "sizeBytes": 2048,
+      "lastModified": "2026-03-30T01:01:28Z"
     },
     {
       "name": "TOOLS.md",
