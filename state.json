@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1774917308,
-  "generatedAtIso": "2026-03-31T00:35:08Z",
+  "generatedAt": 1774919129,
+  "generatedAtIso": "2026-03-31T01:05:29Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,7 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "3 cron job(s) failed in last 24h"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -218,7 +218,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 3
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -463,8 +463,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 46,
-        "byteCount": 4350,
+        "lineCount": 47,
+        "byteCount": 4453,
         "date": "2026-03-30"
       },
       "recentDays": [
