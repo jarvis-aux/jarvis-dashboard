@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1775167813,
-  "generatedAtIso": "2026-04-02T22:10:13Z",
+  "generatedAt": 1775169613,
+  "generatedAtIso": "2026-04-02T22:40:13Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -12,12 +12,7 @@
       {
         "key": "cron.failures",
         "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      },
-      {
-        "key": "cron.memory-review.stuck",
-        "level": "error",
-        "message": "'memory-review' has 7 consecutive errors"
+        "message": "2 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.project-review.stuck",
@@ -28,6 +23,11 @@
         "key": "cron.problem-review-saturday.stuck",
         "level": "error",
         "message": "'problem-review-saturday' has 3 consecutive errors"
+      },
+      {
+        "key": "cron.memory-review.stuck",
+        "level": "error",
+        "message": "'memory-review' has 8 consecutive errors"
       },
       {
         "key": "cron.weekly-self-assessment.stuck",
@@ -49,21 +49,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "memory-review",
-          "humanSchedule": "Every 4320 min",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774909278,
-            "status": "error",
-            "durationMs": 55908,
-            "summary": "Delivering to Telegram requires target <chatId>"
-          },
-          "nextRun": {
-            "ts": 1775168478
-          },
-          "consecutiveErrors": 7
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -170,6 +155,21 @@
           "consecutiveErrors": 0
         },
         {
+          "id": "memory-review",
+          "humanSchedule": "Every 4320 min",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1775168478,
+            "status": "error",
+            "durationMs": 74529,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1775427678
+          },
+          "consecutiveErrors": 8
+        },
+        {
           "id": "weekly-self-assessment",
           "humanSchedule": "Mondays 8 PM CT",
           "enabled": true,
@@ -218,7 +218,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 2
       }
     },
     "stocks": {
@@ -463,8 +463,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 6,
-        "byteCount": 322,
+        "lineCount": 7,
+        "byteCount": 401,
         "date": "2026-04-02"
       },
       "recentDays": [
@@ -505,8 +505,8 @@
         }
       ],
       "memoryMd": {
-        "lineCount": 143,
-        "byteCount": 12637
+        "lineCount": 147,
+        "byteCount": 13411
       }
     },
     "heartbeat": {
