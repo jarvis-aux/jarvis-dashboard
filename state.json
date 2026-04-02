@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1775140817,
-  "generatedAtIso": "2026-04-02T14:40:17Z",
+  "generatedAt": 1775142617,
+  "generatedAtIso": "2026-04-02T15:10:17Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -9,6 +9,11 @@
   "health": {
     "overall": "error",
     "signals": [
+      {
+        "key": "cron.failures",
+        "level": "warn",
+        "message": "1 cron job(s) failed in last 24h"
+      },
       {
         "key": "cron.memory-review.stuck",
         "level": "error",
@@ -44,21 +49,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1775055600,
-            "status": "ok",
-            "durationMs": 24347,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1775142000
-          },
-          "consecutiveErrors": 0
-        },
         {
           "id": "memory-review",
           "humanSchedule": "Every 4320 min",
@@ -133,6 +123,21 @@
             "ts": 1775206800
           },
           "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1775142000,
+            "status": "error",
+            "durationMs": 120027,
+            "summary": "cron: job execution timed out"
+          },
+          "nextRun": {
+            "ts": 1775228400
+          },
+          "consecutiveErrors": 1
         },
         {
           "id": "problem-review-saturday",
@@ -213,7 +218,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 0
+        "failedLast24h": 1
       }
     },
     "stocks": {
