@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1775315466,
-  "generatedAtIso": "2026-04-04T15:11:06Z",
+  "generatedAt": 1775317294,
+  "generatedAtIso": "2026-04-04T15:41:34Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -10,9 +10,9 @@
     "overall": "error",
     "signals": [
       {
-        "key": "cron.problem-review-saturday.stuck",
-        "level": "error",
-        "message": "'problem-review-saturday' has 3 consecutive errors"
+        "key": "cron.failures",
+        "level": "warn",
+        "message": "1 cron job(s) failed in last 24h"
       },
       {
         "key": "cron.memory-review.stuck",
@@ -35,6 +35,11 @@
         "message": "'project-review' has 4 consecutive errors"
       },
       {
+        "key": "cron.problem-review-saturday.stuck",
+        "level": "error",
+        "message": "'problem-review-saturday' has 4 consecutive errors"
+      },
+      {
         "key": "drive.audit",
         "level": "warn",
         "message": "Drive audit overdue"
@@ -44,36 +49,6 @@
   "sections": {
     "cron": {
       "jobs": [
-        {
-          "id": "haircut-nudge",
-          "humanSchedule": "Daily 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1775228400,
-            "status": "error",
-            "durationMs": 120009,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1775314800
-          },
-          "consecutiveErrors": 2
-        },
-        {
-          "id": "problem-review-saturday",
-          "humanSchedule": "Sundays 10 AM CT",
-          "enabled": true,
-          "lastRun": {
-            "ts": 1774710000,
-            "status": "error",
-            "durationMs": 66032,
-            "summary": null
-          },
-          "nextRun": {
-            "ts": 1775314800
-          },
-          "consecutiveErrors": 3
-        },
         {
           "id": "daily-usage-report",
           "humanSchedule": "Daily 10 PM CT",
@@ -131,6 +106,21 @@
           },
           "nextRun": {
             "ts": 1775383200
+          },
+          "consecutiveErrors": 0
+        },
+        {
+          "id": "haircut-nudge",
+          "humanSchedule": "Daily 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1775315479,
+            "status": "ok",
+            "durationMs": 5972,
+            "summary": null
+          },
+          "nextRun": {
+            "ts": 1775401200
           },
           "consecutiveErrors": 0
         },
@@ -208,12 +198,27 @@
             "ts": 1775804400
           },
           "consecutiveErrors": 4
+        },
+        {
+          "id": "problem-review-saturday",
+          "humanSchedule": "Sundays 10 AM CT",
+          "enabled": true,
+          "lastRun": {
+            "ts": 1775314800,
+            "status": "error",
+            "durationMs": 679271,
+            "summary": "Delivering to Telegram requires target <chatId>"
+          },
+          "nextRun": {
+            "ts": 1775919600
+          },
+          "consecutiveErrors": 4
         }
       ],
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 0
+        "failedLast24h": 1
       }
     },
     "stocks": {
@@ -458,8 +463,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 20,
-        "byteCount": 1419,
+        "lineCount": 21,
+        "byteCount": 1581,
         "date": "2026-04-04"
       },
       "recentDays": [
