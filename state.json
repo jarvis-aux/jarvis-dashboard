@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": 1775313666,
-  "generatedAtIso": "2026-04-04T14:41:06Z",
+  "generatedAt": 1775315466,
+  "generatedAtIso": "2026-04-04T15:11:06Z",
   "host": {
     "name": "Andrew's MacBook Pro",
     "timezone": "America/Chicago"
@@ -9,11 +9,6 @@
   "health": {
     "overall": "error",
     "signals": [
-      {
-        "key": "cron.failures",
-        "level": "warn",
-        "message": "1 cron job(s) failed in last 24h"
-      },
       {
         "key": "cron.problem-review-saturday.stuck",
         "level": "error",
@@ -57,7 +52,7 @@
             "ts": 1775228400,
             "status": "error",
             "durationMs": 120009,
-            "summary": "cron: job execution timed out"
+            "summary": null
           },
           "nextRun": {
             "ts": 1775314800
@@ -72,7 +67,7 @@
             "ts": 1774710000,
             "status": "error",
             "durationMs": 66032,
-            "summary": "Delivering to Telegram requires target <chatId>"
+            "summary": null
           },
           "nextRun": {
             "ts": 1775314800
@@ -218,7 +213,7 @@
       "stats": {
         "total": 11,
         "enabled": 11,
-        "failedLast24h": 1
+        "failedLast24h": 0
       }
     },
     "stocks": {
@@ -463,8 +458,8 @@
     },
     "memory": {
       "today": {
-        "lineCount": 18,
-        "byteCount": 1139,
+        "lineCount": 20,
+        "byteCount": 1419,
         "date": "2026-04-04"
       },
       "recentDays": [
